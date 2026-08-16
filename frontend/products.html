@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Shop All Crackers | Fun With Crackers</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="index.html" class="logo">Fun With <span class="spark">Crackers</span></a>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="products.html" class="active">Shop</a>
+      <a href="track-order.html">Track Order</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <a href="cart.html" class="cart-link">🛒 Cart (<span id="cart-count">0</span>)</a>
+  </div>
+</header>
+
+<section class="container categories">
+  <div class="section-title">
+    <h2>Shop All Crackers</h2>
+  </div>
+  <div class="form-group full" style="max-width:420px;">
+    <input type="text" id="search-input" placeholder="Search products e.g. sparklers, rocket..." />
+  </div>
+  <div class="chip-row" id="category-chips"></div>
+</section>
+
+<section class="container">
+  <div class="product-grid" id="product-grid">
+    <div class="loader">Loading products...</div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="container">
+    <div class="footer-columns" style="grid-template-columns: 1.3fr 1fr 1fr;">
+      <div class="footer-col">
+        <h4 style="font-family:'Fraunces',serif; font-size:1.1rem; text-transform:none; letter-spacing:0; margin-bottom:12px;">Our Profile</h4>
+        <p style="font-weight:700; color:var(--gold-pale); margin-bottom:8px;">Fun With Crackers</p>
+        <p style="max-width:320px; margin-bottom:18px;">
+          Our products focus on our Customer's happiness. Crackers are available in different specifications as per the requirements of the clients.
+        </p>
+        <a href="#contact" class="btn btn-outline" style="border-color:rgba(255,255,255,0.25); color:var(--bg);">Read More →</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <p style="font-weight:700; color:var(--gold-pale); margin:0 0 4px;">Address</p>
+        <p style="margin-bottom:14px;">
+          Phoenix Crackers<br/>
+          Anil Kumar Eye Hospital Opp.<br/>
+          Sattur Road<br/>
+          Sivakasi
+        </p>
+        <p style="font-weight:700; color:var(--gold-pale); margin:0 0 4px;">Mobile</p>
+        <p style="margin-bottom:14px;">
+          +91 63836 59214<br/>
+          +91 96554 56167
+        </p>
+        <p style="font-weight:700; color:var(--gold-pale); margin:0 0 4px;">Email</p>
+        <p><a href="mailto:nivasramasamy27@gmail.com">nivasramasamy27@gmail.com</a></p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="#contact">About Us</a>
+        <a href="products.html">Price List</a>
+        <a href="#faq">Safety Tips</a>
+        <a href="#contact">Contact Us</a>
+      </div>
+    </div>
+
+    <div style="max-width:820px; margin:0 auto 28px; text-align:center; font-size:0.85rem; color:var(--ink-soft); opacity:0.85; line-height:1.7;">
+      <p style="margin-bottom:14px;">
+        As per 2018 Supreme Court order, online sale of firecrackers are not permitted! We value our customers and at the same time, respect jurisdiction. We request you to add your products to the cart and submit the required crackers through the enquiry button. We will contact you within 24 hrs and confirm the order through WhatsApp or phone call. Please add and submit your enquiries and enjoy your Diwali with Fun With Crackers.
+      </p>
+      <p>
+        Our License No. ----. Fun With Crackers as a company follows 100% legal &amp; statutory compliances, and all our shops, go-downs are maintained as per the explosive acts. We send the parcels through registered and legal transport service providers as every other major company in Sivakasi is doing.
+      </p>
+    </div>
+
+    <div style="border-radius: var(--radius); overflow:hidden; border:1px solid rgba(255,255,255,0.15); margin-bottom:32px; box-shadow: var(--shadow-sm);">
+      <iframe
+        title="Store location map"
+        src="https://maps.google.com/maps?q=Phoenix%20Crackers%2C%20Sattur%20Road%2C%20Sivakasi&z=15&output=embed"
+        width="100%" height="260" style="border:0; display:block;"
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+
+    <div class="footer-bottom">
+      <span>Copyright © 2026, Fun With Crackers. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/config.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/category-styles.js"></script>
+<script>
+  let activeCategory = new URLSearchParams(location.search).get('category') || 'All';
+  let searchTerm = '';
+
+  async function loadCategories() {
+    const res = await fetch(`${API_BASE_URL}/products/categories`);
+    const categories = ['All', ...(await res.json())];
+    renderChips(categories);
+  }
+
+  function renderChips(categories) {
+    const row = document.getElementById('category-chips');
+    row.innerHTML = categories.map(c =>
+      `<button class="chip ${c === activeCategory ? 'active' : ''}" data-cat="${c}">${c}</button>`
+    ).join('');
+    row.querySelectorAll('.chip').forEach(btn => {
+      btn.addEventListener('click', () => {
+        activeCategory = btn.dataset.cat;
+        row.querySelectorAll('.chip').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        loadProducts();
+      });
+    });
+  }
+
+  async function loadProducts() {
+    const grid = document.getElementById('product-grid');
+    grid.innerHTML = `<div class="loader">Loading products...</div>`;
+    try {
+      const params = new URLSearchParams();
+      if (activeCategory !== 'All') params.set('category', activeCategory);
+      if (searchTerm) params.set('search', searchTerm);
+
+      const res = await fetch(`${API_BASE_URL}/products?${params.toString()}`);
+      const products = await res.json();
+
+      grid.innerHTML = products.length
+        ? products.map(renderProductCard).join('')
+        : `<div class="empty-state">No products found.</div>`;
+    } catch (err) {
+      grid.innerHTML = `<div class="empty-state">Could not load products. Make sure the backend server is running at ${API_BASE_URL}.</div>`;
+    }
+  }
+
+  function renderProductCard(p) {
+    const discount = Math.round(((p.mrp - p.finalPrice) / p.mrp) * 100);
+    return `
+      <div class="product-card">
+        ${productImageHTML(p.category, p.image)}
+        <div class="product-body">
+          <div class="product-cat">${p.category}</div>
+          <div class="product-name">${p.name}</div>
+          <div class="product-content">${p.content}</div>
+          <div class="product-price-row">
+            <span class="price-final">₹${p.finalPrice}</span>
+            <span class="price-mrp">₹${p.mrp}</span>
+            <span class="price-discount">${discount}% off</span>
+          </div>
+          <button class="add-btn" onclick="addToCart(decodeSafeData('${encodeSafeData(p)}'))">Add to Cart</button>
+        </div>
+      </div>`;
+  }
+
+  let searchTimeout;
+  document.getElementById('search-input').addEventListener('input', (e) => {
+    clearTimeout(searchTimeout);
+    searchTimeout = setTimeout(() => {
+      searchTerm = e.target.value.trim();
+      loadProducts();
+    }, 300);
+  });
+
+  loadCategories();
+  loadProducts();
+</script>
+</body>
+</html>

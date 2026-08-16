@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin Login | Fun With Crackers</title>
+<link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+<section class="container" style="min-height:80vh; display:flex; align-items:center; justify-content:center;">
+  <div class="cart-summary" style="max-width:380px; width:100%; margin:0;">
+    <h2 style="margin-bottom:20px; text-align:center;">Admin Login</h2>
+    <form id="login-form">
+      <div class="form-group full">
+        <label>Email</label>
+        <input type="email" name="email" required />
+      </div>
+      <div class="form-group full">
+        <label>Password</label>
+        <input type="password" name="password" required />
+      </div>
+      <p id="login-error" style="color:var(--ember); font-size:0.85rem; display:none; margin-bottom:12px;"></p>
+      <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Log In</button>
+    </form>
+  </div>
+</section>
+
+<script src="../js/config.js"></script>
+<script>
+  document.getElementById('login-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const errorEl = document.getElementById('login-error');
+    errorEl.style.display = 'none';
+
+    try {
+      const res = await fetch(`${API_BASE_URL}/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(formData.entries())),
+      });
+
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.message || 'Login failed');
+      }
+
+      const data = await res.json();
+      localStorage.setItem('fwc_admin_token', data.token);
+      window.location.href = 'index.html';
+    } catch (err) {
+      errorEl.textContent = err.message;
+      errorEl.style.display = 'block';
+    }
+  });
+
+  // If already logged in with a valid token, skip straight to dashboard
+  (async () => {
+    const token = localStorage.getItem('fwc_admin_token');
+    if (!token) return;
+    try {
+      const res = await fetch(`${API_BASE_URL}/auth/verify`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (res.ok) window.location.href = 'index.html';
+    } catch (_) {}
+  })();
+</script>
+</body>
+</html>
