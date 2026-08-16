@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Fun With Crackers | Sivakasi Fireworks Online</title>
+<title>familycrackersworld | Sivakasi Fireworks Online</title>
 <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 
 <header>
   <div class="container nav">
-    <a href="index.html" class="logo">Fun With <span class="spark">Crackers</span></a>
+    <a href="index.html" class="logo">family<span class="spark">crackersworld</span></a>
     <nav class="nav-links">
       <a href="index.html" class="active">Home</a>
       <a href="products.html">Shop</a>
@@ -64,7 +64,7 @@
 <!-- ===== Features ===== -->
 <section class="section container">
   <div class="section-head center" style="margin-left:auto; margin-right:auto; text-align:center;">
-    <h2>Why families choose Fun With Crackers</h2>
+    <h2>Why families choose familycrackersworld</h2>
     <p>We handle sourcing, safety and delivery — so your celebration is all that's left to enjoy.</p>
   </div>
   <div class="feature-grid">
@@ -99,23 +99,23 @@
   </div>
   <div class="showcase">
     <div class="showcase-tabs" id="showcase-tabs">
-      <div class="showcase-tab active" data-emoji="✨" data-cat="Sparklers">
+      <div class="showcase-tab active" data-emoji="✨" data-cat="Sparklers" data-image="">
         <h4>Sparklers</h4>
         <p>The classic starter — safe, bright, and loved by kids.</p>
       </div>
-      <div class="showcase-tab" data-emoji="🌸" data-cat="Flower Pots">
+      <div class="showcase-tab" data-emoji="🌸" data-cat="Flower Pots" data-image="">
         <h4>Flower Pots</h4>
         <p>Ground fountains with a golden shower effect.</p>
       </div>
-      <div class="showcase-tab" data-emoji="🚀" data-cat="Rockets">
+      <div class="showcase-tab" data-emoji="��" data-cat="Rockets" data-image="">
         <h4>Rockets</h4>
         <p>Colour-burst rockets that light up the whole sky.</p>
       </div>
-      <div class="showcase-tab" data-emoji="🎇" data-cat="Comets & Sky Shots">
+      <div class="showcase-tab" data-emoji="🎇" data-cat="Comets & Sky Shots" data-image="">
         <h4>Sky Shots</h4>
         <p>Multi-shot aerial displays for the big finale.</p>
       </div>
-      <div class="showcase-tab" data-emoji="🎁" data-cat="New Arrivals">
+      <div class="showcase-tab" data-emoji="🎁" data-cat="New Arrivals" data-image="">
         <h4>New Arrivals</h4>
         <p>This season's fresh additions to the catalogue.</p>
       </div>
@@ -229,7 +229,7 @@
     <div class="footer-columns" style="grid-template-columns: 1.3fr 1fr 1fr;">
       <div class="footer-col">
         <h4 style="font-family:'Fraunces',serif; font-size:1.1rem; text-transform:none; letter-spacing:0; margin-bottom:12px;">Our Profile</h4>
-        <p style="font-weight:700; color:var(--gold-pale); margin-bottom:8px;">Fun With Crackers</p>
+        <p style="font-weight:700; color:var(--gold-pale); margin-bottom:8px;">familycrackersworld</p>
         <p style="max-width:320px; margin-bottom:18px;">
           Our products focus on our Customer's happiness. Crackers are available in different specifications as per the requirements of the clients.
         </p>
@@ -266,10 +266,10 @@
 
     <div style="max-width:820px; margin:0 auto 28px; text-align:center; font-size:0.85rem; color:var(--ink-soft); opacity:0.85; line-height:1.7;">
       <p style="margin-bottom:14px;">
-        As per 2018 Supreme Court order, online sale of firecrackers are not permitted! We value our customers and at the same time, respect jurisdiction. We request you to add your products to the cart and submit the required crackers through the enquiry button. We will contact you within 24 hrs and confirm the order through WhatsApp or phone call. Please add and submit your enquiries and enjoy your Diwali with Fun With Crackers.
+        As per 2018 Supreme Court order, online sale of firecrackers are not permitted! We value our customers and at the same time, respect jurisdiction. We request you to add your products to the cart and submit the required crackers through the enquiry button. We will contact you within 24 hrs and confirm the order through WhatsApp or phone call. Please add and submit your enquiries and enjoy your Diwali with familycrackersworld.
       </p>
       <p>
-        Our License No. ----. Fun With Crackers as a company follows 100% legal &amp; statutory compliances, and all our shops, go-downs are maintained as per the explosive acts. We send the parcels through registered and legal transport service providers as every other major company in Sivakasi is doing.
+        Our License No. ----. familycrackersworld as a company follows 100% legal &amp; statutory compliances, and all our shops, go-downs are maintained as per the explosive acts. We send the parcels through registered and legal transport service providers as every other major company in Sivakasi is doing.
       </p>
     </div>
 
@@ -283,7 +283,7 @@
     </div>
 
     <div class="footer-bottom">
-      <span>Copyright © 2026, Fun With Crackers. All rights reserved.</span>
+      <span>Copyright © 2026, familycrackersworld. All rights reserved.</span>
     </div>
   </div>
 </footer>
@@ -308,23 +308,31 @@
   // Showcase tabs interaction
   const tabs = document.querySelectorAll('.showcase-tab');
   const visualHost = document.getElementById('showcase-visual');
+
+  function renderShowcaseVisual(tab) {
+    const style = getCategoryStyle(tab.dataset.cat);
+    const imageUrl = tab.dataset.image;
+    if (imageUrl) {
+      visualHost.style.background = 'none';
+      visualHost.innerHTML = `<img src="${imageUrl}" alt="${tab.dataset.cat}" style="width:100%; height:100%; object-fit:cover; border-radius:20px;" onerror="this.parentElement.style.background='linear-gradient(155deg, ${style.from}, ${style.to})'; this.remove();" />`;
+    } else {
+      visualHost.style.background = `linear-gradient(155deg, ${style.from}, ${style.to})`;
+      visualHost.innerHTML = `<span>${style.icon}</span>`;
+    }
+    visualHost.href = `products.html?category=${encodeURIComponent(tab.dataset.cat)}`;
+  }
+
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
       tabs.forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
-      const style = getCategoryStyle(tab.dataset.cat);
-      visualHost.style.background = `linear-gradient(155deg, ${style.from}, ${style.to})`;
-      visualHost.querySelector('span').textContent = style.icon;
-      visualHost.href = `products.html?category=${encodeURIComponent(tab.dataset.cat)}`;
+      renderShowcaseVisual(tab);
     });
   });
-  // Set initial showcase background to match first active tab
+  // Set initial showcase visual to match first active tab
   (function initShowcase() {
     const firstTab = document.querySelector('.showcase-tab.active');
-    if (firstTab) {
-      const style = getCategoryStyle(firstTab.dataset.cat);
-      visualHost.style.background = `linear-gradient(155deg, ${style.from}, ${style.to})`;
-    }
+    if (firstTab) renderShowcaseVisual(firstTab);
   })();
 
   // FAQ accordion

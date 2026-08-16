@@ -65,7 +65,7 @@ async function handleOnlinePayment(customer) {
     key: data.keyId,
     amount: data.amount,
     currency: data.currency,
-    name: "Fun With Crackers",
+    name: "familycrackersworld",
     description: "Order Payment",
     order_id: data.orderId,
     handler: async function (response) {
