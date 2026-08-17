@@ -99,28 +99,27 @@
   </div>
   <div class="showcase">
     <div class="showcase-tabs" id="showcase-tabs">
-      <div class="showcase-tab active" data-emoji="✨" data-cat="Sparklers" data-image="">
+      <div class="showcase-tab active" data-emoji="✨" data-cat="Sparklers" data-image="https://gumlet.assettype.com/freepressjournal/2022-10/ccab254f-c710-46a2-9b8c-60914aca97c1/Diwali.jpeg">
         <h4>Sparklers</h4>
         <p>The classic starter — safe, bright, and loved by kids.</p>
       </div>
-      <div class="showcase-tab" data-emoji="🌸" data-cat="Flower Pots" data-image="">
+      <div class="showcase-tab" data-emoji="🌸" data-cat="Flower Pots" data-image="https://thumbs.dreamstime.com/b/flower-pot-cracker-diwali-noida-uttar-pradesh-delhi-ncr-india-night-hindu-festival-104836805.jpg">
         <h4>Flower Pots</h4>
         <p>Ground fountains with a golden shower effect.</p>
       </div>
-      <div class="showcase-tab" data-emoji="��" data-cat="Rockets" data-image="">
+      <div class="showcase-tab" data-emoji="🚀" data-cat="Rockets" data-image="https://5.imimg.com/data5/SELLER/Default/2024/11/463612246/BB/GW/PN/64962971/fancy-rocket-crackers-1000x1000.jpeg">
         <h4>Rockets</h4>
         <p>Colour-burst rockets that light up the whole sky.</p>
       </div>
-      <div class="showcase-tab" data-emoji="🎇" data-cat="Comets & Sky Shots" data-image="">
+      <div class="showcase-tab" data-emoji="🎇" data-cat="Comets & Sky Shots" data-image="https://thumbs.dreamstime.com/b/beautiful-sky-shot-crackers-festival-season-india-night-184037144.jpg?w=576">
         <h4>Sky Shots</h4>
         <p>Multi-shot aerial displays for the big finale.</p>
       </div>
-      <div class="showcase-tab" data-emoji="🎁" data-cat="New Arrivals" data-image="">
+      <div class="showcase-tab" data-emoji="🎁" data-cat="New Arrivals" data-image="https://img.freepik.com/premium-photo/traditional-chinese-firecrackers-explosive-decorations-celebrate-festive-new-year_1061358-112802.jpg">
         <h4>New Arrivals</h4>
         <p>This season's fresh additions to the catalogue.</p>
       </div>
-  </div>
-</div>
+    
     </div>
     <a href="products.html" class="showcase-visual" id="showcase-visual" style="text-decoration:none;">
       <span>✨</span>
@@ -305,7 +304,10 @@
     }
   }
 
-  // Showcase tabs interaction
+
+
+
+// Showcase tabs interaction
   const tabs = document.querySelectorAll('.showcase-tab');
   const visualHost = document.getElementById('showcase-visual');
 
@@ -329,6 +331,18 @@
       renderShowcaseVisual(tab);
     });
   });
+  // Set initial showcase visual to match first active tab
+  (function initShowcase() {
+    const firstTab = document.querySelector('.showcase-tab.active');
+    if (firstTab) renderShowcaseVisual(firstTab);
+  })();
+
+
+
+
+
+
+
   // Set initial showcase visual to match first active tab
   (function initShowcase() {
     const firstTab = document.querySelector('.showcase-tab.active');
