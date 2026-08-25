@@ -6,28 +6,7 @@ Razorpay online payment integration. Built with:
 - **Backend:** Node.js, Express, MongoDB (Mongoose), Razorpay
 - **Frontend:** Vanilla HTML/CSS/JS (no build step needed)
 
-> ⚠️ Note: I could not access `funwithcrackers.com` directly to copy its exact
-> product catalog (the live site loads via JavaScript, and copying another
-> business's exact catalog/branding isn't something I do). The product catalog
-> and prices in `backend/seed/products.json` are taken directly from the
-> "FWC_Pricelist_2025.pdf" you shared (142 products, 13 categories) — edit that
-> file if prices change, then re-run the seed command.
->
-> The site's visual design (homepage layout: hero, trust strip, feature grid,
-> tabbed category showcase, testimonial, stats, gift-box pricing cards, FAQ)
-> is modeled after the ScrewFast/ThemeWagon template you shared, adapted with
-> a warm ivory + marigold-gold + vermillion colour palette for the fireworks
-> theme. All other pages (shop, cart, checkout) share the same stylesheet so
-> the whole site stays visually consistent. Product images use custom-coded
-> colour + icon panels per category (`frontend/js/category-styles.js`)
-> instead of hotlinked stock photos, so the site never breaks if an external
-> image link goes down — swap in real product photography whenever you have it
-> by editing `productImageHTML()` in that file. The admin dashboard includes a
-> Chart.js analytics tab (revenue trend, order-status breakdown, top-selling
-> products), matching the same charting approach used in the Senbagam
-> Furniture admin panel.
 
----
 
 ## 1. Folder structure
 
