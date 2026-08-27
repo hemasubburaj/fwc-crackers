@@ -978,12 +978,23 @@ header {
   overflow: hidden;
 }
 
+
+
+.product-img {
+  height: 170px;
+  background: #FFFFFF;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2.4rem;
+  padding: 10px;
+  border-bottom: 1px solid var(--line);
+}
 .product-img img {
   width: 100%;
   height: 100%;
-
-  object-fit: cover;
+  object-fit: contain;
 }
+
+
 
 .product-body {
   padding: 18px;

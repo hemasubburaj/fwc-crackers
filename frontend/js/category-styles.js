@@ -23,13 +23,20 @@ function getCategoryStyle(category) {
   return CATEGORY_STYLES[category] || DEFAULT_CATEGORY_STYLE;
 }
 
+
+
+
+
 function productImageHTML(category, imageUrl) {
   if (imageUrl && !imageUrl.includes('placeholder')) {
-    return `<div class="product-img" style="padding:0;">
-      <img src="${imageUrl}" alt="${category}" style="width:100%; height:100%; object-fit:cover; display:block;"
+    return `<div class="product-img">
+      <img src="${imageUrl}" alt="${category}" style="width:100%; height:100%; object-fit:contain; display:block;"
         onerror="this.parentElement.outerHTML = productImageHTML('${category}')" />
     </div>`;
   }
+
+
+
   const s = getCategoryStyle(category);
   return `<div class="product-img" style="background:linear-gradient(150deg, ${s.from}, ${s.to});">
     <span style="filter:drop-shadow(0 4px 10px rgba(0,0,0,0.18));">${s.icon}</span>
