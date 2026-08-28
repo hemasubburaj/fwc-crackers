@@ -1,20 +1,13 @@
-```js
 const mongoose = require("mongoose");
 
 const orderSchema = new mongoose.Schema(
   {
-    // ========================================
-    // ORDER ID
-    // ========================================
     orderId: {
       type: String,
       required: true,
       unique: true,
     },
 
-    // ========================================
-    // ORDER STATUS
-    // ========================================
     orderStatus: {
       type: String,
       enum: [
@@ -27,9 +20,6 @@ const orderSchema = new mongoose.Schema(
       default: "PLACED",
     },
 
-    // ========================================
-    // CUSTOMER
-    // ========================================
     customer: {
       name: {
         type: String,
@@ -67,17 +57,16 @@ const orderSchema = new mongoose.Schema(
       },
     },
 
-    // ========================================
-    // ORDER ITEMS
-    // ========================================
     items: [
       {
         productId: {
           type: String,
+          default: "",
         },
 
         name: {
           type: String,
+          required: true,
         },
 
         productCode: {
@@ -102,17 +91,11 @@ const orderSchema = new mongoose.Schema(
       },
     ],
 
-    // ========================================
-    // TOTAL
-    // ========================================
     totalAmount: {
       type: Number,
       required: true,
     },
 
-    // ========================================
-    // PAYMENT
-    // ========================================
     paymentMethod: {
       type: String,
       enum: ["COD", "ONLINE"],
@@ -124,14 +107,6 @@ const orderSchema = new mongoose.Schema(
       enum: ["PENDING", "PAID", "FAILED"],
       default: "PENDING",
     },
-
-    // ========================================
-    // CREATED / UPDATED
-    // ========================================
-    createdAt: {
-      type: Date,
-      default: Date.now,
-    },
   },
   {
     timestamps: true,
@@ -139,4 +114,3 @@ const orderSchema = new mongoose.Schema(
 );
 
 module.exports = mongoose.model("Order", orderSchema);
-```
