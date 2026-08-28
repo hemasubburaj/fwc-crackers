@@ -1,13 +1,35 @@
+```js
 const mongoose = require("mongoose");
 
 const orderSchema = new mongoose.Schema(
   {
+    // ========================================
+    // ORDER ID
+    // ========================================
     orderId: {
       type: String,
       required: true,
       unique: true,
     },
 
+    // ========================================
+    // ORDER STATUS
+    // ========================================
+    orderStatus: {
+      type: String,
+      enum: [
+        "PLACED",
+        "CONFIRMED",
+        "SHIPPED",
+        "DELIVERED",
+        "CANCELLED",
+      ],
+      default: "PLACED",
+    },
+
+    // ========================================
+    // CUSTOMER
+    // ========================================
     customer: {
       name: {
         type: String,
@@ -45,40 +67,67 @@ const orderSchema = new mongoose.Schema(
       },
     },
 
+    // ========================================
+    // ORDER ITEMS
+    // ========================================
     items: [
       {
-        productId: String,
-        name: String,
-        productCode: String,
-        price: Number,
-        qty: Number,
-        image: String,
+        productId: {
+          type: String,
+        },
+
+        name: {
+          type: String,
+        },
+
+        productCode: {
+          type: String,
+          default: "",
+        },
+
+        price: {
+          type: Number,
+          required: true,
+        },
+
+        qty: {
+          type: Number,
+          required: true,
+        },
+
+        image: {
+          type: String,
+          default: "",
+        },
       },
     ],
 
+    // ========================================
+    // TOTAL
+    // ========================================
     totalAmount: {
       type: Number,
       required: true,
     },
 
+    // ========================================
+    // PAYMENT
+    // ========================================
     paymentMethod: {
       type: String,
+      enum: ["COD", "ONLINE"],
       default: "COD",
     },
 
-    status: {
+    paymentStatus: {
       type: String,
-      enum: [
-        "Pending",
-        "Confirmed",
-        "Packed",
-        "Shipped",
-        "Delivered",
-        "Cancelled",
-      ],
-      default: "Pending",
+      enum: ["PENDING", "PAID", "FAILED"],
+      default: "PENDING",
     },
 
+    // ========================================
+    // CREATED / UPDATED
+    // ========================================
     createdAt: {
       type: Date,
       default: Date.now,
@@ -90,3 +139,4 @@ const orderSchema = new mongoose.Schema(
 );
 
 module.exports = mongoose.model("Order", orderSchema);
+```
