@@ -1,146 +1,712 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Order Placed | familycrackersworld</title>
-<link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Track Order | familycrackersworld</title>
+
+  <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
 
 <header>
   <div class="container nav">
-    <a href="index.html" class="logo">family<span class="spark">crackersworld</span></a>
+
+    <a href="index.html" class="logo">
+      family<span class="spark">crackersworld</span>
+    </a>
+
     <nav class="nav-links">
       <a href="index.html">Home</a>
       <a href="products.html">Shop</a>
-      <a href="track-order.html">Track Order</a>
+      <a href="track-order.html" class="active">Track Order</a>
     </nav>
-    <a href="cart.html" class="cart-link">🛒 Cart (<span id="cart-count">0</span>)</a>
+
+    <a href="cart.html" class="cart-link">
+      🛒 Cart (<span id="cart-count">0</span>)
+    </a>
+
   </div>
 </header>
 
-<section class="container" style="padding:80px 0; text-align:center;">
-  <div style="font-size:3.5rem; margin-bottom:16px;">🎉</div>
-  <h1 style="margin-bottom:12px;">Order Placed Successfully!</h1>
-  <p style="color:var(--ink-soft); margin-bottom:8px;">Your order ID is</p>
-  <p style="font-family:'Fraunces',serif; font-size:1.6rem; color:var(--ember); margin-bottom:32px;" id="order-id-display"></p>
-  <p style="color:var(--ink-soft); max-width:480px; margin:0 auto 32px;" id="order-note">
-    We'll contact you shortly to confirm your order. You can track your order status anytime using your Order ID.
-  </p>
-  <div style="display:flex; gap:14px; justify-content:center; flex-wrap:wrap;">
-    <button class="btn btn-primary" id="view-bill-btn" style="display:none;">🧾 View / Download Bill</button>
-    <a href="track-order.html" class="btn btn-outline">Track This Order</a>
-    <a href="products.html" class="btn btn-outline">Continue Shopping</a>
+
+<section class="container cart-page" style="max-width:520px;">
+
+  <h2 style="margin-bottom:20px;">
+    Track Your Order
+  </h2>
+
+  <div class="form-group full">
+
+    <label for="order-id-input">
+      Order ID
+    </label>
+
+    <input
+      type="text"
+      id="order-id-input"
+      placeholder="e.g. FWC12345678"
+    />
+
   </div>
+
+  <button
+    class="btn btn-primary"
+    id="track-btn"
+    onclick="trackOrder()"
+  >
+    Track Order
+  </button>
+
+
+  <div
+    id="order-result"
+    style="margin-top:32px;"
+  ></div>
+
 </section>
 
+
 <footer id="contact">
+
   <div class="container">
-    <div class="footer-columns" style="grid-template-columns: 1.3fr 1fr 1fr;">
-      <div class="footer-col">
-        <h4 style="font-family:'Fraunces',serif; font-size:1.1rem; text-transform:none; letter-spacing:0; margin-bottom:12px;">Our Profile</h4>
-        <p style="font-weight:700; color:var(--gold-pale); margin-bottom:8px;">familycrackersworld</p>
-        <p style="max-width:320px; margin-bottom:18px;">
-          Our products focus on our Customer's happiness. Crackers are available in different specifications as per the requirements of the clients.
-        </p>
-        <a href="#contact" class="btn btn-outline" style="border-color:rgba(255,255,255,0.25); color:var(--bg);">Read More →</a>
-      </div>
+
+    <div
+      class="footer-columns"
+      style="grid-template-columns:1.3fr 1fr 1fr;"
+    >
 
       <div class="footer-col">
+
+        <h4
+          style="
+            font-family:'Fraunces',serif;
+            font-size:1.1rem;
+            text-transform:none;
+            letter-spacing:0;
+            margin-bottom:12px;
+          "
+        >
+          Our Profile
+        </h4>
+
+        <p
+          style="
+            font-weight:700;
+            color:var(--gold-pale);
+            margin-bottom:8px;
+          "
+        >
+          familycrackersworld
+        </p>
+
+        <p style="max-width:320px;margin-bottom:18px;">
+          Our products focus on our Customer's happiness.
+          Crackers are available in different specifications
+          as per the requirements of the clients.
+        </p>
+
+        <a
+          href="#contact"
+          class="btn btn-outline"
+          style="
+            border-color:rgba(255,255,255,0.25);
+            color:var(--bg);
+          "
+        >
+          Read More →
+        </a>
+
+      </div>
+
+
+      <div class="footer-col">
+
         <h4>Contact Us</h4>
-        <p style="font-weight:700; color:var(--gold-pale); margin:0 0 4px;">Address</p>
+
+        <p
+          style="
+            font-weight:700;
+            color:var(--gold-pale);
+            margin:0 0 4px;
+          "
+        >
+          Address
+        </p>
+
         <p style="margin-bottom:14px;">
-          Phoenix Crackers<br/>
-          Anil Kumar Eye Hospital Opp.<br/>
-          Sattur Road<br/>
+          Phoenix Crackers<br />
+          Anil Kumar Eye Hospital Opp.<br />
+          Sattur Road<br />
           Sivakasi
         </p>
-        <p style="font-weight:700; color:var(--gold-pale); margin:0 0 4px;">Mobile</p>
+
+        <p
+          style="
+            font-weight:700;
+            color:var(--gold-pale);
+            margin:0 0 4px;
+          "
+        >
+          Mobile
+        </p>
+
         <p style="margin-bottom:14px;">
-          +91 63836 59214<br/>
+          +91 63836 59214<br />
           +91 96554 56167
         </p>
-        <p style="font-weight:700; color:var(--gold-pale); margin:0 0 4px;">Email</p>
-        <p><a href="mailto:nivasramasamy27@gmail.com">nivasramasamy27@gmail.com</a></p>
+
+        <p
+          style="
+            font-weight:700;
+            color:var(--gold-pale);
+            margin:0 0 4px;
+          "
+        >
+          Email
+        </p>
+
+        <p>
+          <a href="mailto:nivasramasamy27@gmail.com">
+            nivasramasamy27@gmail.com
+          </a>
+        </p>
+
       </div>
 
+
       <div class="footer-col">
+
         <h4>Quick Links</h4>
+
         <a href="index.html">Home</a>
         <a href="#contact">About Us</a>
         <a href="products.html">Price List</a>
         <a href="#faq">Safety Tips</a>
         <a href="#contact">Contact Us</a>
+
       </div>
+
     </div>
 
-    <div style="max-width:820px; margin:0 auto 28px; text-align:center; font-size:0.85rem; color:var(--ink-soft); opacity:0.85; line-height:1.7;">
+
+    <div
+      style="
+        max-width:820px;
+        margin:0 auto 28px;
+        text-align:center;
+        font-size:0.85rem;
+        color:var(--ink-soft);
+        opacity:0.85;
+        line-height:1.7;
+      "
+    >
+
       <p style="margin-bottom:14px;">
-        As per 2018 Supreme Court order, online sale of firecrackers are not permitted! We value our customers and at the same time, respect jurisdiction. We request you to add your products to the cart and submit the required crackers through the enquiry button. We will contact you within 24 hrs and confirm the order through WhatsApp or phone call. Please add and submit your enquiries and enjoy your Diwali with familycrackersworld.
+        As per 2018 Supreme Court order, online sale of
+        firecrackers are not permitted! We value our customers
+        and at the same time, respect jurisdiction. We request
+        you to add your products to the cart and submit the
+        required crackers through the enquiry button. We will
+        contact you within 24 hrs and confirm the order through
+        WhatsApp or phone call.
       </p>
+
       <p>
-        Our License No. ----. familycrackersworld as a company follows 100% legal &amp; statutory compliances, and all our shops, go-downs are maintained as per the explosive acts. We send the parcels through registered and legal transport service providers as every other major company in Sivakasi is doing.
+        Our License No. ----. familycrackersworld as a company
+        follows 100% legal &amp; statutory compliances.
       </p>
+
     </div>
 
-    <div style="border-radius: var(--radius); overflow:hidden; border:1px solid rgba(255,255,255,0.15); margin-bottom:32px; box-shadow: var(--shadow-sm);">
-   <iframe
-  title="Phoenix Crackers Store Location"
-  src="https://www.google.com/maps?q=Phoenix+Crackers,+Anil+Kumar+Eye+Hospital+Opp,+Sattur+Road,+Sivakasi&output=embed"
-  width="100%"
-  height="260"
-  style="border:0;display:block;"
-  loading="lazy"
-  referrerpolicy="no-referrer-when-downgrade"
-  allowfullscreen
->
-</iframe>
+
+    <div
+      style="
+        border-radius:var(--radius);
+        overflow:hidden;
+        border:1px solid rgba(255,255,255,0.15);
+        margin-bottom:32px;
+        box-shadow:var(--shadow-sm);
+      "
+    >
+
+      <iframe
+        title="Phoenix Crackers Store Location"
+        src="https://www.google.com/maps?q=Phoenix+Crackers,+Anil+Kumar+Eye+Hospital+Opp,+Sattur+Road,+Sivakasi&output=embed"
+        width="100%"
+        height="260"
+        style="border:0;display:block;"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen
+      ></iframe>
+
     </div>
+
 
     <div class="footer-bottom">
-      <span>Copyright © 2026, familycrackersworld. All rights reserved.</span>
+
+      <span>
+        Copyright © 2026, familycrackersworld.
+        All rights reserved.
+      </span>
+
     </div>
+
   </div>
+
 </footer>
+
 
 <script src="js/config.js"></script>
 <script src="js/cart.js"></script>
 <script src="js/invoice.js"></script>
+
+
 <script>
-  const urlOrderId = new URLSearchParams(location.search).get('orderId');
-  const savedOrderRaw = localStorage.getItem('last_order');
-  const savedOrder = savedOrderRaw ? JSON.parse(savedOrderRaw) : null;
-  const orderId = urlOrderId || (savedOrder && savedOrder.orderId) || '';
 
-  document.getElementById('order-id-display').textContent = orderId || 'Not found';
-  if (orderId) localStorage.setItem('last_order_id', orderId);
+  // ==========================================
+  // LAST ORDER ID
+  // ==========================================
 
-  if (!orderId) {
-    document.getElementById('order-id-display').textContent = 'Order placed';
-    document.getElementById('order-note').textContent =
-      "Your order was placed, but we couldn't retrieve the Order ID on this screen. Check your email/SMS confirmation, or contact us with your order details.";
+  const lastId =
+    localStorage.getItem("last_order_id");
+
+  if (lastId) {
+
+    document.getElementById(
+      "order-id-input"
+    ).value = lastId;
+
   }
 
-  // Show the "View Bill" button if we have the full order data.
-  // Prefer the freshly-saved order; otherwise fetch it by ID from the server.
-  const billBtn = document.getElementById('view-bill-btn');
-  async function setupBillButton() {
-    let orderForBill = savedOrder && savedOrder.orderId === orderId ? savedOrder : null;
 
-    if (!orderForBill && orderId) {
+  // ==========================================
+  // ORDER STATUS
+  // ==========================================
+
+  const statusSteps = [
+    "PENDING",
+    "CONFIRMED",
+    "SHIPPED",
+    "DELIVERED"
+  ];
+
+
+  // ==========================================
+  // TRACK ORDER
+  // ==========================================
+
+  async function trackOrder() {
+
+    const input =
+      document.getElementById("order-id-input");
+
+    const resultDiv =
+      document.getElementById("order-result");
+
+    const button =
+      document.getElementById("track-btn");
+
+
+    const orderId =
+      input.value.trim();
+
+
+    if (!orderId) {
+
+      alert("Please enter your Order ID.");
+
+      input.focus();
+
+      return;
+
+    }
+
+
+    button.disabled = true;
+
+    button.textContent = "Searching...";
+
+
+    resultDiv.innerHTML = `
+      <div class="loader">
+        Searching for your order...
+      </div>
+    `;
+
+
+    try {
+
+      // IMPORTANT:
+      // Backend route is:
+      // GET /api/orders/:orderId
+      //
+      // So DO NOT use /orders/track/
+
+      const response = await fetch(
+        `${API_BASE_URL}/orders/${encodeURIComponent(orderId)}`
+      );
+
+
+      let order;
+
       try {
-        const res = await fetch(`${API_BASE_URL}/orders/track/${orderId}`);
-        if (res.ok) orderForBill = await res.json();
-      } catch (_) {}
+
+        order = await response.json();
+
+      } catch (error) {
+
+        throw new Error(
+          "Server returned an invalid response."
+        );
+
+      }
+
+
+      if (!response.ok) {
+
+        resultDiv.innerHTML = `
+          <div class="empty-state">
+            Order not found.<br />
+            Please check your Order ID and try again.
+          </div>
+        `;
+
+        return;
+
+      }
+
+
+      console.log(
+        "✅ ORDER FOUND:",
+        order
+      );
+
+
+      // ==========================================
+      // STATUS
+      // ==========================================
+
+      const currentStatus =
+        String(
+          order.status || "PENDING"
+        ).toUpperCase();
+
+
+      const currentIndex =
+        statusSteps.indexOf(currentStatus);
+
+
+      const stepsHtml =
+        statusSteps
+          .map((step, index) => {
+
+            const completed =
+              currentIndex >= index;
+
+            return `
+              <div
+                style="
+                  display:flex;
+                  align-items:center;
+                  gap:10px;
+                  margin-bottom:12px;
+                "
+              >
+
+                <div
+                  style="
+                    width:11px;
+                    height:11px;
+                    min-width:11px;
+                    border-radius:50%;
+                    background:
+                      ${completed
+                        ? "var(--gold)"
+                        : "var(--line)"};
+                  "
+                ></div>
+
+                <span
+                  style="
+                    color:
+                      ${completed
+                        ? "var(--ember)"
+                        : "var(--ink-soft)"};
+
+                    font-weight:
+                      ${currentStatus === step
+                        ? "700"
+                        : "500"};
+                  "
+                >
+                  ${step}
+                </span>
+
+              </div>
+            `;
+
+          })
+          .join("");
+
+
+      // ==========================================
+      // ITEMS
+      // ==========================================
+
+      const items =
+        Array.isArray(order.items)
+          ? order.items
+          : [];
+
+
+      const itemsHtml =
+        items.length
+          ? items
+              .map(item => {
+
+                const price =
+                  Number(item.price) || 0;
+
+                const qty =
+                  Number(item.qty) || 0;
+
+                return `
+                  <div
+                    style="
+                      display:flex;
+                      justify-content:space-between;
+                      gap:15px;
+                      padding:7px 0;
+                      color:var(--ink-soft);
+                      font-size:0.9rem;
+                    "
+                  >
+
+                    <span>
+                      ${item.name || "Product"}
+                      × ${qty}
+                    </span>
+
+                    <span>
+                      ₹${price * qty}
+                    </span>
+
+                  </div>
+                `;
+
+              })
+              .join("")
+          : `
+              <p style="color:var(--ink-soft);">
+                No items found.
+              </p>
+            `;
+
+
+      // ==========================================
+      // TOTAL
+      // ==========================================
+
+      const total =
+        Number(order.totalAmount) || 0;
+
+
+      // ==========================================
+      // PAYMENT
+      // ==========================================
+
+      const paymentMethod =
+        order.paymentMethod || "COD";
+
+      const paymentStatus =
+        order.paymentStatus || "Pending";
+
+
+      // ==========================================
+      // BILL BUTTON
+      // ==========================================
+
+      const safeOrder =
+        JSON.stringify(order)
+          .replace(/\\/g, "\\\\")
+          .replace(/'/g, "\\'")
+          .replace(/\n/g, "\\n")
+          .replace(/\r/g, "\\r");
+
+
+      // ==========================================
+      // DISPLAY RESULT
+      // ==========================================
+
+      resultDiv.innerHTML = `
+
+        <div
+          class="cart-summary"
+          style="
+            max-width:none;
+            margin-left:0;
+          "
+        >
+
+          <h3 style="margin-bottom:16px;">
+            Order ${order.orderId}
+          </h3>
+
+
+          ${
+            currentStatus === "CANCELLED"
+
+              ? `
+                <p
+                  style="
+                    color:var(--ember);
+                    font-weight:700;
+                    margin-bottom:16px;
+                  "
+                >
+                  This order was cancelled.
+                </p>
+              `
+
+              : stepsHtml
+          }
+
+
+          <div
+            style="
+              border-top:1px solid var(--line);
+              margin:16px 0;
+              padding-top:16px;
+            "
+          >
+
+            ${itemsHtml}
+
+          </div>
+
+
+          <div class="summary-row total">
+
+            <span>
+              Total
+            </span>
+
+            <span>
+              ₹${total}
+            </span>
+
+          </div>
+
+
+          <p
+            style="
+              margin-top:14px;
+              font-size:0.85rem;
+              color:var(--ink-soft);
+            "
+          >
+
+            Payment:
+            ${paymentMethod}
+            —
+            ${paymentStatus}
+
+          </p>
+
+
+          <button
+            class="btn btn-primary"
+            id="view-bill-button"
+            style="
+              width:100%;
+              justify-content:center;
+              margin-top:16px;
+            "
+          >
+            🧾 View / Download Bill
+          </button>
+
+        </div>
+
+      `;
+
+
+      // ==========================================
+      // VIEW BILL
+      // ==========================================
+
+      const billButton =
+        document.getElementById(
+          "view-bill-button"
+        );
+
+
+      if (
+        billButton &&
+        typeof openBill === "function"
+      ) {
+
+        billButton.addEventListener(
+          "click",
+          function () {
+
+            openBill(order);
+
+          }
+        );
+
+      } else {
+
+        console.error(
+          "❌ openBill() function not found. Check invoice.js"
+        );
+
+      }
+
+
+    } catch (error) {
+
+      console.error(
+        "❌ TRACK ORDER ERROR:",
+        error
+      );
+
+
+      resultDiv.innerHTML = `
+        <div class="empty-state">
+          Could not connect to server.<br />
+          Please try again.
+        </div>
+      `;
+
+    } finally {
+
+      button.disabled = false;
+
+      button.textContent =
+        "Track Order";
+
     }
 
-    if (orderForBill) {
-      billBtn.style.display = 'inline-flex';
-      billBtn.addEventListener('click', () => openBill(orderForBill));
-    }
   }
-  setupBillButton();
+
+
+  // ==========================================
+  // AUTO TRACK LAST ORDER
+  // ==========================================
+
+  if (lastId) {
+
+    trackOrder();
+
+  }
+
 </script>
+
 </body>
 </html>
+```
