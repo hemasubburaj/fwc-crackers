@@ -1,142 +1,503 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Checkout | familycrackersworld</title>
-<link rel="stylesheet" href="css/style.css" />
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Checkout | familycrackersworld</title>
+
+  <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
+
+<!-- ================= HEADER ================= -->
 
 <header>
   <div class="container nav">
-    <a href="index.html" class="logo">family<span class="spark">crackersworld</span></a>
+
+    <a href="index.html" class="logo">
+      family<span class="spark">crackersworld</span>
+    </a>
+
     <nav class="nav-links">
       <a href="index.html">Home</a>
       <a href="products.html">Shop</a>
       <a href="track-order.html">Track Order</a>
     </nav>
-    <a href="cart.html" class="cart-link">🛒 Cart (<span id="cart-count">0</span>)</a>
+
+    <a href="cart.html" class="cart-link">
+      🛒 Cart (<span id="cart-count">0</span>)
+    </a>
+
   </div>
 </header>
 
-<section class="container cart-page" style="max-width:640px;">
-  <h2 style="margin-bottom:24px;">Checkout</h2>
+
+<!-- ================= CHECKOUT ================= -->
+
+<section
+  class="container cart-page"
+  style="max-width:640px;"
+>
+
+  <h2 style="margin-bottom:24px;">
+    Checkout
+  </h2>
+
 
   <form id="checkout-form">
+
     <div class="form-grid">
+
+
+      <!-- NAME -->
+
       <div class="form-group">
-        <label>Full Name *</label>
-        <input type="text" name="name" required />
+
+        <label>
+          Full Name *
+        </label>
+
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Enter your full name"
+          required
+        />
+
       </div>
+
+
+      <!-- PHONE -->
+
       <div class="form-group">
-        <label>Phone Number *</label>
-        <input type="tel" name="phone" pattern="[0-9]{10}" placeholder="10-digit mobile" required />
+
+        <label>
+          Phone Number *
+        </label>
+
+        <input
+          type="tel"
+          id="phone"
+          name="phone"
+          pattern="[0-9]{10}"
+          maxlength="10"
+          placeholder="10-digit mobile number"
+          required
+        />
+
       </div>
+
+
+      <!-- EMAIL -->
+
       <div class="form-group full">
-        <label>Email (for order updates)</label>
-        <input type="email" name="email" />
+
+        <label>
+          Email
+        </label>
+
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Enter your email"
+        />
+
       </div>
+
+
+      <!-- ADDRESS -->
+
       <div class="form-group full">
-        <label>Delivery Address *</label>
-        <textarea name="address" rows="2" required></textarea>
+
+        <label>
+          Delivery Address *
+        </label>
+
+        <textarea
+          id="address"
+          name="address"
+          rows="3"
+          placeholder="Enter your complete delivery address"
+          required
+        ></textarea>
+
       </div>
+
+
+      <!-- CITY -->
+
       <div class="form-group">
-        <label>City *</label>
-        <input type="text" name="city" required />
+
+        <label>
+          City *
+        </label>
+
+        <input
+          type="text"
+          id="city"
+          name="city"
+          placeholder="City"
+          required
+        />
+
       </div>
+
+
+      <!-- STATE -->
+
       <div class="form-group">
-        <label>State *</label>
-        <input type="text" name="state" required />
+
+        <label>
+          State *
+        </label>
+
+        <input
+          type="text"
+          id="state"
+          name="state"
+          placeholder="State"
+          required
+        />
+
       </div>
+
+
+      <!-- PINCODE -->
+
       <div class="form-group">
-        <label>Pincode *</label>
-        <input type="text" name="pincode" pattern="[0-9]{6}" required />
+
+        <label>
+          Pincode *
+        </label>
+
+        <input
+          type="text"
+          id="pincode"
+          name="pincode"
+          pattern="[0-9]{6}"
+          maxlength="6"
+          placeholder="6-digit pincode"
+          required
+        />
+
       </div>
+
     </div>
 
-    <div style="margin:24px 0; padding:14px 18px; background:var(--bg-warm); border-radius:var(--radius-sm); font-weight:700; color:var(--ink); text-align:center;">
-      💳 Pay Before Order — secure online payment via Razorpay
+
+    <!-- INFO -->
+
+    <div
+      style="
+        margin:24px 0;
+        padding:14px 18px;
+        background:var(--bg-warm);
+        border-radius:var(--radius-sm);
+        font-weight:700;
+        color:var(--ink);
+        text-align:center;
+      "
+    >
+
+      Confirm Booking and submit your enquiry.
+      We will contact you within 24 hrs and confirm
+      the order through WhatsApp or phone call.
+
     </div>
 
-    <div class="cart-summary" style="max-width:none; margin-left:0;">
-      <div class="summary-row"><span>Subtotal</span><span id="sum-subtotal">₹0</span></div>
-      <div class="summary-row"><span>Shipping</span><span id="sum-shipping">₹0</span></div>
-      <div class="summary-row total"><span>Total</span><span id="sum-total">₹0</span></div>
-      <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; margin-top:16px;" id="place-order-btn">
-        Place Order →
-      </button>
+
+    <!-- ================= SUMMARY ================= -->
+
+    <div
+      class="cart-summary"
+      style="max-width:none; margin-left:0;"
+    >
+
+      <div class="summary-row">
+
+        <span>Subtotal</span>
+
+        <span id="sum-subtotal">
+          ₹0
+        </span>
+
+      </div>
+
+
+      <div class="summary-row">
+
+        <span>Shipping</span>
+
+        <span id="sum-shipping">
+          ₹0
+        </span>
+
+      </div>
+
+
+      <div class="summary-row total">
+
+        <span>Total</span>
+
+        <span id="sum-total">
+          ₹0
+        </span>
+
+      </div>
+
+
+      <!-- CONFIRM BUTTON -->
+<button
+  type="submit"
+  id="confirm-booking"
+  class="btn btn-primary"
+>
+  Confirm Booking
+</button>
     </div>
+
   </form>
+
 </section>
 
+
+<!-- ================= FOOTER ================= -->
+
 <footer id="contact">
+
   <div class="container">
-    <div class="footer-columns" style="grid-template-columns: 1.3fr 1fr 1fr;">
-      <div class="footer-col">
-        <h4 style="font-family:'Fraunces',serif; font-size:1.1rem; text-transform:none; letter-spacing:0; margin-bottom:12px;">Our Profile</h4>
-        <p style="font-weight:700; color:var(--gold-pale); margin-bottom:8px;">familycrackersworld</p>
-        <p style="max-width:320px; margin-bottom:18px;">
-          Our products focus on our Customer's happiness. Crackers are available in different specifications as per the requirements of the clients.
-        </p>
-        <a href="#contact" class="btn btn-outline" style="border-color:rgba(255,255,255,0.25); color:var(--bg);">Read More →</a>
-      </div>
+
+    <div
+      class="footer-columns"
+      style="grid-template-columns:1.3fr 1fr 1fr;"
+    >
+
+      <!-- PROFILE -->
 
       <div class="footer-col">
-        <h4>Contact Us</h4>
-        <p style="font-weight:700; color:var(--gold-pale); margin:0 0 4px;">Address</p>
+
+        <h4
+          style="
+            font-family:'Fraunces',serif;
+            font-size:1.1rem;
+            text-transform:none;
+            letter-spacing:0;
+            margin-bottom:12px;
+          "
+        >
+          Our Profile
+        </h4>
+
+        <p
+          style="
+            font-weight:700;
+            color:var(--gold-pale);
+            margin-bottom:8px;
+          "
+        >
+          familycrackersworld
+        </p>
+
+        <p
+          style="
+            max-width:320px;
+            margin-bottom:18px;
+          "
+        >
+          Our products focus on our Customer's happiness.
+          Crackers are available in different specifications
+          as per the requirements of the clients.
+        </p>
+
+      </div>
+
+
+      <!-- CONTACT -->
+
+      <div class="footer-col">
+
+        <h4>
+          Contact Us
+        </h4>
+
+        <p
+          style="
+            font-weight:700;
+            color:var(--gold-pale);
+            margin:0 0 4px;
+          "
+        >
+          Address
+        </p>
+
         <p style="margin-bottom:14px;">
-          Phoenix Crackers<br/>
-          Anil Kumar Eye Hospital Opp.<br/>
-          Sattur Road<br/>
+
+          Phoenix Crackers<br />
+          Anil Kumar Eye Hospital Opp.<br />
+          Sattur Road<br />
           Sivakasi
+
         </p>
-        <p style="font-weight:700; color:var(--gold-pale); margin:0 0 4px;">Mobile</p>
+
+
+        <p
+          style="
+            font-weight:700;
+            color:var(--gold-pale);
+            margin:0 0 4px;
+          "
+        >
+          Mobile
+        </p>
+
         <p style="margin-bottom:14px;">
-          +91 63836 59214<br/>
+
+          +91 63836 59214<br />
           +91 96554 56167
+
         </p>
-        <p style="font-weight:700; color:var(--gold-pale); margin:0 0 4px;">Email</p>
-        <p><a href="mailto:nivasramasamy27@gmail.com">nivasramasamy27@gmail.com</a></p>
+
+
+        <p
+          style="
+            font-weight:700;
+            color:var(--gold-pale);
+            margin:0 0 4px;
+          "
+        >
+          Email
+        </p>
+
+        <p>
+
+          <a href="mailto:nivasramasamy27@gmail.com">
+            nivasramasamy27@gmail.com
+          </a>
+
+        </p>
+
       </div>
+
+
+      <!-- QUICK LINKS -->
 
       <div class="footer-col">
-        <h4>Quick Links</h4>
-        <a href="index.html">Home</a>
-        <a href="#contact">About Us</a>
-        <a href="products.html">Price List</a>
-        <a href="#faq">Safety Tips</a>
-        <a href="#contact">Contact Us</a>
+
+        <h4>
+          Quick Links
+        </h4>
+
+        <a href="index.html">
+          Home
+        </a>
+
+        <a href="products.html">
+          Shop
+        </a>
+
+        <a href="track-order.html">
+          Track Order
+        </a>
+
+        <a href="#contact">
+          Contact Us
+        </a>
+
       </div>
+
     </div>
 
-    <div style="max-width:820px; margin:0 auto 28px; text-align:center; font-size:0.85rem; color:var(--ink-soft); opacity:0.85; line-height:1.7;">
+
+    <!-- LEGAL -->
+
+    <div
+      style="
+        max-width:820px;
+        margin:0 auto 28px;
+        text-align:center;
+        font-size:0.85rem;
+        color:var(--ink-soft);
+        opacity:0.85;
+        line-height:1.7;
+      "
+    >
+
       <p style="margin-bottom:14px;">
-        As per 2018 Supreme Court order, online sale of firecrackers are not permitted! We value our customers and at the same time, respect jurisdiction. We request you to add your products to the cart and submit the required crackers through the enquiry button. We will contact you within 24 hrs and confirm the order through WhatsApp or phone call. Please add and submit your enquiries and enjoy your Diwali with familycrackersworld.
+
+        As per 2018 Supreme Court order, online sale
+        of firecrackers are not permitted! We value our
+        customers and at the same time, respect jurisdiction.
+        We request you to add your products to the cart and
+        submit the required crackers through the enquiry button.
+        We will contact you within 24 hrs and confirm the order
+        through WhatsApp or phone call.
+
       </p>
+
+
       <p>
-        Our License No. ----. familycrackersworld as a company follows 100% legal &amp; statutory compliances, and all our shops, go-downs are maintained as per the explosive acts. We send the parcels through registered and legal transport service providers as every other major company in Sivakasi is doing.
+
+        Our License No. ----.
+        familycrackersworld as a company follows
+        100% legal &amp; statutory compliances.
+
       </p>
+
     </div>
 
-    <div style="border-radius: var(--radius); overflow:hidden; border:1px solid rgba(255,255,255,0.15); margin-bottom:32px; box-shadow: var(--shadow-sm);">
+
+    <!-- MAP -->
+
+    <div
+      style="
+        border-radius:var(--radius);
+        overflow:hidden;
+        border:1px solid rgba(255,255,255,0.15);
+        margin-bottom:32px;
+        box-shadow:var(--shadow-sm);
+      "
+    >
+
       <iframe
         title="Store location map"
         src="https://maps.google.com/maps?q=Phoenix%20Crackers%2C%20Sattur%20Road%2C%20Sivakasi&z=15&output=embed"
-        width="100%" height="260" style="border:0; display:block;"
-        loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        width="100%"
+        height="260"
+        style="border:0; display:block;"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      >
       </iframe>
+
     </div>
 
+
+    <!-- FOOTER BOTTOM -->
+
     <div class="footer-bottom">
-      <span>Copyright © 2026, familycrackersworld. All rights reserved.</span>
+
+      <span>
+        Copyright © 2026, familycrackersworld.
+        All rights reserved.
+      </span>
+
     </div>
+
   </div>
+
 </footer>
+
+
+<!-- ================= JAVASCRIPT ================= -->
 
 <script src="js/config.js"></script>
 <script src="js/cart.js"></script>
 <script src="js/checkout.js"></script>
+
+
 </body>
 </html>
