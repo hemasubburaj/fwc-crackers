@@ -1,24 +1,24 @@
 require("dotenv").config();
 
-
 const express = require("express");
 const cors = require("cors");
+
 const connectDB = require("./config/db");
-
 const productRoutes = require("./routes/products");
-
 const paymentRoutes = require("./routes/payment");
 const authRoutes = require("./routes/auth");
-
 const orderRoutes = require("./routes/orders");
-app.use(express.json());
-app.use("/api/orders", orderRoutes);
+
+// ===============================
+// APP
+// ===============================
 
 const app = express();
 
 // ===============================
 // CORS
 // ===============================
+
 const allowedOrigins = [
   "http://localhost:3000",
   "http://localhost:5173",
@@ -41,10 +41,21 @@ app.use(
       }
 
       console.log("CORS blocked:", origin);
+
       return callback(new Error("Not allowed by CORS"));
     },
+
     credentials: true,
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+
+    methods: [
+      "GET",
+      "POST",
+      "PUT",
+      "PATCH",
+      "DELETE",
+      "OPTIONS",
+    ],
+
     allowedHeaders: [
       "Origin",
       "X-Requested-With",
@@ -56,26 +67,33 @@ app.use(
 );
 
 // ===============================
-// Middleware
+// MIDDLEWARE
 // ===============================
+
 app.use(express.json());
 
 // ===============================
-// Database
+// DATABASE
 // ===============================
+
 connectDB();
 
 // ===============================
-// API Routes
+// API ROUTES
 // ===============================
+
 app.use("/api/products", productRoutes);
+
 app.use("/api/orders", orderRoutes);
+
 app.use("/api/payment", paymentRoutes);
+
 app.use("/api/auth", authRoutes);
 
 // ===============================
-// Health / Test Routes
+// HEALTH / TEST ROUTES
 // ===============================
+
 app.get("/", (req, res) => {
   res.send("Crackers E-commerce API is running...");
 });
@@ -88,8 +106,9 @@ app.get("/api/health", (req, res) => {
 });
 
 // ===============================
-// Server
+// SERVER
 // ===============================
+
 const PORT = process.env.PORT || 4000;
 
 app.listen(PORT, () => {
