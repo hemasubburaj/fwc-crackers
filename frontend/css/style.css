@@ -5024,3 +5024,126 @@ table.product-table tr.cat-row td{
 
 }
 
+
+/* =====================================================
+   FINAL PRODUCTS DESKTOP / LAPTOP FIX
+   Mobile rules below remain unchanged
+===================================================== */
+
+@media (min-width: 769px) {
+
+  /* Products main layout */
+  .shop-main {
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(180px, 220px) minmax(0, 1fr);
+    gap: 24px;
+    align-items: start;
+  }
+
+  .shop-products {
+    width: 100%;
+    min-width: 0;
+  }
+
+  /* Card View - laptop */
+  .product-card-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .mano-product-card {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .mano-product-image {
+    width: 100%;
+  }
+
+  .mano-product-image img {
+    width: 100%;
+    max-width: 100%;
+    height: 180px;
+    object-fit: contain;
+  }
+
+  .mano-product-details {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Table View - laptop */
+  .product-table-wrapper {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    box-sizing: border-box;
+  }
+
+  .mano-product-table {
+    width: 100%;
+    min-width: 760px;
+    table-layout: auto;
+  }
+
+  .mano-product-table th,
+  .mano-product-table td {
+    padding: 12px 14px;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+
+  .mano-product-table img {
+    width: 65px;
+    height: 65px;
+    object-fit: contain;
+  }
+
+}
+
+
+/* =====================================================
+   LARGE LAPTOP / DESKTOP
+===================================================== */
+
+@media (min-width: 1200px) {
+
+  .shop-main {
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 28px;
+  }
+
+  .product-card-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+}
+
+
+/* =====================================================
+   LAPTOP
+===================================================== */
+
+@media (min-width: 769px) and (max-width: 1199px) {
+
+  .shop-main {
+    grid-template-columns: 190px minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  .product-card-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .mano-product-image img {
+    height: 160px;
+  }
+
+}
+
