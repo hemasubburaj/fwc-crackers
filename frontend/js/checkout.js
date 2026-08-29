@@ -27,6 +27,10 @@ function renderSummary() {
     totalEl.textContent = `₹${total}`;
   }
 
+  if (typeof updateMinimumOrder === "function") {
+    updateMinimumOrder();
+  }
+
   return {
     subtotal,
     total
@@ -218,6 +222,259 @@ document.addEventListener(
   "DOMContentLoaded",
   () => {
 
+
+    // ========================================
+    // LOCATION + MINIMUM ORDER
+    // ========================================
+
+    const locationData = {
+      "Tamil Nadu": {
+        minimum: 2500,
+        districts: {
+          "Virudhunagar": ["Sivakasi", "Virudhunagar", "Rajapalayam", "Aruppukkottai"],
+          "Madurai": ["Madurai"],
+          "Tirunelveli": ["Tirunelveli", "Palayamkottai"],
+          "Thoothukudi": ["Thoothukudi", "Kovilpatti"],
+          "Chennai": ["Chennai"],
+          "Coimbatore": ["Coimbatore"],
+          "Tiruchirappalli": ["Tiruchirappalli"],
+          "Salem": ["Salem"],
+          "Dindigul": ["Dindigul"],
+          "Thanjavur": ["Thanjavur"],
+          "Kanyakumari": ["Nagercoil"],
+          "Other": ["Other"]
+        }
+      },
+
+      "Kerala": {
+        minimum: 3000,
+        districts: {
+          "Thiruvananthapuram": ["Thiruvananthapuram"],
+          "Kollam": ["Kollam"],
+          "Pathanamthitta": ["Pathanamthitta"],
+          "Alappuzha": ["Alappuzha"],
+          "Kottayam": ["Kottayam"],
+          "Ernakulam": ["Kochi"],
+          "Thrissur": ["Thrissur"],
+          "Palakkad": ["Palakkad"],
+          "Malappuram": ["Malappuram"],
+          "Kozhikode": ["Kozhikode"],
+          "Kannur": ["Kannur"],
+          "Kasaragod": ["Kasaragod"],
+          "Other": ["Other"]
+        }
+      }
+    };
+
+
+    const stateSelect =
+      document.getElementById("state");
+
+    const districtSelect =
+      document.getElementById("district");
+
+    const citySelect =
+      document.getElementById("city");
+
+    const minimumBox =
+      document.getElementById("minimum-order-box");
+
+
+    function getMinimumOrder() {
+
+      const state =
+        stateSelect?.value || "";
+
+      if (state === "Tamil Nadu") {
+        return 2500;
+      }
+
+      if (state === "Kerala") {
+        return 3000;
+      }
+
+      if (state) {
+        return 4000;
+      }
+
+      return 0;
+    }
+
+
+    function updateMinimumOrder() {
+
+      const minimum =
+        getMinimumOrder();
+
+      const subtotal =
+        getCartTotal();
+
+      if (!minimumBox) return;
+
+      if (!minimum) {
+
+        minimumBox.textContent =
+          "Select your state to see the minimum order amount.";
+
+        minimumBox.style.color = "";
+
+        return;
+      }
+
+      const remaining =
+        Math.max(0, minimum - subtotal);
+
+      if (remaining > 0) {
+
+        minimumBox.innerHTML =
+          `⚠️ Minimum order: ₹${minimum.toLocaleString("en-IN")}<br>
+           Add ₹${remaining.toLocaleString("en-IN")} more to continue.`;
+
+        minimumBox.style.color = "#b45309";
+
+      } else {
+
+        minimumBox.innerHTML =
+          `✅ Minimum order ₹${minimum.toLocaleString("en-IN")} reached. You can confirm your booking.`;
+
+        minimumBox.style.color = "#15803d";
+
+      }
+
+    }
+
+
+    function populateDistricts() {
+
+      if (!districtSelect || !citySelect) return;
+
+      const state =
+        stateSelect.value;
+
+      districtSelect.innerHTML =
+        '<option value="">Select District</option>';
+
+      citySelect.innerHTML =
+        '<option value="">Select City</option>';
+
+      districtSelect.disabled = true;
+      citySelect.disabled = true;
+
+      if (!state) {
+        updateMinimumOrder();
+        return;
+      }
+
+      const stateData =
+        locationData[state];
+
+      if (!stateData) {
+        districtSelect.innerHTML =
+          '<option value="Other">Other District</option>';
+
+        districtSelect.disabled = false;
+
+        citySelect.innerHTML =
+          '<option value="Other">Other City</option>';
+
+        citySelect.disabled = false;
+
+        updateMinimumOrder();
+        return;
+      }
+
+      Object.keys(stateData.districts)
+        .forEach(district => {
+
+          const option =
+            document.createElement("option");
+
+          option.value = district;
+          option.textContent = district;
+
+          districtSelect.appendChild(option);
+
+        });
+
+      districtSelect.disabled = false;
+
+      updateMinimumOrder();
+
+    }
+
+
+    function populateCities() {
+
+      const state =
+        stateSelect.value;
+
+      const district =
+        districtSelect.value;
+
+      citySelect.innerHTML =
+        '<option value="">Select City</option>';
+
+      citySelect.disabled = true;
+
+      const stateData =
+        locationData[state];
+
+      if (!stateData || !district) return;
+
+      const cities =
+        stateData.districts[district] || ["Other"];
+
+      cities.forEach(city => {
+
+        const option =
+          document.createElement("option");
+
+        option.value = city;
+        option.textContent = city;
+
+        citySelect.appendChild(option);
+
+      });
+
+      citySelect.disabled = false;
+
+    }
+
+
+    if (stateSelect) {
+
+      stateSelect.addEventListener(
+        "change",
+        populateDistricts
+      );
+
+    }
+
+    if (districtSelect) {
+
+      districtSelect.addEventListener(
+        "change",
+        populateCities
+      );
+
+    }
+
+
+    function checkMinimumOrder() {
+
+      const minimum =
+        getMinimumOrder();
+
+      const subtotal =
+        getCartTotal();
+
+      if (!minimum) return false;
+
+      return subtotal >= minimum;
+
+    }
+
+
     console.log("✅ checkout.js loaded");
 
 
@@ -350,6 +607,39 @@ document.addEventListener(
           );
           return;
         }
+
+        // ====================================
+        // MINIMUM ORDER VALIDATION
+        // ====================================
+
+        const minimumOrder =
+          getMinimumOrder();
+
+        const currentSubtotal =
+          getCartTotal();
+
+        if (!minimumOrder) {
+
+          alert(
+            "Please select your state."
+          );
+
+          return;
+        }
+
+
+        if (currentSubtotal < minimumOrder) {
+
+          const remaining =
+            minimumOrder - currentSubtotal;
+
+          alert(
+            `Minimum order for ${customer.state} is ₹${minimumOrder.toLocaleString("en-IN")}.\n\nPlease add ₹${remaining.toLocaleString("en-IN")} more to continue.`
+          );
+
+          return;
+        }
+
 
 
         // ====================================
