@@ -97,7 +97,7 @@
         <button
           class="filter-main-btn"
           type="button"
-          onclick="scrollToCategories()"
+          onclick="toggleCategoryFilter()"
         >
           ☰ Filter
         </button>
@@ -1546,6 +1546,26 @@
     /* =====================================================
        SCROLL CATEGORY
     ===================================================== */
+
+    function toggleCategoryFilter() {
+
+      const shopMain =
+        document.querySelector(".shop-main");
+
+      if (!shopMain) return;
+
+      shopMain.classList.toggle("category-filter-open");
+
+      const button =
+        document.querySelector(".filter-main-btn");
+
+      if (shopMain.classList.contains("category-filter-open")) {
+        button.innerHTML = "✕ Close Filter";
+      } else {
+        button.innerHTML = "☰ Filter";
+      }
+    }
+
 
     function scrollToCategories() {
 

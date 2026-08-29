@@ -4669,3 +4669,14 @@ table.product-table tr.cat-row td{
   margin-top: -40px !important;
 }
 
+
+/* Category sidebar hidden by default */
+.shop-sidebar {
+  display: none !important;
+}
+
+.shop-main.category-filter-open .shop-sidebar {
+  display: block !important;
+}
+
+
