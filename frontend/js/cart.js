@@ -148,11 +148,23 @@ function addToCart(product, qty = 1) {
   updateCartBadge();
 
 
-  /* SUCCESS MESSAGE */
+  /* SUCCESS MESSAGE + CHECKOUT PROMPT */
 
   showCartMessage(
     `${product.name || "Product"} added to cart`
   );
+
+  setTimeout(() => {
+
+    const goCheckout = confirm(
+      `${product.name || "Product"} added to cart successfully!\n\nDo you want to checkout now?`
+    );
+
+    if (goCheckout) {
+      window.location.href = "checkout.html";
+    }
+
+  }, 150);
 }
 
 
