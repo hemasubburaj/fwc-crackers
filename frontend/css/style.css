@@ -4942,3 +4942,85 @@ table.product-table tr.cat-row td{
   }
 
 }
+
+/* =====================================================
+   FLOATING CHECKOUT BUTTON
+===================================================== */
+
+#floating-checkout-btn {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  z-index: 99999;
+
+  border: none;
+  border-radius: 50px;
+
+  padding: 14px 25px;
+
+  font-size: 15px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  background: #e51b23;
+  color: #fff;
+
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+
+  transition: transform 0.2s ease;
+}
+
+#floating-checkout-btn:hover {
+  transform: scale(1.06);
+}
+
+/* BLINK + SHAKE */
+
+.checkout-attention {
+  animation:
+    checkoutShake 0.6s ease-in-out,
+    checkoutBlink 1.2s ease-in-out 0.6s 2;
+}
+
+@keyframes checkoutShake {
+
+  0%   { transform: translateX(0); }
+  20%  { transform: translateX(-7px); }
+  40%  { transform: translateX(7px); }
+  60%  { transform: translateX(-5px); }
+  80%  { transform: translateX(5px); }
+  100% { transform: translateX(0); }
+
+}
+
+@keyframes checkoutBlink {
+
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.45;
+    transform: scale(1.08);
+  }
+
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+  #floating-checkout-btn {
+    right: 15px;
+    bottom: 15px;
+
+    padding: 12px 20px;
+
+    font-size: 13px;
+  }
+
+}
+

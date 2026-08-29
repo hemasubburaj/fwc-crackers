@@ -148,23 +148,15 @@ function addToCart(product, qty = 1) {
   updateCartBadge();
 
 
-  /* SUCCESS MESSAGE + CHECKOUT PROMPT */
+  /* SUCCESS MESSAGE */
 
   showCartMessage(
     `${product.name || "Product"} added to cart`
   );
 
-  setTimeout(() => {
+  /* SHOW CHECKOUT BUTTON */
 
-    const goCheckout = confirm(
-      `${product.name || "Product"} added to cart successfully!\n\nDo you want to checkout now?`
-    );
-
-    if (goCheckout) {
-      window.location.href = "checkout.html";
-    }
-
-  }, 150);
+  showCheckoutButton();
 }
 
 
@@ -549,3 +541,34 @@ window.addEventListener(
 
   }
 );
+/* =========================================================
+   CHECKOUT BUTTON AFTER ADD TO CART
+========================================================= */
+
+function showCheckoutButton() {
+
+  let button = document.getElementById("floating-checkout-btn");
+
+  if (!button) {
+
+    button = document.createElement("button");
+
+    button.id = "floating-checkout-btn";
+    button.innerHTML = "🛒 CHECKOUT";
+
+    button.onclick = function () {
+      window.location.href = "checkout.html";
+    };
+
+    document.body.appendChild(button);
+
+  }
+
+  button.classList.remove("checkout-attention");
+
+  void button.offsetWidth;
+
+  button.classList.add("checkout-attention");
+
+}
+
