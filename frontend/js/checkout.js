@@ -7,26 +7,20 @@ let selectedPayment = "COD";
 function renderSummary() {
   const cart = getCart();
 
+  // SHIPPING REMOVED
   const subtotal = getCartTotal();
 
-  const shipping =
-    subtotal >= 2000 || subtotal === 0
-      ? 0
-      : 150;
+  // Total = Subtotal only
+  const total = subtotal;
 
-  const total = subtotal + shipping;
+  const subtotalEl =
+    document.getElementById("sum-subtotal");
 
-  const subtotalEl = document.getElementById("sum-subtotal");
-  const shippingEl = document.getElementById("sum-shipping");
-  const totalEl = document.getElementById("sum-total");
+  const totalEl =
+    document.getElementById("sum-total");
 
   if (subtotalEl) {
     subtotalEl.textContent = `₹${subtotal}`;
-  }
-
-  if (shippingEl) {
-    shippingEl.textContent =
-      shipping === 0 ? "FREE" : `₹${shipping}`;
   }
 
   if (totalEl) {
@@ -35,7 +29,6 @@ function renderSummary() {
 
   return {
     subtotal,
-    shipping,
     total
   };
 }
@@ -46,7 +39,6 @@ function renderSummary() {
 // ========================================
 
 async function placeOrder(customer) {
-
   const cart = getCart();
 
   if (!cart || cart.length === 0) {
@@ -55,12 +47,14 @@ async function placeOrder(customer) {
 
   const {
     subtotal,
-    shipping,
     total
   } = renderSummary();
 
 
-  // Prepare items
+  // ========================================
+  // PREPARE ITEMS
+  // ========================================
+
   const items = cart.map(item => ({
     productId: item.productId,
     name: item.name || "",
@@ -71,9 +65,11 @@ async function placeOrder(customer) {
   }));
 
 
-  // Payload
-  const payload = {
+  // ========================================
+  // ORDER PAYLOAD
+  // ========================================
 
+  const payload = {
     customer: {
       name: customer.name,
       phone: customer.phone,
@@ -88,8 +84,7 @@ async function placeOrder(customer) {
 
     subtotal,
 
-    shipping,
-
+    // SHIPPING REMOVED
     totalAmount: total,
 
     paymentMethod: "COD"
@@ -120,19 +115,18 @@ async function placeOrder(customer) {
   );
 
 
-  // Get response
+  // ========================================
+  // GET RESPONSE
+  // ========================================
+
   let data;
 
   try {
-
     data = await response.json();
-
   } catch (error) {
-
     throw new Error(
       "Backend returned an invalid response."
     );
-
   }
 
 
@@ -142,14 +136,15 @@ async function placeOrder(customer) {
   console.log(data);
 
 
-  // Backend error
-  if (!response.ok) {
+  // ========================================
+  // BACKEND ERROR
+  // ========================================
 
+  if (!response.ok) {
     throw new Error(
       data.message ||
       "Failed to place order."
     );
-
   }
 
 
@@ -158,7 +153,6 @@ async function placeOrder(customer) {
   // ========================================
 
   if (!data.orderId) {
-
     console.error(
       "❌ Backend response does not contain orderId:",
       data
@@ -167,7 +161,6 @@ async function placeOrder(customer) {
     throw new Error(
       "Order created, but Order ID was not received."
     );
-
   }
 
 
@@ -213,7 +206,6 @@ async function placeOrder(customer) {
     successUrl
   );
 
-
   window.location.href = successUrl;
 }
 
@@ -229,6 +221,7 @@ document.addEventListener(
     console.log("✅ checkout.js loaded");
 
 
+    // Initial summary
     renderSummary();
 
 
@@ -239,22 +232,22 @@ document.addEventListener(
       document.getElementById("confirm-booking");
 
 
-    if (!form) {
+    // ========================================
+    // CHECK FORM
+    // ========================================
 
+    if (!form) {
       console.error(
         "❌ checkout-form not found"
       );
-
       return;
     }
 
 
     if (!button) {
-
       console.error(
         "❌ confirm-booking button not found"
       );
-
       return;
     }
 
@@ -269,7 +262,6 @@ document.addEventListener(
 
         event.preventDefault();
 
-
         console.log(
           "🟢 Confirm Booking clicked"
         );
@@ -281,13 +273,10 @@ document.addEventListener(
 
         const cart = getCart();
 
-
         if (!cart || cart.length === 0) {
-
           alert(
             "Your cart is empty."
           );
-
           return;
         }
 
@@ -316,61 +305,49 @@ document.addEventListener(
         // ====================================
 
         if (!customer.name?.trim()) {
-
           alert(
             "Please enter your name."
           );
-
           return;
         }
 
 
         if (!customer.phone?.trim()) {
-
           alert(
             "Please enter your phone number."
           );
-
           return;
         }
 
 
         if (!customer.address?.trim()) {
-
           alert(
             "Please enter your address."
           );
-
           return;
         }
 
 
         if (!customer.city?.trim()) {
-
           alert(
             "Please enter your city."
           );
-
           return;
         }
 
 
         if (!customer.state?.trim()) {
-
           alert(
             "Please enter your state."
           );
-
           return;
         }
 
 
         if (!customer.pincode?.trim()) {
-
           alert(
             "Please enter your pincode."
           );
-
           return;
         }
 
@@ -384,6 +361,10 @@ document.addEventListener(
         button.textContent =
           "Placing Order...";
 
+
+        // ====================================
+        // PLACE ORDER
+        // ====================================
 
         try {
 
@@ -410,9 +391,7 @@ document.addEventListener(
           button.textContent =
             "Confirm Booking";
         }
-
       }
     );
-
   }
 );

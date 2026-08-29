@@ -1,71 +1,293 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Admin Login | familycrackersworld</title>
-<link rel="stylesheet" href="../css/style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Admin Login | familycrackersworld</title>
+
+  <link rel="stylesheet" href="../css/style.css" />
 </head>
+
 <body>
 
-<section class="container" style="min-height:80vh; display:flex; align-items:center; justify-content:center;">
-  <div class="cart-summary" style="max-width:380px; width:100%; margin:0;">
-    <h2 style="margin-bottom:20px; text-align:center;">Admin Login</h2>
-    <form id="login-form">
-      <div class="form-group full">
-        <label>Email</label>
-        <input type="email" name="email" required />
-      </div>
-      <div class="form-group full">
-        <label>Password</label>
-        <input type="password" name="password" required />
-      </div>
-      <p id="login-error" style="color:var(--ember); font-size:0.85rem; display:none; margin-bottom:12px;"></p>
-      <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Log In</button>
-    </form>
-  </div>
-</section>
+  <section
+    class="container"
+    style="
+      min-height:80vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    "
+  >
 
-<script src="../js/config.js"></script>
-<script>
-  document.getElementById('login-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const errorEl = document.getElementById('login-error');
-    errorEl.style.display = 'none';
+```
+<div
+  class="cart-summary"
+  style="
+    max-width:380px;
+    width:100%;
+    margin:0;
+  "
+>
 
-    try {
-      const res = await fetch(`${API_BASE_URL}/auth/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(Object.fromEntries(formData.entries())),
-      });
+  <h2
+    style="
+      margin-bottom:20px;
+      text-align:center;
+    "
+  >
+    Admin Login
+  </h2>
 
-      if (!res.ok) {
-        const err = await res.json();
-        throw new Error(err.message || 'Login failed');
+
+  <form id="login-form">
+
+    <div class="form-group full">
+
+      <label>Email</label>
+
+      <input
+        type="email"
+        name="email"
+        required
+        autocomplete="email"
+      />
+
+    </div>
+
+
+    <div class="form-group full">
+
+      <label>Password</label>
+
+      <input
+        type="password"
+        name="password"
+        required
+        autocomplete="current-password"
+      />
+
+    </div>
+
+
+    <p
+      id="login-error"
+      style="
+        color:var(--ember);
+        font-size:0.85rem;
+        display:none;
+        margin-bottom:12px;
+      "
+    ></p>
+
+
+    <button
+      type="submit"
+      class="btn btn-primary"
+      id="login-button"
+      style="
+        width:100%;
+        justify-content:center;
+      "
+    >
+      Log In
+    </button>
+
+  </form>
+
+</div>
+```
+
+  </section>
+
+  <script src="../js/config.js"></script>
+
+  <script>
+
+    // ==========================================
+    // ADMIN LOGIN
+    // ==========================================
+
+    const TOKEN_KEY = "fwc_admin_token";
+
+    const form =
+      document.getElementById("login-form");
+
+    const errorEl =
+      document.getElementById("login-error");
+
+    const loginButton =
+      document.getElementById("login-button");
+
+
+    form.addEventListener("submit", async (e) => {
+
+      e.preventDefault();
+
+      errorEl.style.display = "none";
+      errorEl.textContent = "";
+
+      loginButton.disabled = true;
+      loginButton.textContent = "Logging in...";
+
+
+      try {
+
+        const formData =
+          new FormData(form);
+
+        const email =
+          formData.get("email");
+
+        const password =
+          formData.get("password");
+
+
+        // ==========================================
+        // LOGIN API
+        // ==========================================
+
+        const res =
+          await fetch(
+            `${API_BASE_URL}/auth/login`,
+            {
+              method: "POST",
+
+              headers: {
+                "Content-Type":
+                  "application/json"
+              },
+
+              body: JSON.stringify({
+                email,
+                password
+              })
+            }
+          );
+
+
+        const data =
+          await res.json().catch(() => ({}));
+
+
+        if (!res.ok) {
+
+          throw new Error(
+            data.message ||
+            `Login failed (${res.status})`
+          );
+
+        }
+
+
+        if (!data.token) {
+
+          throw new Error(
+            "Login successful, but no token was received."
+          );
+
+        }
+
+
+        // ==========================================
+        // SAVE TOKEN
+        // ==========================================
+
+        localStorage.setItem(
+          TOKEN_KEY,
+          data.token
+        );
+
+
+        // ==========================================
+        // GO TO ADMIN DASHBOARD
+        // ==========================================
+
+        window.location.href =
+          "index.html";
+
       }
 
-      const data = await res.json();
-      localStorage.setItem('fwc_admin_token', data.token);
-      window.location.href = 'index.html';
-    } catch (err) {
-      errorEl.textContent = err.message;
-      errorEl.style.display = 'block';
-    }
-  });
+      catch (error) {
 
-  // If already logged in with a valid token, skip straight to dashboard
-  (async () => {
-    const token = localStorage.getItem('fwc_admin_token');
-    if (!token) return;
-    try {
-      const res = await fetch(`${API_BASE_URL}/auth/verify`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      if (res.ok) window.location.href = 'index.html';
-    } catch (_) {}
-  })();
-</script>
+        console.error(
+          "Login error:",
+          error
+        );
+
+        errorEl.textContent =
+          error.message ||
+          "Unable to login.";
+
+        errorEl.style.display =
+          "block";
+
+        loginButton.disabled = false;
+
+        loginButton.textContent =
+          "Log In";
+
+      }
+
+    });
+
+
+    // ==========================================
+    // CHECK EXISTING TOKEN
+    // ==========================================
+
+    (async () => {
+
+      const token =
+        localStorage.getItem(TOKEN_KEY);
+
+      if (!token) return;
+
+
+      try {
+
+        const res =
+          await fetch(
+            `${API_BASE_URL}/auth/verify`,
+            {
+              method: "GET",
+
+              headers: {
+                Authorization:
+                  `Bearer ${token}`
+              }
+            }
+          );
+
+
+        if (res.ok) {
+
+          window.location.href =
+            "index.html";
+
+        }
+
+      }
+
+      catch (error) {
+
+        console.log(
+          "Token verification failed"
+        );
+
+        localStorage.removeItem(
+          TOKEN_KEY
+        );
+
+      }
+
+    })();
+
+  </script>
+
 </body>
+
 </html>

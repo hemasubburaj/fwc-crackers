@@ -280,40 +280,6 @@ ADMIN ONLY
 =========================================================
 */
 
-
-router.delete("/delete-colour-spinner-combo", async (req, res) => {
-  try {
-    const product = await Product.findOneAndDelete({
-      name: { $regex: /^Colour Spinner Combo$/i }
-    });
-
-    if (!product) {
-      return res.status(404).json({
-        success: false,
-        message: "Colour Spinner Combo not found"
-      });
-    }
-
-    console.log("Deleted product:", product.name);
-
-    res.json({
-      success: true,
-      message: "Colour Spinner Combo deleted successfully",
-      deletedProduct: {
-        id: product._id,
-        name: product.name
-      }
-    });
-  } catch (error) {
-    console.error("Delete combo error:", error);
-    res.status(500).json({
-      success: false,
-      message: "Could not delete combo",
-      error: error.message
-    });
-  }
-});
-
 router.delete(
   "/:id",
   async (req, res) => {

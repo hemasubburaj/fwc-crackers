@@ -23,7 +23,7 @@ function generateBillHTML(order) {
     <html>
     <head>
       <meta charset="UTF-8" />
-      <title>Estimate Bill ${order.orderId} — Phoenix Crackers</title>
+      <title>Estimate Bill ${order.orderId} — familycrackersworld</title>
       <style>
         body { font-family: 'Helvetica Neue', Arial, sans-serif; color: #221008; max-width: 760px; margin: 30px auto; padding: 0 24px; font-size: 14px; }
         .brand-header { text-align: center; border-bottom: 3px solid #C43B26; padding-bottom: 16px; margin-bottom: 20px; }
@@ -57,9 +57,9 @@ function generateBillHTML(order) {
       <button class="print-btn" onclick="window.print()">🖨️ Print / Save as PDF</button>
 
       <div class="brand-header">
-        <h1>PHOENIX CRACKERS</h1>
+        <h1>familycrackersworld</h1>
         <div class="tagline">Sivakasi's Finest Fireworks</div>
-        <div class="contact-line">www.funwithcrackers.com &nbsp;|&nbsp; +91 63836 59214 &nbsp;|&nbsp; nivasramasamy27@gmail.com</div>
+        <div class="contact-line">www.familycrackersworld.com &nbsp;|&nbsp; +91 63836 59214 &nbsp;|&nbsp; nivasramasamy27@gmail.com</div>
       </div>
 
       <div class="bill-title">ESTIMATE BILL</div>
@@ -67,11 +67,11 @@ function generateBillHTML(order) {
       <div class="parties">
         <div class="party-box">
           <h3>From</h3>
-          <strong>Phoenix Crackers</strong><br/>
+          <strong>familycrackersworld</strong><br/>
           Sivakasi, Tamil Nadu<br/>
           +91 63836 59214<br/>
           nivasramasamy27@gmail.com<br/>
-          www.funwithcrackers.com
+          www.familycrackersworld.com
         </div>
         <div class="party-box">
           <h3>Bill To</h3>
@@ -117,7 +117,7 @@ function generateBillHTML(order) {
       </div>
 
       <div class="footer-note">
-        Thank you for your business with Phoenix Crackers, Sivakasi<br/>
+        Thank you for your business with familycrackersworld, Sivakasi<br/>
         Payment: ${order.paymentMethod} (${order.paymentStatus}) &nbsp;|&nbsp; Order Status: ${order.orderStatus}
       </div>
     </body>

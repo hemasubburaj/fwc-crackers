@@ -1,14 +1,9 @@
-
 const express = require("express");
 const router = express.Router();
 
 const Order = require("../models/Order");
 const Product = require("../models/Product");
 
-// ========================================
-// CREATE ORDER
-// POST /api/orders
-// ========================================
 router.post("/", async (req, res) => {
   try {
     const {
@@ -18,9 +13,6 @@ router.post("/", async (req, res) => {
       paymentMethod = "COD",
     } = req.body;
 
-    // -----------------------------
-    // Validate customer
-    // -----------------------------
     if (!customer) {
       return res.status(400).json({
         success: false,
@@ -35,22 +27,13 @@ router.post("/", async (req, res) => {
       });
     }
 
-    // -----------------------------
-    // Validate items
-    // -----------------------------
-    if (!items || !Array.isArray(items) || items.length === 0) {
+    if (!Array.isArray(items) || items.length === 0) {
       return res.status(400).json({
         success: false,
         message: "Cart is empty",
       });
     }
 
-    // -----------------------------
-    // Prepare products
-    // Supports:
-    // 1. Full item details from checkout
-    // 2. productId + qty from admin billing
-    // -----------------------------
     const finalItems = [];
 
     for (const item of items) {
@@ -76,7 +59,6 @@ router.post("/", async (req, res) => {
           image: product.image || item.image || "",
         });
       } else {
-        // Fallback for already-complete cart items
         finalItems.push({
           productId: item.productId || item._id,
           name: item.name || "Product",
@@ -88,38 +70,25 @@ router.post("/", async (req, res) => {
       }
     }
 
-    // -----------------------------
-    // Calculate total
-    // -----------------------------
-    const calculatedSubtotal = finalItems.reduce(
+    const subtotal = finalItems.reduce(
       (sum, item) => sum + item.price * item.qty,
       0
     );
 
-    const shipping =
-      calculatedSubtotal > 0 && calculatedSubtotal < 2000 ? 150 : 0;
+    const shipping = subtotal > 0 && subtotal < 2000 ? 150 : 0;
 
-    const calculatedTotal = calculatedSubtotal + shipping;
-
-    const finalTotal =
+    const total =
       totalAmount && Number(totalAmount) > 0
         ? Number(totalAmount)
-        : calculatedTotal;
+        : subtotal + shipping;
 
-    // -----------------------------
-    // Generate Order ID
-    // -----------------------------
     const orderId =
       "FWC" +
       Date.now().toString().slice(-8) +
       Math.floor(100 + Math.random() * 900);
 
-    // -----------------------------
-    // Create order
-    // -----------------------------
     const order = new Order({
       orderId,
-
       customer: {
         name: customer.name,
         phone: customer.phone,
@@ -129,38 +98,29 @@ router.post("/", async (req, res) => {
         state: customer.state || "",
         pincode: customer.pincode || "",
       },
-
       items: finalItems,
-
-      totalAmount: finalTotal,
-
+      totalAmount: total,
       paymentMethod,
-
-      // IMPORTANT:
-      // Your frontend expects orderStatus
       orderStatus: "PLACED",
-
-      // Keep payment status available
       paymentStatus:
         paymentMethod === "ONLINE" ? "PAID" : "PENDING",
-
       createdAt: new Date(),
     });
 
     await order.save();
 
-    console.log("✅ Order placed:", orderId);
+    console.log("Order placed:", orderId);
 
-    return res.status(201).json({
+    res.status(201).json({
       success: true,
       message: "Order placed successfully",
       orderId: order.orderId,
       order,
     });
   } catch (error) {
-    console.error("❌ Order creation error:", error);
+    console.error("Order creation error:", error);
 
-    return res.status(500).json({
+    res.status(500).json({
       success: false,
       message: "Could not place order",
       error: error.message,
@@ -168,33 +128,23 @@ router.post("/", async (req, res) => {
   }
 });
 
-// ========================================
-// GET ALL ORDERS
-// GET /api/orders
-// ========================================
 router.get("/", async (req, res) => {
   try {
     const orders = await Order.find()
       .sort({ createdAt: -1 })
       .lean();
 
-    // Make old orders compatible with frontend
-    const formattedOrders = orders.map((order) => ({
-      ...order,
-
-      orderStatus:
-        order.orderStatus ||
-        order.status ||
-        "PLACED",
-
-      paymentStatus:
-        order.paymentStatus ||
-        "PENDING",
-    }));
-
-    res.json(formattedOrders);
+    res.json(
+      orders.map((order) => ({
+        ...order,
+        orderStatus:
+          order.orderStatus || order.status || "PLACED",
+        paymentStatus:
+          order.paymentStatus || "PENDING",
+      }))
+    );
   } catch (error) {
-    console.error("❌ Get orders error:", error);
+    console.error("Get orders error:", error);
 
     res.status(500).json({
       success: false,
@@ -203,10 +153,50 @@ router.get("/", async (req, res) => {
   }
 });
 
-// ========================================
-// TRACK ORDER
-// GET /api/orders/track/:orderId
-// ========================================
+router.get("/track-phone/:phone", async (req, res) => {
+  try {
+    const phone = req.params.phone.trim();
+
+    if (!/^\d{10}$/.test(phone)) {
+      return res.status(400).json({
+        success: false,
+        message: "Enter a valid 10-digit phone number",
+      });
+    }
+
+    const orders = await Order.find({
+      "customer.phone": phone,
+    })
+      .sort({ createdAt: -1 })
+      .lean();
+
+    if (!orders.length) {
+      return res.status(404).json({
+        success: false,
+        message: "No orders found for this phone number",
+      });
+    }
+
+    res.json({
+      success: true,
+      orders: orders.map((order) => ({
+        ...order,
+        orderStatus:
+          order.orderStatus || order.status || "PLACED",
+        paymentStatus:
+          order.paymentStatus || "PENDING",
+      })),
+    });
+  } catch (error) {
+    console.error("Track phone error:", error);
+
+    res.status(500).json({
+      success: false,
+      message: "Could not track order",
+    });
+  }
+});
+
 router.get("/track/:orderId", async (req, res) => {
   try {
     const order = await Order.findOne({
@@ -220,22 +210,15 @@ router.get("/track/:orderId", async (req, res) => {
       });
     }
 
-    const formattedOrder = {
+    res.json({
       ...order,
-
       orderStatus:
-        order.orderStatus ||
-        order.status ||
-        "PLACED",
-
+        order.orderStatus || order.status || "PLACED",
       paymentStatus:
-        order.paymentStatus ||
-        "PENDING",
-    };
-
-    res.json(formattedOrder);
+        order.paymentStatus || "PENDING",
+    });
   } catch (error) {
-    console.error("❌ Track order error:", error);
+    console.error("Track order error:", error);
 
     res.status(500).json({
       success: false,
@@ -244,10 +227,6 @@ router.get("/track/:orderId", async (req, res) => {
   }
 });
 
-// ========================================
-// GET ORDER BY ID
-// GET /api/orders/:orderId
-// ========================================
 router.get("/:orderId", async (req, res) => {
   try {
     const order = await Order.findOne({
@@ -264,15 +243,12 @@ router.get("/:orderId", async (req, res) => {
     res.json({
       ...order,
       orderStatus:
-        order.orderStatus ||
-        order.status ||
-        "PLACED",
+        order.orderStatus || order.status || "PLACED",
       paymentStatus:
-        order.paymentStatus ||
-        "PENDING",
+        order.paymentStatus || "PENDING",
     });
   } catch (error) {
-    console.error("❌ Get order error:", error);
+    console.error("Get order error:", error);
 
     res.status(500).json({
       success: false,
@@ -281,10 +257,6 @@ router.get("/:orderId", async (req, res) => {
   }
 });
 
-// ========================================
-// UPDATE ORDER STATUS
-// PUT /api/orders/:id/status
-// ========================================
 router.put("/:id/status", async (req, res) => {
   try {
     const { orderStatus } = req.body;
@@ -323,17 +295,13 @@ router.put("/:id/status", async (req, res) => {
       });
     }
 
-    console.log(
-      `✅ Order ${order.orderId} status updated to ${orderStatus}`
-    );
-
     res.json({
       success: true,
       message: "Order status updated",
       order,
     });
   } catch (error) {
-    console.error("❌ Update status error:", error);
+    console.error("Update status error:", error);
 
     res.status(500).json({
       success: false,
@@ -342,6 +310,37 @@ router.put("/:id/status", async (req, res) => {
     });
   }
 });
+router.get("/track-phone/:phone", async (req, res) => {
+  try {
+    const phone = req.params.phone.trim();
+
+    const orders = await Order.find({
+      "customer.phone": phone
+    })
+      .sort({ createdAt: -1 })
+      .lean();
+
+    if (!orders.length) {
+      return res.status(404).json({
+        success: false,
+        message: "No orders found for this phone number"
+      });
+    }
+
+    res.json({
+      success: true,
+      orders
+    });
+
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      success: false,
+      message: "Could not track orders"
+    });
+  }
+});
 
 module.exports = router;
-
+module.exports = router;

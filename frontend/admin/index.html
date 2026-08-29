@@ -1,782 +1,3770 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Admin Dashboard | familycrackersworld</title>
-<link rel="stylesheet" href="../css/style.css" />
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title>Admin Dashboard | familycrackersworld</title>
 
+  <link rel="stylesheet" href="../css/style.css" />
 
-<style>
-  body { background: var(--bg-warm); }
-  .admin-shell { padding: 32px 0 60px; }
-  .admin-tabs { display: flex; gap: 8px; margin-bottom: 28px; }
-  .tab-btn {
-    padding: 10px 20px; border-radius: 999px; border: 1px solid var(--line);
-    background: var(--surface); color: var(--ink-soft); cursor: pointer;
-    font-weight: 700; font-size: 0.88rem;
-  }
-  .tab-btn.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
 
-  .stat-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-bottom: 28px; }
-  .stat-card {
-    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
-    padding: 22px 20px;
-  }
-  .stat-card .label { color: var(--ink-faint); font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
-  .stat-card .value { font-family: 'Fraunces', serif; font-size: 1.9rem; font-weight: 700; color: var(--ink); }
-  .stat-card .sub { font-size: 0.8rem; color: var(--ink-soft); margin-top: 4px; }
+  <style>
+    body {
+      background: var(--bg-warm);
+    }
 
-  .chart-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 18px; margin-bottom: 18px; }
-  .chart-card {
-    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
-    padding: 22px; box-shadow: var(--shadow-sm);
-  }
-  .chart-card h3 { font-size: 1rem; font-family: 'Inter'; font-weight: 700; margin-bottom: 16px; }
-  .chart-card canvas { max-height: 260px; }
+    .admin-shell {
+      padding: 32px 0 60px;
+    }
 
-  table { width: 100%; border-collapse: collapse; margin-top: 16px; background: var(--surface); border-radius: var(--radius); overflow: hidden; }
-  th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line); font-size: 0.86rem; }
-  th { color: var(--ink-faint); font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; font-size: 0.72rem; background: var(--bg-warm); }
-  tr:last-child td { border-bottom: none; }
-  select.status-select { padding: 7px 10px; font-size: 0.82rem; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); }
+    /* ================= TABS ================= */
 
-  .table-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 4px; overflow-x: auto; }
-  .table-card table { margin-top: 0; }
+    .admin-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
 
-  @media (max-width: 900px) {
-    .stat-cards { grid-template-columns: repeat(2, 1fr); }
-    .chart-grid { grid-template-columns: 1fr; }
-  }
-</style>
+    .tab-btn {
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--ink-soft);
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 0.88rem;
+    }
+
+    .tab-btn.active {
+      background: var(--ink);
+      color: var(--bg);
+      border-color: var(--ink);
+    }
+
+    /* ================= STAT CARDS ================= */
+
+    .stat-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px 20px;
+    }
+
+    .stat-card .label {
+      color: var(--ink-faint);
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+
+    .stat-card .value {
+      font-family: "Fraunces", serif;
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .stat-card .sub {
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+      margin-top: 4px;
+    }
+
+    /* ================= CHARTS ================= */
+
+    .chart-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .chart-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .chart-card h3 {
+      font-size: 1rem;
+      font-family: "Inter";
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .chart-card canvas {
+      max-height: 260px;
+    }
+
+    /* ================= TABLE ================= */
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      background: var(--surface);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    th,
+    td {
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--line);
+      font-size: 0.86rem;
+    }
+
+    th {
+      color: var(--ink-faint);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-size: 0.72rem;
+      background: var(--bg-warm);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .table-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 4px;
+      overflow-x: auto;
+    }
+
+    .table-card table {
+      margin-top: 0;
+      min-width: 900px;
+    }
+
+    select.status-select {
+      padding: 7px 10px;
+      font-size: 0.82rem;
+      border-radius: 6px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+    }
+
+    /* ================= PRODUCT PRICE ================= */
+
+    .price-input {
+      width: 85px;
+      padding: 6px 8px;
+      border-radius: 6px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--ink);
+    }
+
+    .discount-badge {
+      display: inline-block;
+      padding: 4px 7px;
+      border-radius: 6px;
+      background: rgba(196, 59, 38, 0.1);
+      color: var(--ember);
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    .active-badge {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(47, 122, 70, 0.1);
+      color: #2f7a46;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    .inactive-badge {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(196, 59, 38, 0.1);
+      color: var(--ember);
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+
+    /* ================= LOADER ================= */
+
+    .loader {
+      padding: 30px;
+      text-align: center;
+      color: var(--ink-soft);
+    }
+
+    .empty-state {
+      padding: 40px 20px;
+      text-align: center;
+      color: var(--ink-soft);
+    }
+
+    /* ================= MOBILE ================= */
+
+    @media (max-width: 900px) {
+      .stat-cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .chart-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .admin-shell {
+        padding-top: 20px;
+      }
+
+      .stat-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .tab-btn {
+        flex: 1;
+        min-width: 120px;
+      }
+
+      .chart-card {
+        padding: 16px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<header>
-  <div class="container nav">
-    <a href="../index.html" class="logo">family<span class="spark">crackersworld</span> <span style="font-size:0.7rem; color:var(--ink-faint); font-family:'Inter';">/ admin</span></a>
-    <button class="btn btn-outline" onclick="logout()">Log Out</button>
-  </div>
-</header>
+  <!-- ================= HEADER ================= -->
 
-<section class="container admin-shell">
-  <div class="admin-tabs">
-    <button class="tab-btn active" data-tab="dashboard" onclick="switchTab('dashboard')">Dashboard</button>
-    <button class="tab-btn" data-tab="orders" onclick="switchTab('orders')">Orders</button>
-    <button class="tab-btn" data-tab="billing" onclick="switchTab('billing')">🧾 New Bill</button>
-    <button class="tab-btn" data-tab="products" onclick="switchTab('products')">Products</button>
-  </div>
+  <header>
+    <div class="container nav">
 
-  <!-- ===== Dashboard tab ===== -->
-  <div id="dashboard-tab">
-    <div class="stat-cards" id="stat-cards">
-      <div class="loader">Loading stats...</div>
+      <a href="../index.html" class="logo">
+        family<span class="spark">crackersworld</span>
+
+        <span
+          style="
+            font-size: 0.7rem;
+            color: var(--ink-faint);
+            font-family: 'Inter';
+          "
+        >
+          / admin
+        </span>
+      </a>
+
+      <button class="btn btn-outline" onclick="logout()">
+        Log Out
+      </button>
+
     </div>
-    <div class="chart-grid">
+  </header>
+
+
+  <!-- ================= ADMIN ================= -->
+
+  <section class="container admin-shell">
+
+    <!-- ================= TABS ================= -->
+
+    <div class="admin-tabs">
+
+      <button
+        class="tab-btn active"
+        data-tab="dashboard"
+        onclick="switchTab('dashboard')"
+      >
+        Dashboard
+      </button>
+
+      <button
+        class="tab-btn"
+        data-tab="orders"
+        onclick="switchTab('orders')"
+      >
+        Orders
+      </button>
+
+      <button
+        class="tab-btn"
+        data-tab="billing"
+        onclick="switchTab('billing')"
+      >
+        🧾 New Bill
+      </button>
+
+      <button
+        class="tab-btn"
+        data-tab="products"
+        onclick="switchTab('products')"
+      >
+        Products
+      </button>
+
+    </div>
+
+
+    <!-- ====================================================== -->
+    <!-- DASHBOARD -->
+    <!-- ====================================================== -->
+
+    <div id="dashboard-tab">
+
+      <div class="stat-cards" id="stat-cards">
+        <div class="loader">
+          Loading stats...
+        </div>
+      </div>
+
+
+      <div class="chart-grid">
+
+        <div class="chart-card">
+
+          <h3>
+            Revenue — Last 14 Days
+          </h3>
+
+          <canvas id="revenueChart"></canvas>
+
+        </div>
+
+
+        <div class="chart-card">
+
+          <h3>
+            Orders by Status
+          </h3>
+
+          <canvas id="statusChart"></canvas>
+
+        </div>
+
+      </div>
+
+
       <div class="chart-card">
-        <h3>Revenue — Last 14 Days</h3>
-        <canvas id="revenueChart"></canvas>
-      </div>
-      <div class="chart-card">
-        <h3>Orders by Status</h3>
-        <canvas id="statusChart"></canvas>
-      </div>
-    </div>
-    <div class="chart-card">
-      <h3>Top Selling Products</h3>
-      <canvas id="topProductsChart"></canvas>
-    </div>
-  </div>
 
-  <!-- ===== Orders tab ===== -->
-  <div id="orders-tab" style="display:none;">
-    <h2 style="margin:8px 0 4px; font-size:1.4rem;">All Orders</h2>
-    <div class="table-card" id="orders-table"><div class="loader">Loading...</div></div>
-  </div>
+        <h3>
+          Top Selling Products
+        </h3>
 
-  <!-- ===== Billing tab (manual / walk-in customer billing) ===== -->
-  <div id="billing-tab" style="display:none;">
-    <h2 style="margin:8px 0 4px; font-size:1.4rem;">Create New Bill</h2>
-    <p style="color:var(--ink-soft); font-size:0.85rem; margin-bottom:20px;">
-      For walk-in or phone orders. Fill customer details, add products, then generate the bill — it's saved to Orders automatically.
-    </p>
+        <canvas id="topProductsChart"></canvas>
 
-    <div class="chart-card" style="margin-bottom:20px;">
-      <h3>Customer Details</h3>
-      <form id="billing-customer-form">
-        <div class="form-grid">
-          <div class="form-group">
-            <label>Full Name *</label>
-            <input type="text" name="name" required />
-          </div>
-          <div class="form-group">
-            <label>Phone Number *</label>
-            <input type="tel" name="phone" pattern="[0-9]{10}" placeholder="10-digit mobile" required />
-          </div>
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" name="email" />
-          </div>
-          <div class="form-group">
-            <label>Pincode *</label>
-            <input type="text" name="pincode" pattern="[0-9]{6}" required />
-          </div>
-          <div class="form-group full">
-            <label>Address *</label>
-            <textarea name="address" rows="2" required></textarea>
-          </div>
-          <div class="form-group">
-            <label>City *</label>
-            <input type="text" name="city" required />
-          </div>
-          <div class="form-group">
-            <label>State *</label>
-            <input type="text" name="state" required value="Tamil Nadu" />
-          </div>
-          <div class="form-group">
-            <label>Payment Method</label>
-            <select name="paymentMethod">
-              <option value="COD">Cash</option>
-              <option value="ONLINE">Online / Card</option>
-            </select>
-          </div>
-        </div>
-      </form>
-    </div>
-
-    <div class="chart-card" style="margin-bottom:20px;">
-      <h3>Add Products</h3>
-      <div class="form-grid" style="grid-template-columns: 2fr 1fr 1fr auto; align-items:end;">
-        <div class="form-group" style="margin-bottom:0;">
-          <label>Product</label>
-          <select id="billing-product-select"></select>
-        </div>
-        <div class="form-group" style="margin-bottom:0;">
-          <label>Qty</label>
-          <input type="number" id="billing-product-qty" value="1" min="1" />
-        </div>
-        <div class="form-group" style="margin-bottom:0;">
-          <label>Price</label>
-          <input type="text" id="billing-product-price" disabled />
-        </div>
-        <button type="button" class="btn btn-primary" style="height:44px;" onclick="addBillingItem()">+ Add</button>
       </div>
 
-      <div class="table-card" style="margin-top:20px;">
+    </div>
+
+
+    <!-- ====================================================== -->
+    <!-- ORDERS -->
+    <!-- ====================================================== -->
+
+    <div id="orders-tab" style="display:none;">
+
+      <h2 style="margin:8px 0 4px; font-size:1.4rem;">
+        All Orders
+      </h2>
+
+      <div
+        class="table-card"
+        id="orders-table"
+      >
+        <div class="loader">
+          Loading...
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- ====================================================== -->
+    <!-- BILLING -->
+    <!-- ====================================================== -->
+
+    <div id="billing-tab" style="display:none;">
+
+      <h2 style="margin:8px 0 4px; font-size:1.4rem;">
+        Create New Bill
+      </h2>
+
+      <p
+        style="
+          color:var(--ink-soft);
+          font-size:0.85rem;
+          margin-bottom:20px;
+        "
+      >
+        For walk-in or phone orders. Fill customer details,
+        add products, then generate the bill.
+      </p>
+
+
+      <!-- CUSTOMER -->
+
+      <div
+        class="chart-card"
+        style="margin-bottom:20px;"
+      >
+
+        <h3>
+          Customer Details
+        </h3>
+
+        <form id="billing-customer-form">
+
+          <div class="form-grid">
+
+            <div class="form-group">
+
+              <label>
+                Full Name *
+              </label>
+
+              <input
+                type="text"
+                name="name"
+                required
+              />
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label>
+                Phone Number *
+              </label>
+
+              <input
+                type="tel"
+                name="phone"
+                pattern="[0-9]{10}"
+                maxlength="10"
+                placeholder="10-digit mobile"
+                required
+              />
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label>
+                Email
+              </label>
+
+              <input
+                type="email"
+                name="email"
+              />
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label>
+                Pincode *
+              </label>
+
+              <input
+                type="text"
+                name="pincode"
+                pattern="[0-9]{6}"
+                maxlength="6"
+                required
+              />
+
+            </div>
+
+
+            <div class="form-group full">
+
+              <label>
+                Address *
+              </label>
+
+              <textarea
+                name="address"
+                rows="2"
+                required
+              ></textarea>
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label>
+                City *
+              </label>
+
+              <input
+                type="text"
+                name="city"
+                required
+              />
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label>
+                State *
+              </label>
+
+              <input
+                type="text"
+                name="state"
+                value="Tamil Nadu"
+                required
+              />
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label>
+                Payment Method
+              </label>
+
+              <select name="paymentMethod">
+
+                <option value="COD">
+                  Cash
+                </option>
+
+                <option value="ONLINE">
+                  Online / Card
+                </option>
+
+              </select>
+
+            </div>
+
+          </div>
+
+        </form>
+
+      </div>
+
+
+      <!-- PRODUCTS -->
+
+      <div
+        class="chart-card"
+        style="margin-bottom:20px;"
+      >
+
+        <h3>
+          Add Products
+        </h3>
+
+
+        <div
+          class="form-grid"
+          style="
+            grid-template-columns:2fr 1fr 1fr auto;
+            align-items:end;
+          "
+        >
+
+          <div
+            class="form-group"
+            style="margin-bottom:0;"
+          >
+
+            <label>
+              Product
+            </label>
+
+            <select id="billing-product-select"></select>
+
+          </div>
+
+
+          <div
+            class="form-group"
+            style="margin-bottom:0;"
+          >
+
+            <label>
+              Qty
+            </label>
+
+            <input
+              type="number"
+              id="billing-product-qty"
+              value="1"
+              min="1"
+            />
+
+          </div>
+
+
+          <div
+            class="form-group"
+            style="margin-bottom:0;"
+          >
+
+            <label>
+              Price
+            </label>
+
+            <input
+              type="text"
+              id="billing-product-price"
+              disabled
+            />
+
+          </div>
+
+
+          <button
+            type="button"
+            class="btn btn-primary"
+            style="height:44px;"
+            onclick="addBillingItem()"
+          >
+            + Add
+          </button>
+
+        </div>
+
+
+        <div
+          class="table-card"
+          style="margin-top:20px;"
+        >
+
+          <table>
+
+            <thead>
+
+              <tr>
+
+                <th>Product</th>
+                <th>Qty</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th></th>
+
+              </tr>
+
+            </thead>
+
+            <tbody id="billing-items-body">
+
+              <tr>
+
+                <td
+                  colspan="5"
+                  style="
+                    text-align:center;
+                    color:var(--ink-faint);
+                    padding:20px;
+                  "
+                >
+                  No items added yet
+                </td>
+
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+
+        <div
+          class="cart-summary"
+          style="
+            max-width:340px;
+            margin-left:auto;
+            margin-top:20px;
+          "
+        >
+
+          <div class="summary-row">
+
+            <span>
+              Subtotal
+            </span>
+
+            <span id="billing-subtotal">
+              ₹0
+            </span>
+
+          </div>
+
+
+          <div class="summary-row">
+
+            <span>
+              Shipping
+            </span>
+
+            <span id="billing-shipping">
+              ₹0
+            </span>
+
+          </div>
+
+
+          <div class="summary-row total">
+
+            <span>
+              Total
+            </span>
+
+            <span id="billing-total">
+              ₹0
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <p
+          id="billing-error"
+          style="
+            color:var(--ember);
+            font-size:0.85rem;
+            display:none;
+            margin-top:12px;
+          "
+        ></p>
+
+
+        <button
+          class="btn btn-primary"
+          style="
+            width:100%;
+            justify-content:center;
+            margin-top:16px;
+          "
+          onclick="generateManualBill()"
+        >
+          🧾 Generate & Save Bill
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- ====================================================== -->
+    <!-- PRODUCTS -->
+    <!-- ====================================================== -->
+
+    <div id="products-tab" style="display:none;">
+
+      <div
+        class="section-title"
+        style="
+          margin:8px 0 16px;
+          display:flex;
+          justify-content:space-between;
+          align-items:center;
+          gap:12px;
+        "
+      >
+
+        <h2 style="font-size:1.4rem;">
+          All Products
+        </h2>
+
+        <button
+          class="btn btn-primary"
+          onclick="openAddProductForm()"
+        >
+          + Add New Product
+        </button>
+
+      </div>
+
+
+      <p
+        style="
+          color:var(--ink-soft);
+          font-size:0.85rem;
+          margin-bottom:8px;
+        "
+      >
+        Quick edits below update products directly in the database.
+      </p>
+
+
+      <!-- ADD / EDIT FORM -->
+
+      <div
+        id="add-product-form"
+        class="chart-card"
+        style="
+          display:none;
+          margin-bottom:20px;
+        "
+      >
+
+        <h3 id="product-form-title">
+          Add New Product
+        </h3>
+
+
+        <form id="new-product-form">
+
+          <div class="form-grid">
+
+            <!-- PRODUCT CODE -->
+
+            <div class="form-group">
+
+              <label>
+                Product Code *
+              </label>
+
+              <input
+                type="text"
+                name="productCode"
+                required
+                placeholder="e.g. FWC-200"
+              />
+
+            </div>
+
+
+            <!-- NAME -->
+
+            <div class="form-group">
+
+              <label>
+                Product Name *
+              </label>
+
+              <input
+                type="text"
+                name="name"
+                required
+                placeholder="e.g. Colour Sparklers 15cm"
+              />
+
+            </div>
+
+
+            <!-- CATEGORY -->
+
+            <div class="form-group">
+
+              <label>
+                Category *
+              </label>
+
+              <input
+                type="text"
+                name="category"
+                required
+                list="category-list"
+                placeholder="e.g. Sparklers"
+              />
+
+              <datalist id="category-list"></datalist>
+
+            </div>
+
+
+            <!-- CONTENT -->
+
+            <div class="form-group">
+
+              <label>
+                Content / Packaging
+              </label>
+
+              <input
+                type="text"
+                name="content"
+                value="1 box"
+                placeholder="e.g. 1 box (5 pcs)"
+              />
+
+            </div>
+
+
+            <!-- MRP -->
+
+            <div class="form-group">
+
+              <label>
+                MRP (₹) *
+              </label>
+
+              <input
+                type="number"
+                name="mrp"
+                id="product-mrp"
+                required
+                min="1"
+                placeholder="e.g. 200"
+              />
+
+            </div>
+
+
+            <!-- DISCOUNT -->
+
+            <div class="form-group">
+
+              <label>
+                Discount (%)
+              </label>
+
+              <input
+                type="number"
+                name="discountPercent"
+                id="product-discount"
+                min="0"
+                max="100"
+                value="50"
+                placeholder="e.g. 50"
+              />
+
+            </div>
+
+
+            <!-- FINAL PRICE -->
+
+            <div class="form-group">
+
+              <label>
+                Final / Selling Price (₹) *
+              </label>
+
+              <input
+                type="number"
+                name="finalPrice"
+                id="product-final-price"
+                required
+                min="1"
+                placeholder="Auto calculated"
+              />
+
+              <small
+                style="
+                  color:var(--ink-faint);
+                  font-size:0.75rem;
+                "
+              >
+                Automatically calculated from MRP and discount.
+              </small>
+
+            </div>
+
+
+            <!-- STOCK -->
+
+            <div class="form-group">
+
+              <label>
+                Stock
+              </label>
+
+              <input
+                type="number"
+                name="stock"
+                value="100"
+                min="0"
+              />
+
+            </div>
+
+
+            <!-- IMAGE -->
+
+            <div class="form-group">
+
+              <label>
+                Image URL
+              </label>
+
+              <input
+                type="url"
+                name="image"
+                placeholder="https://example.com/product-photo.jpg"
+              />
+
+            </div>
+
+
+            <!-- ACTIVE -->
+
+            <div
+              class="form-group full"
+              style="
+                display:flex;
+                align-items:center;
+                gap:10px;
+              "
+            >
+
+              <input
+                type="checkbox"
+                name="isActive"
+                id="is-active-checkbox"
+                checked
+                style="
+                  width:18px;
+                  height:18px;
+                  margin:0;
+                "
+              />
+
+              <label
+                for="is-active-checkbox"
+                style="
+                  margin:0;
+                  cursor:pointer;
+                "
+              >
+                Product is active
+              </label>
+
+            </div>
+
+
+            <!-- COMBO -->
+
+            <div
+              class="form-group full"
+              style="
+                display:flex;
+                align-items:center;
+                gap:10px;
+              "
+            >
+
+              <input
+                type="checkbox"
+                name="isCombo"
+                id="is-combo-checkbox"
+                style="
+                  width:18px;
+                  height:18px;
+                  margin:0;
+                "
+              />
+
+              <label
+                for="is-combo-checkbox"
+                style="
+                  margin:0;
+                  cursor:pointer;
+                "
+              >
+                🎁 Show in "Combo Gift Boxes" section on Home page
+              </label>
+
+            </div>
+
+
+            <!-- DESCRIPTION -->
+
+            <div class="form-group full">
+
+              <label>
+                Description
+              </label>
+
+              <textarea
+                name="description"
+                rows="2"
+                placeholder="Short description shown to customers"
+              ></textarea>
+
+            </div>
+
+          </div>
+
+
+          <p
+            id="add-product-error"
+            style="
+              color:var(--ember);
+              font-size:0.85rem;
+              display:none;
+              margin-bottom:12px;
+            "
+          ></p>
+
+
+          <div
+            style="
+              display:flex;
+              gap:12px;
+            "
+          >
+
+            <button
+              type="submit"
+              class="btn btn-primary"
+              id="product-form-submit"
+            >
+              Save Product
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-outline"
+              onclick="closeAddProductForm()"
+            >
+              Cancel
+            </button>
+
+          </div>
+
+        </form>
+
+      </div>
+
+
+      <!-- PRODUCT TABLE -->
+
+      <div
+        class="table-card"
+        id="products-table"
+      >
+        <div class="loader">
+          Loading...
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= SCRIPTS ================= -->
+
+  <script src="../js/config.js"></script>
+  <script src="../js/cart.js"></script>
+  <script src="../js/category-styles.js"></script>
+  <script src="../js/invoice.js"></script>
+
+
+  <script>
+
+    /* =====================================================
+       AUTH
+    ===================================================== */
+
+    const ADMIN_TOKEN_KEY = "fwc_admin_token";
+
+    const adminToken =
+      localStorage.getItem(ADMIN_TOKEN_KEY);
+
+    if (!adminToken) {
+      window.location.href = "/admin/login.html";
+    }
+
+
+    function authHeaders(extra = {}) {
+
+      return {
+        Authorization: `Bearer ${adminToken}`,
+        ...extra
+      };
+
+    }
+
+
+    function logout() {
+
+      localStorage.removeItem(ADMIN_TOKEN_KEY);
+
+      window.location.href = "/admin/login.html";
+
+    }
+
+
+    async function handleAuthFailure(res) {
+
+      if (res.status === 401 || res.status === 403) {
+
+        logout();
+
+        return true;
+
+      }
+
+      return false;
+
+    }
+
+
+    /* =====================================================
+       GLOBAL DATA
+    ===================================================== */
+
+    let allOrders = [];
+    let allProducts = [];
+
+    let billingItems = [];
+
+    let editingProductId = null;
+
+
+    /* =====================================================
+       TABS
+    ===================================================== */
+
+    function switchTab(tab) {
+
+      document
+        .querySelectorAll(".tab-btn")
+        .forEach(button => {
+
+          button.classList.toggle(
+            "active",
+            button.dataset.tab === tab
+          );
+
+        });
+
+
+      document.getElementById("dashboard-tab").style.display =
+        tab === "dashboard" ? "block" : "none";
+
+      document.getElementById("orders-tab").style.display =
+        tab === "orders" ? "block" : "none";
+
+      document.getElementById("billing-tab").style.display =
+        tab === "billing" ? "block" : "none";
+
+      document.getElementById("products-tab").style.display =
+        tab === "products" ? "block" : "none";
+
+
+      if (tab === "products" && !allProducts.length) {
+
+        loadProducts();
+
+      }
+
+
+      if (tab === "billing") {
+
+        if (!allProducts.length) {
+
+          loadProducts()
+            .then(() => populateBillingProductSelect());
+
+        } else {
+
+          populateBillingProductSelect();
+
+        }
+
+      }
+
+    }
+
+
+    /* =====================================================
+       STATUS
+    ===================================================== */
+
+    const STATUS_OPTIONS = [
+      "PLACED",
+      "CONFIRMED",
+      "SHIPPED",
+      "DELIVERED",
+      "CANCELLED"
+    ];
+
+
+    const CHART_COLORS = [
+      "#C43B26",
+      "#D9A431",
+      "#E8654A",
+      "#A97A1C",
+      "#2F7A46",
+      "#93816E"
+    ];
+
+
+    /* =====================================================
+       ORDERS
+    ===================================================== */
+
+    async function loadOrders() {
+
+      try {
+
+        const res = await fetch(
+          `${API_BASE_URL}/orders`,
+          {
+            headers: authHeaders()
+          }
+        );
+
+
+        if (await handleAuthFailure(res)) return;
+
+
+        if (!res.ok) {
+
+          throw new Error("Failed to load orders");
+
+        }
+
+
+        allOrders = await res.json();
+
+        renderOrdersTable();
+
+        renderDashboard();
+
+      } catch (error) {
+
+        console.error(error);
+
+        document.getElementById(
+          "orders-table"
+        ).innerHTML = `
+          <div class="empty-state">
+            Could not load orders.
+          </div>
+        `;
+
+      }
+
+    }
+
+
+    function renderOrdersTable() {
+
+      const el =
+        document.getElementById("orders-table");
+
+
+      if (!allOrders.length) {
+
+        el.innerHTML = `
+          <div class="empty-state">
+            No orders yet.
+          </div>
+        `;
+
+        return;
+
+      }
+
+
+      el.innerHTML = `
+
         <table>
-          <thead><tr><th>Product</th><th>Qty</th><th>Price</th><th>Total</th><th></th></tr></thead>
-          <tbody id="billing-items-body">
-            <tr><td colspan="5" style="text-align:center; color:var(--ink-faint); padding:20px;">No items added yet</td></tr>
+
+          <thead>
+
+            <tr>
+
+              <th>Order ID</th>
+              <th>Customer</th>
+              <th>Phone</th>
+              <th>Total</th>
+              <th>Payment</th>
+              <th>Status</th>
+              <th>Date</th>
+              <th></th>
+
+            </tr>
+
+          </thead>
+
+
+          <tbody>
+
+            ${allOrders.map(order => `
+
+              <tr>
+
+                <td>
+                  ${order.orderId || "-"}
+                </td>
+
+
+                <td>
+
+                  ${order.customer?.name || "-"}
+
+                  <br />
+
+                  <span
+                    style="
+                      color:var(--ink-faint);
+                      font-size:0.78rem;
+                    "
+                  >
+                    ${order.customer?.city || ""},
+                    ${order.customer?.state || ""}
+                  </span>
+
+                </td>
+
+
+                <td>
+                  ${order.customer?.phone || "-"}
+                </td>
+
+
+                <td>
+                  ₹${Number(order.totalAmount || 0).toLocaleString("en-IN")}
+                </td>
+
+
+                <td>
+
+                  ${order.paymentMethod || "-"}
+
+                  ${
+                    order.paymentStatus
+                      ? `(${order.paymentStatus})`
+                      : ""
+                  }
+
+                </td>
+
+
+                <td>
+
+                  <select
+                    class="status-select"
+                    onchange="updateStatus('${order._id}', this.value)"
+                  >
+
+                    ${STATUS_OPTIONS.map(status => `
+
+                      <option
+                        value="${status}"
+                        ${
+                          status === order.orderStatus
+                            ? "selected"
+                            : ""
+                        }
+                      >
+                        ${status}
+                      </option>
+
+                    `).join("")}
+
+                  </select>
+
+                </td>
+
+
+                <td>
+
+                  ${
+                    order.createdAt
+                      ? new Date(
+                          order.createdAt
+                        ).toLocaleDateString("en-IN")
+                      : "-"
+                  }
+
+                </td>
+
+
+                <td>
+
+                  <button
+                    class="btn btn-outline"
+                    style="
+                      padding:6px 14px;
+                      font-size:0.78rem;
+                      white-space:nowrap;
+                    "
+                    onclick="openBillById('${order._id}')"
+                  >
+                    🧾 Bill
+                  </button>
+
+                </td>
+
+              </tr>
+
+            `).join("")}
+
           </tbody>
+
         </table>
-      </div>
 
-    <div class="cart-summary" style="max-width:340px; margin-left:auto; margin-top:20px;">
-  <div class="summary-row">
-    <span>Subtotal</span>
-    <span id="billing-subtotal">₹0</span>
-  </div>
+      `;
 
-  <div class="summary-row total">
-    <span>Total</span>
-    <span id="billing-total">₹0</span>
-  </div>
-</div>
-
-      <p id="billing-error" style="color:var(--ember); font-size:0.85rem; display:none; margin-top:12px;"></p>
-
-      <button class="btn btn-primary" style="width:100%; justify-content:center; margin-top:16px;" onclick="generateManualBill()">🧾 Generate & Save Bill</button>
-    </div>
-  </div>
-
-  <!-- ===== Products tab ===== -->
-  <div id="products-tab" style="display:none;">
-    <div class="section-title" style="margin:8px 0 16px;">
-      <h2 style="font-size:1.4rem;">All Products</h2>
-      <button class="btn btn-primary" onclick="openAddProductForm()">+ Add New Product</button>
-    </div>
-    <p style="color:var(--ink-soft); font-size:0.85rem; margin-bottom:8px;">To bulk-edit prices, update <code>backend/seed/products.json</code> and re-run <code>npm run seed</code>. Quick edits below update live.</p>
-
-    <div id="add-product-form" class="chart-card" style="display:none; margin-bottom:20px;">
-      <h3 id="product-form-title">Add New Product</h3>
-      <form id="new-product-form">
-        <div class="form-grid">
-          <div class="form-group">
-            <label>Product Code *</label>
-            <input type="text" name="productCode" required placeholder="e.g. FWC-200" />
-          </div>
-          <div class="form-group">
-            <label>Product Name *</label>
-            <input type="text" name="name" required placeholder="e.g. Colour Sparklers 15cm" />
-          </div>
-          <div class="form-group">
-            <label>Category *</label>
-            <input type="text" name="category" required list="category-list" placeholder="e.g. Sparklers" />
-            <datalist id="category-list"></datalist>
-          </div>
-          <div class="form-group">
-            <label>Content / Packaging</label>
-            <input type="text" name="content" placeholder="e.g. 1 box (5 pcs)" value="1 box" />
-          </div>
-          <div class="form-group">
-            <label>MRP (₹) *</label>
-            <input type="number" name="mrp" required min="1" placeholder="e.g. 200" />
-          </div>
-          <div class="form-group">
-            <label>Final / Selling Price (₹) *</label>
-            <input type="number" name="finalPrice" required min="1" placeholder="e.g. 100" />
-          </div>
-          <div class="form-group">
-            <label>Stock</label>
-            <input type="number" name="stock" value="100" min="0" />
-          </div>
-          <div class="form-group">
-            <label>Image URL</label>
-            <input type="url" name="image" placeholder="https://example.com/product-photo.jpg" />
-          </div>
-          <div class="form-group full" style="display:flex; align-items:center; gap:10px;">
-            <input type="checkbox" name="isCombo" id="is-combo-checkbox" style="width:18px; height:18px; margin:0;" />
-            <label for="is-combo-checkbox" style="margin:0; cursor:pointer;">🎁 Show in "Combo Gift Boxes" section on Home page</label>
-          </div>
-          <div class="form-group full">
-            <label>Description</label>
-            <textarea name="description" rows="2" placeholder="Short description shown to customers"></textarea>
-          </div>
-        </div>
-        <p id="add-product-error" style="color:var(--ember); font-size:0.85rem; display:none; margin-bottom:12px;"></p>
-        <div style="display:flex; gap:12px;">
-          <button type="submit" class="btn btn-primary" id="product-form-submit">Save Product</button>
-          <button type="button" class="btn btn-outline" onclick="closeAddProductForm()">Cancel</button>
-        </div>
-      </form>
-    </div>
-
-    <div class="table-card" id="products-table"><div class="loader">Loading...</div></div>
-  </div>
-</section>
-
-<script src="../js/config.js"></script>
-<script src="../js/cart.js"></script>
-<script src="../js/category-styles.js"></script>
-<script src="../js/invoice.js"></script>
-<script>
-  // ---- Auth guard: redirect to login if no valid token ----
-  const ADMIN_TOKEN_KEY = 'fwc_admin_token';
-  const adminToken = localStorage.getItem(ADMIN_TOKEN_KEY);
-  if (!adminToken) {
-    window.location.href = 'login.html';
-  }
-
-  function authHeaders(extra = {}) {
-    return { Authorization: `Bearer ${adminToken}`, ...extra };
-  }
-
-  function logout() {
-    localStorage.removeItem(ADMIN_TOKEN_KEY);
-    window.location.href = 'login.html';
-  }
-
-  async function handleAuthFailure(res) {
-    if (res.status === 401) {
-      logout();
-      return true;
-    }
-    return false;
-  }
-
-  let allOrders = [];
-  let allProducts = [];
-
-  function switchTab(tab) {
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
-    document.getElementById('dashboard-tab').style.display = tab === 'dashboard' ? 'block' : 'none';
-    document.getElementById('orders-tab').style.display = tab === 'orders' ? 'block' : 'none';
-    document.getElementById('billing-tab').style.display = tab === 'billing' ? 'block' : 'none';
-    document.getElementById('products-tab').style.display = tab === 'products' ? 'block' : 'none';
-    if (tab === 'products' && !allProducts.length) loadProducts();
-    if (tab === 'billing' && !allProducts.length) loadProducts().then(populateBillingProductSelect);
-    else if (tab === 'billing') populateBillingProductSelect();
-  }
-
-  const STATUS_OPTIONS = ['PLACED', 'CONFIRMED', 'SHIPPED', 'DELIVERED', 'CANCELLED'];
-  const CHART_COLORS = ['#C43B26', '#D9A431', '#E8654A', '#A97A1C', '#2F7A46', '#93816E'];
-
-  async function loadOrders() {
-    const res = await fetch(`${API_BASE_URL}/orders`, { headers: authHeaders() });
-    if (await handleAuthFailure(res)) return;
-    allOrders = await res.json();
-    renderOrdersTable();
-    renderDashboard();
-  }
-
-  function renderOrdersTable() {
-    const el = document.getElementById('orders-table');
-    if (!allOrders.length) {
-      el.innerHTML = `<div class="empty-state">No orders yet.</div>`;
-      return;
-    }
-    el.innerHTML = `
-      <table>
-        <thead><tr>
-          <th>Order ID</th><th>Customer</th><th>Phone</th><th>Total</th><th>Payment</th><th>Status</th><th>Date</th><th></th>
-        </tr></thead>
-        <tbody>
-          ${allOrders.map(o => `
-            <tr>
-              <td>${o.orderId}</td>
-              <td>${o.customer.name}<br/><span style="color:var(--ink-faint); font-size:0.78rem;">${o.customer.city}, ${o.customer.state}</span></td>
-              <td>${o.customer.phone}</td>
-              <td>₹${o.totalAmount}</td>
-              <td>${o.paymentMethod} (${o.paymentStatus})</td>
-              <td>
-                <select class="status-select" onchange="updateStatus('${o._id}', this.value)">
-                  ${STATUS_OPTIONS.map(s => `<option value="${s}" ${s === o.orderStatus ? 'selected' : ''}>${s}</option>`).join('')}
-                </select>
-              </td>
-              <td>${new Date(o.createdAt).toLocaleDateString('en-IN')}</td>
-              <td><button class="btn btn-outline" style="padding:6px 14px; font-size:0.78rem; white-space:nowrap;" onclick="openBill(decodeSafeData('${encodeSafeData(o)}'))">🧾 Bill</button></td>
-            </tr>
-          `).join('')}
-        </tbody>
-      </table>
-    `;
-  }
-
-
-  async function updateStatus(id, status) {
-    const res = await fetch(`${API_BASE_URL}/orders/${id}/status`, {
-      method: 'PUT',
-      headers: authHeaders({ 'Content-Type': 'application/json' }),
-      body: JSON.stringify({ orderStatus: status }),
-    });
-    await handleAuthFailure(res);
-    const order = allOrders.find(o => o._id === id);
-    if (order) order.orderStatus = status;
-    renderDashboard();
-  }
-
-  async function loadProducts() {
-    const res = await fetch(`${API_BASE_URL}/products`);
-    allProducts = await res.json();
-    populateCategoryList();
-    renderProductsTable();
-  }
-
-  function populateCategoryList() {
-    const categories = [...new Set(allProducts.map(p => p.category))].sort();
-    document.getElementById('category-list').innerHTML =
-      categories.map(c => `<option value="${c}">`).join('');
-  }
-
-  // ---------------- Manual billing (walk-in / phone orders) ----------------
-  let billingItems = [];
-
-  function populateBillingProductSelect() {
-    const select = document.getElementById('billing-product-select');
-    if (!select) return;
-    select.innerHTML = allProducts.map(p =>
-      `<option value="${p._id}">${p.name} (${p.category})</option>`
-    ).join('');
-    updateBillingPriceField();
-    select.onchange = updateBillingPriceField;
-  }
-
-  function updateBillingPriceField() {
-    const select = document.getElementById('billing-product-select');
-    const priceField = document.getElementById('billing-product-price');
-    const product = allProducts.find(p => p._id === select.value);
-    priceField.value = product ? `₹${product.finalPrice}` : '';
-  }
-
-  function addBillingItem() {
-    const select = document.getElementById('billing-product-select');
-    const qtyInput = document.getElementById('billing-product-qty');
-    const product = allProducts.find(p => p._id === select.value);
-    const qty = parseInt(qtyInput.value, 10) || 1;
-    if (!product) return;
-
-    const existing = billingItems.find(i => i.productId === product._id);
-    if (existing) {
-      existing.qty += qty;
-    } else {
-      billingItems.push({
-        productId: product._id,
-        name: product.name,
-        price: product.finalPrice,
-        mrp: product.mrp,
-        unit: (product.content || '').split(' ').pop() || 'pcs',
-        qty,
-      });
-    }
-    qtyInput.value = 1;
-    renderBillingItems();
-  }
-
-  function removeBillingItem(productId) {
-    billingItems = billingItems.filter(i => i.productId !== productId);
-    renderBillingItems();
-  }
-
-  function renderBillingItems() {
-    const body = document.getElementById('billing-items-body');
-    if (!billingItems.length) {
-      body.innerHTML = `<tr><td colspan="5" style="text-align:center; color:var(--ink-faint); padding:20px;">No items added yet</td></tr>`;
-    } else {
-      body.innerHTML = billingItems.map(item => `
-        <tr>
-          <td>${item.name}</td>
-          <td>${item.qty}</td>
-          <td>₹${item.price}</td>
-          <td>₹${item.price * item.qty}</td>
-          <td><button class="remove-btn" onclick="removeBillingItem('${item.productId}')">Remove</button></td>
-        </tr>
-      `).join('');
     }
 
-    const subtotal = billingItems.reduce((sum, i) => sum + i.price * i.qty, 0);
-    const shipping = subtotal > 0 && subtotal < 2000 ? 150 : 0;
-    document.getElementById('billing-subtotal').textContent = `₹${subtotal}`;
-    document.getElementById('billing-shipping').textContent = shipping === 0 ? 'FREE' : `₹${shipping}`;
-    document.getElementById('billing-total').textContent = `₹${subtotal + shipping}`;
-  }
 
-  async function generateManualBill() {
-    const errorEl = document.getElementById('billing-error');
-    errorEl.style.display = 'none';
+    async function openBillById(orderId) {
 
-    const form = document.getElementById('billing-customer-form');
-    if (!form.reportValidity()) return;
+      const order =
+        allOrders.find(
+          item => item._id === orderId
+        );
 
-    if (!billingItems.length) {
-      errorEl.textContent = 'Add at least one product before generating the bill.';
-      errorEl.style.display = 'block';
-      return;
-    }
+      if (!order) return;
 
-    const formData = new FormData(form);
-    const customer = {
-      name: formData.get('name'),
-      phone: formData.get('phone'),
-      email: formData.get('email') || undefined,
-      address: formData.get('address'),
-      city: formData.get('city'),
-      state: formData.get('state'),
-      pincode: formData.get('pincode'),
-    };
-    const paymentMethod = formData.get('paymentMethod');
 
-    const payload = {
-      customer,
-      items: billingItems.map(i => ({ productId: i.productId, qty: i.qty })),
-      paymentMethod,
-    };
+      if (typeof openBill === "function") {
 
-    try {
-      const res = await fetch(`${API_BASE_URL}/orders`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-      });
-      if (!res.ok) {
-        const err = await res.json();
-        throw new Error(err.message || 'Could not create bill');
+        openBill(order);
+
+      } else {
+
+        alert("Invoice module is not loaded.");
+
       }
-      const order = await res.json();
 
-      openBill(order);
+    }
 
-      billingItems = [];
+
+    async function updateStatus(id, status) {
+
+      try {
+
+        const res = await fetch(
+          `${API_BASE_URL}/orders/${id}/status`,
+          {
+            method: "PUT",
+
+            headers: authHeaders({
+              "Content-Type": "application/json"
+            }),
+
+            body: JSON.stringify({
+              orderStatus: status
+            })
+          }
+        );
+
+
+        if (await handleAuthFailure(res)) return;
+
+
+        if (!res.ok) {
+
+          const error =
+            await res.json().catch(() => ({}));
+
+          throw new Error(
+            error.message ||
+            "Could not update order status"
+          );
+
+        }
+
+
+        const order =
+          allOrders.find(
+            item => item._id === id
+          );
+
+
+        if (order) {
+
+          order.orderStatus = status;
+
+        }
+
+
+        renderDashboard();
+
+      } catch (error) {
+
+        alert(error.message);
+
+        loadOrders();
+
+      }
+
+    }
+
+
+    /* =====================================================
+       PRODUCTS
+    ===================================================== */
+
+    async function loadProducts() {
+
+      try {
+
+        /*
+          IMPORTANT:
+          Admin product operations should use
+          authentication.
+        */
+
+        const res = await fetch(
+          `${API_BASE_URL}/products`,
+          {
+            headers: authHeaders()
+          }
+        );
+
+
+        if (await handleAuthFailure(res)) return;
+
+
+        if (!res.ok) {
+
+          throw new Error(
+            "Failed to load products"
+          );
+
+        }
+
+
+        allProducts = await res.json();
+
+        populateCategoryList();
+
+        renderProductsTable();
+
+        populateBillingProductSelect();
+
+      } catch (error) {
+
+        console.error(error);
+
+        document.getElementById(
+          "products-table"
+        ).innerHTML = `
+          <div class="empty-state">
+            Could not load products.
+            <br />
+            <small>${error.message}</small>
+          </div>
+        `;
+
+      }
+
+    }
+
+
+    function populateCategoryList() {
+
+      const list =
+        document.getElementById("category-list");
+
+      if (!list) return;
+
+
+      const categories = [
+        ...new Set(
+          allProducts
+            .map(product => product.category)
+            .filter(Boolean)
+        )
+      ].sort();
+
+
+      list.innerHTML =
+        categories.map(
+          category =>
+            `<option value="${escapeHtml(category)}">`
+        ).join("");
+
+    }
+
+
+    /* =====================================================
+       HTML ESCAPE
+    ===================================================== */
+
+    function escapeHtml(value) {
+
+      if (value === null || value === undefined) {
+        return "";
+      }
+
+
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+    }
+
+
+    /* =====================================================
+       BILLING PRODUCT SELECT
+    ===================================================== */
+
+    function populateBillingProductSelect() {
+
+      const select =
+        document.getElementById(
+          "billing-product-select"
+        );
+
+      if (!select) return;
+
+
+      if (!allProducts.length) {
+
+        select.innerHTML =
+          `<option value="">No products available</option>`;
+
+        updateBillingPriceField();
+
+        return;
+
+      }
+
+
+      select.innerHTML = allProducts
+        .filter(product => product.isActive !== false)
+        .map(product => `
+
+          <option value="${product._id}">
+            ${escapeHtml(product.name)}
+            (${escapeHtml(product.category)})
+          </option>
+
+        `)
+        .join("");
+
+
+      updateBillingPriceField();
+
+
+      select.onchange =
+        updateBillingPriceField;
+
+    }
+
+
+    function updateBillingPriceField() {
+
+      const select =
+        document.getElementById(
+          "billing-product-select"
+        );
+
+      const priceField =
+        document.getElementById(
+          "billing-product-price"
+        );
+
+
+      if (!select || !priceField) return;
+
+
+      const product =
+        allProducts.find(
+          item => item._id === select.value
+        );
+
+
+      priceField.value =
+        product
+          ? `₹${product.finalPrice}`
+          : "";
+
+    }
+
+
+    /* =====================================================
+       ADD BILLING ITEM
+    ===================================================== */
+
+    function addBillingItem() {
+
+      const select =
+        document.getElementById(
+          "billing-product-select"
+        );
+
+
+      const qtyInput =
+        document.getElementById(
+          "billing-product-qty"
+        );
+
+
+      const product =
+        allProducts.find(
+          item => item._id === select.value
+        );
+
+
+      const qty =
+        parseInt(
+          qtyInput.value,
+          10
+        ) || 1;
+
+
+      if (!product) {
+
+        alert("Please select a product.");
+
+        return;
+
+      }
+
+
+      if (product.stock < qty) {
+
+        alert(
+          `Only ${product.stock} items available in stock.`
+        );
+
+        return;
+
+      }
+
+
+      const existing =
+        billingItems.find(
+          item =>
+            item.productId === product._id
+        );
+
+
+      if (existing) {
+
+        const newQty =
+          existing.qty + qty;
+
+
+        if (newQty > product.stock) {
+
+          alert(
+            `Only ${product.stock} items available in stock.`
+          );
+
+          return;
+
+        }
+
+
+        existing.qty = newQty;
+
+      } else {
+
+        billingItems.push({
+
+          productId: product._id,
+
+          name: product.name,
+
+          price: Number(product.finalPrice),
+
+          mrp: Number(product.mrp),
+
+          unit:
+            (product.content || "")
+              .split(" ")
+              .pop() || "pcs",
+
+          qty
+
+        });
+
+      }
+
+
+      qtyInput.value = 1;
+
       renderBillingItems();
-      form.reset();
-      form.state.value = 'Tamil Nadu';
 
-      loadOrders();
-    } catch (err) {
-      errorEl.textContent = err.message;
-      errorEl.style.display = 'block';
     }
-  }
 
-  function renderProductsTable() {
-    const el = document.getElementById('products-table');
 
-    el.innerHTML = `
-      <table>
-        <thead><tr><th>Image</th><th>Code</th><th>Name</th><th>Category</th><th>MRP</th><th>Final Price</th><th>Stock</th><th></th></tr></thead>
-        <tbody>
-          ${allProducts.map(p => `
+    function removeBillingItem(productId) {
+
+      billingItems =
+        billingItems.filter(
+          item =>
+            item.productId !== productId
+        );
+
+
+      renderBillingItems();
+
+    }
+
+
+    function renderBillingItems() {
+
+      const body =
+        document.getElementById(
+          "billing-items-body"
+        );
+
+
+      if (!billingItems.length) {
+
+        body.innerHTML = `
+
+          <tr>
+
+            <td
+              colspan="5"
+              style="
+                text-align:center;
+                color:var(--ink-faint);
+                padding:20px;
+              "
+            >
+              No items added yet
+            </td>
+
+          </tr>
+
+        `;
+
+      } else {
+
+        body.innerHTML =
+          billingItems.map(item => `
+
             <tr>
+
               <td>
-                <div style="width:42px; height:42px; border-radius:8px; overflow:hidden; background:var(--bg-warm); display:flex; align-items:center; justify-content:center;">
-                  ${p.image && !p.image.includes('placeholder')
-                    ? `<img src="${p.image}" style="width:100%; height:100%; object-fit:cover;" onerror="this.style.display='none'" />`
-                    : `<span>${getCategoryStyle(p.category).icon}</span>`}
-                </div>
+                ${escapeHtml(item.name)}
               </td>
-              <td>${p.productCode}</td>
-              <td>${p.name}</td>
-              <td>${p.category}</td>
-              <td>₹${p.mrp}</td>
+
               <td>
-                <input type="number" value="${p.finalPrice}" style="width:80px; padding:6px 8px; border-radius:6px; border:1px solid var(--line);"
-                  onchange="updatePrice('${p._id}', this.value)" />
+                ${item.qty}
               </td>
-              <td>${p.stock}</td>
-              <td style="white-space:nowrap;">
-                <button class="btn btn-outline" style="padding:6px 14px; font-size:0.78rem;" onclick="openEditProductForm('${p._id}')">Edit</button>
-                <button class="remove-btn" onclick="deleteProduct('${p._id}', '${p.name.replace(/'/g, "\\'")}')">Delete</button>
+
+              <td>
+                ₹${Number(item.price).toLocaleString("en-IN")}
               </td>
+
+              <td>
+                ₹${(
+                  Number(item.price) *
+                  Number(item.qty)
+                ).toLocaleString("en-IN")}
+              </td>
+
+              <td>
+
+                <button
+                  class="remove-btn"
+                  onclick="removeBillingItem('${item.productId}')"
+                >
+                  Remove
+                </button>
+
+              </td>
+
             </tr>
-          `).join('')}
-        </tbody>
-      </table>
-    `;
-  }
 
-  let editingProductId = null;
+          `).join("");
 
-  function openAddProductForm() {
-    editingProductId = null;
-    document.getElementById('product-form-title').textContent = 'Add New Product';
-    document.getElementById('product-form-submit').textContent = 'Save Product';
-    document.getElementById('new-product-form').reset();
-    document.getElementById('add-product-form').style.display = 'block';
-    document.getElementById('add-product-form').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }
-
-  function openEditProductForm(productId) {
-    const product = allProducts.find(p => p._id === productId);
-    if (!product) return;
-    editingProductId = product._id;
-    document.getElementById('product-form-title').textContent = `Edit: ${product.name}`;
-    document.getElementById('product-form-submit').textContent = 'Update Product';
-
-    const form = document.getElementById('new-product-form');
-    form.productCode.value = product.productCode || '';
-    form.name.value = product.name || '';
-    form.category.value = product.category || '';
-    form.content.value = product.content || '';
-    form.mrp.value = product.mrp || '';
-    form.finalPrice.value = product.finalPrice || '';
-    form.stock.value = product.stock || 0;
-    form.image.value = (product.image && !product.image.includes('placeholder')) ? product.image : '';
-    form.isCombo.checked = !!product.isCombo;
-    form.description.value = product.description || '';
-
-    document.getElementById('add-product-form').style.display = 'block';
-    document.getElementById('add-product-form').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-  }
-
-  function closeAddProductForm() {
-    editingProductId = null;
-    document.getElementById('add-product-form').style.display = 'none';
-    document.getElementById('new-product-form').reset();
-    document.getElementById('add-product-error').style.display = 'none';
-  }
-
-  document.getElementById('new-product-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const errorEl = document.getElementById('add-product-error');
-    errorEl.style.display = 'none';
-
-    const formData = new FormData(e.target);
-    const payload = Object.fromEntries(formData.entries());
-    payload.mrp = Number(payload.mrp);
-    payload.finalPrice = Number(payload.finalPrice);
-    payload.stock = Number(payload.stock) || 0;
-    payload.isCombo = e.target.isCombo.checked;
-    if (!payload.content) payload.content = '1 box';
-    if (!payload.image) delete payload.image;
-
-    const isEditing = !!editingProductId;
-    const url = isEditing ? `${API_BASE_URL}/products/${editingProductId}` : `${API_BASE_URL}/products`;
-    const method = isEditing ? 'PUT' : 'POST';
-
-    try {
-      const res = await fetch(url, {
-        method,
-        headers: authHeaders({ 'Content-Type': 'application/json' }),
-        body: JSON.stringify(payload),
-      });
-      if (await handleAuthFailure(res)) return;
-      if (!res.ok) {
-        const err = await res.json();
-        throw new Error(err.message || 'Could not save product');
       }
-      closeAddProductForm();
-      await loadProducts();
-    } catch (err) {
-      errorEl.textContent = err.message;
-      errorEl.style.display = 'block';
+
+
+      const subtotal =
+        billingItems.reduce(
+          (sum, item) =>
+            sum +
+            Number(item.price) *
+            Number(item.qty),
+          0
+        );
+
+
+      const shipping =
+        subtotal > 0 && subtotal < 2000
+          ? 150
+          : 0;
+
+
+      document.getElementById(
+        "billing-subtotal"
+      ).textContent =
+        `₹${subtotal.toLocaleString("en-IN")}`;
+
+
+      document.getElementById(
+        "billing-shipping"
+      ).textContent =
+        shipping === 0
+          ? "FREE"
+          : `₹${shipping}`;
+
+
+      document.getElementById(
+        "billing-total"
+      ).textContent =
+        `₹${(
+          subtotal + shipping
+        ).toLocaleString("en-IN")}`;
+
     }
-  });
 
-  async function deleteProduct(id, name) {
-    if (!confirm(`Delete "${name}"? This can't be undone.`)) return;
-    const res = await fetch(`${API_BASE_URL}/products/${id}`, {
-      method: 'DELETE',
-      headers: authHeaders(),
-    });
-    if (await handleAuthFailure(res)) return;
-    await loadProducts();
-  }
 
-  async function updatePrice(id, finalPrice) {
-    const res = await fetch(`${API_BASE_URL}/products/${id}`, {
-      method: 'PUT',
-      headers: authHeaders({ 'Content-Type': 'application/json' }),
-      body: JSON.stringify({ finalPrice: Number(finalPrice) }),
-    });
-    await handleAuthFailure(res);
-  }
+    /* =====================================================
+       GENERATE MANUAL BILL
+    ===================================================== */
 
-  // ---------------- Dashboard analytics ----------------
-  let revenueChartInstance, statusChartInstance, topProductsChartInstance;
+    async function generateManualBill() {
 
-  function renderDashboard() {
-    if (!allOrders.length) {
-      document.getElementById('stat-cards').innerHTML = `<div class="empty-state">No orders yet — stats will appear once orders come in.</div>`;
-      return;
-    }
+      const errorEl =
+        document.getElementById(
+          "billing-error"
+        );
 
-    const totalRevenue = allOrders.reduce((sum, o) => sum + o.totalAmount, 0);
-    const totalOrders = allOrders.length;
-    const pendingOrders = allOrders.filter(o => ['PLACED', 'CONFIRMED'].includes(o.orderStatus)).length;
-    const avgOrderValue = Math.round(totalRevenue / totalOrders);
 
-    document.getElementById('stat-cards').innerHTML = `
-      <div class="stat-card">
-        <div class="label">Total Revenue</div>
-        <div class="value">₹${totalRevenue.toLocaleString('en-IN')}</div>
-        <div class="sub">Across ${totalOrders} orders</div>
-      </div>
-      <div class="stat-card">
-        <div class="label">Total Orders</div>
-        <div class="value">${totalOrders}</div>
-        <div class="sub">${pendingOrders} pending action</div>
-      </div>
-      <div class="stat-card">
-        <div class="label">Avg. Order Value</div>
-        <div class="value">₹${avgOrderValue.toLocaleString('en-IN')}</div>
-        <div class="sub">Per order</div>
-      </div>
-      <div class="stat-card">
-        <div class="label">Delivered</div>
-        <div class="value">${allOrders.filter(o => o.orderStatus === 'DELIVERED').length}</div>
-        <div class="sub">Completed orders</div>
-      </div>
-    `;
+      errorEl.style.display = "none";
 
-    renderRevenueChart();
-    renderStatusChart();
-    renderTopProductsChart();
-  }
 
-  function renderRevenueChart() {
-    const days = [];
-    const totals = {};
-    for (let i = 13; i >= 0; i--) {
-      const d = new Date();
-      d.setDate(d.getDate() - i);
-      const key = d.toLocaleDateString('en-IN', { day: '2-digit', month: 'short' });
-      days.push(key);
-      totals[key] = 0;
-    }
-    allOrders.forEach(o => {
-      const key = new Date(o.createdAt).toLocaleDateString('en-IN', { day: '2-digit', month: 'short' });
-      if (key in totals) totals[key] += o.totalAmount;
-    });
+      const form =
+        document.getElementById(
+          "billing-customer-form"
+        );
 
-    const ctx = document.getElementById('revenueChart');
-    if (revenueChartInstance) revenueChartInstance.destroy();
-    revenueChartInstance = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: days,
-        datasets: [{
-          label: 'Revenue (₹)',
-          data: days.map(d => totals[d]),
-          borderColor: '#C43B26',
-          backgroundColor: 'rgba(196,59,38,0.08)',
-          fill: true,
-          tension: 0.35,
-          pointRadius: 3,
-          pointBackgroundColor: '#C43B26',
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: { legend: { display: false } },
-        scales: {
-          y: { beginAtZero: true, grid: { color: 'rgba(34,16,8,0.06)' } },
-          x: { grid: { display: false } }
+
+      if (!form.reportValidity()) {
+        return;
+      }
+
+
+      if (!billingItems.length) {
+
+        errorEl.textContent =
+          "Add at least one product before generating the bill.";
+
+        errorEl.style.display =
+          "block";
+
+        return;
+
+      }
+
+
+      const formData =
+        new FormData(form);
+
+
+      const customer = {
+
+        name:
+          formData.get("name"),
+
+        phone:
+          formData.get("phone"),
+
+        email:
+          formData.get("email") ||
+          undefined,
+
+        address:
+          formData.get("address"),
+
+        city:
+          formData.get("city"),
+
+        state:
+          formData.get("state"),
+
+        pincode:
+          formData.get("pincode")
+
+      };
+
+
+      const paymentMethod =
+        formData.get(
+          "paymentMethod"
+        );
+
+
+      const payload = {
+
+        customer,
+
+        items:
+          billingItems.map(item => ({
+
+            productId:
+              item.productId,
+
+            qty:
+              item.qty
+
+          })),
+
+        paymentMethod
+
+      };
+
+
+      try {
+
+        /*
+          IMPORTANT FIX:
+          Admin token is now included.
+        */
+
+        const res =
+          await fetch(
+            `${API_BASE_URL}/orders`,
+            {
+
+              method: "POST",
+
+              headers: authHeaders({
+                "Content-Type":
+                  "application/json"
+              }),
+
+              body:
+                JSON.stringify(payload)
+
+            }
+          );
+
+
+        if (
+          await handleAuthFailure(res)
+        ) {
+          return;
         }
-      }
-    });
-  }
 
-  function renderStatusChart() {
-    const counts = {};
-    STATUS_OPTIONS.forEach(s => counts[s] = 0);
-    allOrders.forEach(o => counts[o.orderStatus] = (counts[o.orderStatus] || 0) + 1);
 
-    const ctx = document.getElementById('statusChart');
-    if (statusChartInstance) statusChartInstance.destroy();
-    statusChartInstance = new Chart(ctx, {
-      type: 'doughnut',
-      data: {
-        labels: Object.keys(counts),
-        datasets: [{
-          data: Object.values(counts),
-          backgroundColor: CHART_COLORS,
-          borderWidth: 2,
-          borderColor: '#FFFFFF',
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, font: { size: 11 } } } }
-      }
-    });
-  }
+        if (!res.ok) {
 
-  function renderTopProductsChart() {
-    const productTotals = {};
-    allOrders.forEach(o => {
-      o.items.forEach(item => {
-        productTotals[item.name] = (productTotals[item.name] || 0) + item.qty;
-      });
-    });
-    const sorted = Object.entries(productTotals).sort((a, b) => b[1] - a[1]).slice(0, 8);
+          const error =
+            await res.json()
+              .catch(() => ({}));
 
-    const ctx = document.getElementById('topProductsChart');
-    if (topProductsChartInstance) topProductsChartInstance.destroy();
-    topProductsChartInstance = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: sorted.map(s => s[0]),
-        datasets: [{
-          label: 'Units sold',
-          data: sorted.map(s => s[1]),
-          backgroundColor: '#D9A431',
-          borderRadius: 6,
-        }]
-      },
-      options: {
-        indexAxis: 'y',
-        responsive: true,
-        plugins: { legend: { display: false } },
-        scales: {
-          x: { beginAtZero: true, grid: { color: 'rgba(34,16,8,0.06)' } },
-          y: { grid: { display: false } }
+
+          throw new Error(
+            error.message ||
+            "Could not create bill"
+          );
+
         }
-      }
-    });
-  }
 
-  loadOrders();
-</script>
+
+        const order =
+          await res.json();
+
+
+        if (
+          typeof openBill === "function"
+        ) {
+
+          openBill(order);
+
+        }
+
+
+        billingItems = [];
+
+        renderBillingItems();
+
+
+        form.reset();
+
+
+        form.state.value =
+          "Tamil Nadu";
+
+
+        await loadOrders();
+
+
+        alert(
+          "Bill created successfully."
+        );
+
+      } catch (error) {
+
+        console.error(error);
+
+        errorEl.textContent =
+          error.message;
+
+        errorEl.style.display =
+          "block";
+
+      }
+
+    }
+
+
+    /* =====================================================
+       PRODUCT TABLE
+    ===================================================== */
+
+    function renderProductsTable() {
+
+      const el =
+        document.getElementById(
+          "products-table"
+        );
+
+
+      if (!allProducts.length) {
+
+        el.innerHTML = `
+          <div class="empty-state">
+            No products found.
+          </div>
+        `;
+
+        return;
+
+      }
+
+
+      el.innerHTML = `
+
+        <table>
+
+          <thead>
+
+            <tr>
+
+              <th>Image</th>
+              <th>Code</th>
+              <th>Name</th>
+              <th>Category</th>
+              <th>MRP</th>
+              <th>Discount</th>
+              <th>Final Price</th>
+              <th>Stock</th>
+              <th>Status</th>
+              <th>Combo</th>
+              <th></th>
+
+            </tr>
+
+          </thead>
+
+
+          <tbody>
+
+            ${allProducts.map(product => `
+
+              <tr>
+
+                <!-- IMAGE -->
+
+                <td>
+
+                  <div
+                    style="
+                      width:42px;
+                      height:42px;
+                      border-radius:8px;
+                      overflow:hidden;
+                      background:var(--bg-warm);
+                      display:flex;
+                      align-items:center;
+                      justify-content:center;
+                    "
+                  >
+
+                    ${
+                      product.image &&
+                      !product.image.includes("placeholder")
+                        ? `
+
+                          <img
+                            src="${escapeHtml(product.image)}"
+                            style="
+                              width:100%;
+                              height:100%;
+                              object-fit:cover;
+                            "
+                            onerror="
+                              this.style.display='none'
+                            "
+                          />
+
+                        `
+                        : `
+
+                          <span>
+                            ${
+                              typeof getCategoryStyle === "function"
+                                ? getCategoryStyle(
+                                    product.category
+                                  ).icon
+                                : "🎆"
+                            }
+                          </span>
+
+                        `
+                    }
+
+                  </div>
+
+                </td>
+
+
+                <!-- CODE -->
+
+                <td>
+                  ${escapeHtml(
+                    product.productCode
+                  )}
+                </td>
+
+
+                <!-- NAME -->
+
+                <td>
+                  ${escapeHtml(
+                    product.name
+                  )}
+                </td>
+
+
+                <!-- CATEGORY -->
+
+                <td>
+                  ${escapeHtml(
+                    product.category
+                  )}
+                </td>
+
+
+                <!-- MRP -->
+
+                <td>
+                  ₹${Number(
+                    product.mrp || 0
+                  ).toLocaleString("en-IN")}
+                </td>
+
+
+                <!-- DISCOUNT -->
+
+                <td>
+
+                  <span class="discount-badge">
+
+                    ${Number(
+                      product.discountPercent || 0
+                    )}% OFF
+
+                  </span>
+
+                </td>
+
+
+                <!-- FINAL PRICE -->
+
+                <td>
+
+                  <input
+                    type="number"
+                    value="${Number(
+                      product.finalPrice || 0
+                    )}"
+                    min="1"
+                    class="price-input"
+                    onchange="
+                      updatePrice(
+                        '${product._id}',
+                        this.value
+                      )
+                    "
+                  />
+
+                </td>
+
+
+                <!-- STOCK -->
+
+                <td>
+
+                  ${Number(
+                    product.stock || 0
+                  )}
+
+                </td>
+
+
+                <!-- STATUS -->
+
+                <td>
+
+                  ${
+                    product.isActive !== false
+                      ? `
+                        <span class="active-badge">
+                          Active
+                        </span>
+                      `
+                      : `
+                        <span class="inactive-badge">
+                          Inactive
+                        </span>
+                      `
+                  }
+
+                </td>
+
+
+                <!-- COMBO -->
+
+                <td>
+
+                  ${
+                    product.isCombo
+                      ? "🎁 Yes"
+                      : "—"
+                  }
+
+                </td>
+
+
+                <!-- ACTIONS -->
+
+                <td
+                  style="
+                    white-space:nowrap;
+                  "
+                >
+
+                  <button
+                    class="btn btn-outline"
+                    style="
+                      padding:6px 14px;
+                      font-size:0.78rem;
+                    "
+                    onclick="
+                      openEditProductForm(
+                        '${product._id}'
+                      )
+                    "
+                  >
+                    Edit
+                  </button>
+
+
+                  <button
+                    class="remove-btn"
+                    onclick="
+                      deleteProduct(
+                        '${product._id}',
+                        '${escapeJs(product.name)}'
+                      )
+                    "
+                  >
+                    Delete
+                  </button>
+
+                </td>
+
+              </tr>
+
+            `).join("")}
+
+          </tbody>
+
+        </table>
+
+      `;
+
+    }
+
+
+    function escapeJs(value) {
+
+      return String(value || "")
+        .replace(/\\/g, "\\\\")
+        .replace(/'/g, "\\'")
+        .replace(/"/g, '\\"')
+        .replace(/\n/g, "\\n")
+        .replace(/\r/g, "\\r");
+
+    }
+
+
+    /* =====================================================
+       PRODUCT FORM
+    ===================================================== */
+
+    function openAddProductForm() {
+
+      editingProductId = null;
+
+
+      document.getElementById(
+        "product-form-title"
+      ).textContent =
+        "Add New Product";
+
+
+      document.getElementById(
+        "product-form-submit"
+      ).textContent =
+        "Save Product";
+
+
+      const form =
+        document.getElementById(
+          "new-product-form"
+        );
+
+
+      form.reset();
+
+
+      form.discountPercent.value =
+        50;
+
+
+      document.getElementById(
+        "is-active-checkbox"
+      ).checked = true;
+
+
+      document.getElementById(
+        "add-product-form"
+      ).style.display =
+        "block";
+
+
+      document.getElementById(
+        "add-product-form"
+      ).scrollIntoView({
+        behavior: "smooth",
+        block: "nearest"
+      });
+
+    }
+
+
+    function openEditProductForm(productId) {
+
+      const product =
+        allProducts.find(
+          item =>
+            item._id === productId
+        );
+
+
+      if (!product) return;
+
+
+      editingProductId =
+        product._id;
+
+
+      document.getElementById(
+        "product-form-title"
+      ).textContent =
+        `Edit: ${product.name}`;
+
+
+      document.getElementById(
+        "product-form-submit"
+      ).textContent =
+        "Update Product";
+
+
+      const form =
+        document.getElementById(
+          "new-product-form"
+        );
+
+
+      form.productCode.value =
+        product.productCode || "";
+
+
+      form.name.value =
+        product.name || "";
+
+
+      form.category.value =
+        product.category || "";
+
+
+      form.content.value =
+        product.content || "";
+
+
+      form.mrp.value =
+        product.mrp || "";
+
+
+      form.discountPercent.value =
+        product.discountPercent ??
+        50;
+
+
+      form.finalPrice.value =
+        product.finalPrice || "";
+
+
+      form.stock.value =
+        product.stock ?? 0;
+
+
+      form.image.value =
+        (
+          product.image &&
+          !product.image.includes(
+            "placeholder"
+          )
+        )
+          ? product.image
+          : "";
+
+
+      form.isActive.checked =
+        product.isActive !== false;
+
+
+      form.isCombo.checked =
+        !!product.isCombo;
+
+
+      form.description.value =
+        product.description || "";
+
+
+      document.getElementById(
+        "add-product-form"
+      ).style.display =
+        "block";
+
+
+      document.getElementById(
+        "add-product-form"
+      ).scrollIntoView({
+        behavior: "smooth",
+        block: "nearest"
+      });
+
+    }
+
+
+    function closeAddProductForm() {
+
+      editingProductId = null;
+
+
+      document.getElementById(
+        "add-product-form"
+      ).style.display =
+        "none";
+
+
+      document.getElementById(
+        "new-product-form"
+      ).reset();
+
+
+      document.getElementById(
+        "add-product-error"
+      ).style.display =
+        "none";
+
+    }
+
+
+    /* =====================================================
+       AUTO CALCULATE FINAL PRICE
+    ===================================================== */
+
+    function calculateFinalPrice() {
+
+      const mrp =
+        Number(
+          document.getElementById(
+            "product-mrp"
+          ).value
+        );
+
+
+      const discount =
+        Number(
+          document.getElementById(
+            "product-discount"
+          ).value
+        );
+
+
+      if (
+        !mrp ||
+        mrp <= 0
+      ) {
+
+        return;
+
+      }
+
+
+      const safeDiscount =
+        Math.min(
+          100,
+          Math.max(
+            0,
+            discount || 0
+          )
+        );
+
+
+      const finalPrice =
+        Math.round(
+          mrp -
+          (mrp * safeDiscount) / 100
+        );
+
+
+      document.getElementById(
+        "product-final-price"
+      ).value =
+        finalPrice;
+
+    }
+
+
+    document.getElementById(
+      "product-mrp"
+    ).addEventListener(
+      "input",
+      calculateFinalPrice
+    );
+
+
+    document.getElementById(
+      "product-discount"
+    ).addEventListener(
+      "input",
+      calculateFinalPrice
+    );
+
+
+    /* =====================================================
+       SAVE / UPDATE PRODUCT
+    ===================================================== */
+
+    document.getElementById(
+      "new-product-form"
+    ).addEventListener(
+      "submit",
+      async function(event) {
+
+        event.preventDefault();
+
+
+        const errorEl =
+          document.getElementById(
+            "add-product-error"
+          );
+
+
+        errorEl.style.display =
+          "none";
+
+
+        const formData =
+          new FormData(
+            event.target
+          );
+
+
+        const payload =
+          Object.fromEntries(
+            formData.entries()
+          );
+
+
+        payload.mrp =
+          Number(payload.mrp);
+
+
+        payload.discountPercent =
+          Number(
+            payload.discountPercent
+          ) || 0;
+
+
+        payload.finalPrice =
+          Number(
+            payload.finalPrice
+          );
+
+
+        payload.stock =
+          Number(
+            payload.stock
+          ) || 0;
+
+
+        payload.isCombo =
+          event.target.isCombo.checked;
+
+
+        payload.isActive =
+          event.target.isActive.checked;
+
+
+        if (
+          !payload.content
+        ) {
+
+          payload.content =
+            "1 box";
+
+        }
+
+
+        if (
+          !payload.image
+        ) {
+
+          delete payload.image;
+
+        }
+
+
+        /*
+          Calculate price again before sending.
+        */
+
+        if (
+          payload.mrp > 0
+        ) {
+
+          payload.finalPrice =
+            Math.round(
+              payload.mrp -
+              (
+                payload.mrp *
+                payload.discountPercent
+              ) / 100
+            );
+
+        }
+
+
+        if (
+          payload.finalPrice <= 0
+        ) {
+
+          errorEl.textContent =
+            "Final price must be greater than 0.";
+
+          errorEl.style.display =
+            "block";
+
+          return;
+
+        }
+
+
+        const isEditing =
+          !!editingProductId;
+
+
+        const url =
+          isEditing
+            ? `${API_BASE_URL}/products/${editingProductId}`
+            : `${API_BASE_URL}/products`;
+
+
+        const method =
+          isEditing
+            ? "PUT"
+            : "POST";
+
+
+        try {
+
+          const res =
+            await fetch(
+              url,
+              {
+
+                method,
+
+                headers:
+                  authHeaders({
+                    "Content-Type":
+                      "application/json"
+                  }),
+
+                body:
+                  JSON.stringify(
+                    payload
+                  )
+
+              }
+            );
+
+
+          if (
+            await handleAuthFailure(
+              res
+            )
+          ) {
+            return;
+          }
+
+
+          if (!res.ok) {
+
+            const error =
+              await res.json()
+                .catch(() => ({}));
+
+
+            throw new Error(
+              error.message ||
+              "Could not save product"
+            );
+
+          }
+
+
+          closeAddProductForm();
+
+
+          await loadProducts();
+
+
+        } catch (error) {
+
+          console.error(error);
+
+
+          errorEl.textContent =
+            error.message;
+
+
+          errorEl.style.display =
+            "block";
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       DELETE PRODUCT
+    ===================================================== */
+
+    async function deleteProduct(
+      id,
+      name
+    ) {
+
+      if (
+        !confirm(
+          `Delete "${name}"? This can't be undone.`
+        )
+      ) {
+
+        return;
+
+      }
+
+
+      try {
+
+        const res =
+          await fetch(
+            `${API_BASE_URL}/products/${id}`,
+            {
+
+              method: "DELETE",
+
+              headers:
+                authHeaders()
+
+            }
+          );
+
+
+        if (
+          await handleAuthFailure(
+            res
+          )
+        ) {
+          return;
+        }
+
+
+        if (!res.ok) {
+
+          const error =
+            await res.json()
+              .catch(() => ({}));
+
+
+          throw new Error(
+            error.message ||
+            "Could not delete product"
+          );
+
+        }
+
+
+        await loadProducts();
+
+
+      } catch (error) {
+
+        alert(
+          error.message
+        );
+
+      }
+
+    }
+
+
+    /* =====================================================
+       QUICK PRICE UPDATE
+    ===================================================== */
+
+    async function updatePrice(
+      id,
+      finalPrice
+    ) {
+
+      const price =
+        Number(finalPrice);
+
+
+      if (
+        !Number.isFinite(price) ||
+        price <= 0
+      ) {
+
+        alert(
+          "Enter a valid price."
+        );
+
+        await loadProducts();
+
+        return;
+
+      }
+
+
+      try {
+
+        const res =
+          await fetch(
+            `${API_BASE_URL}/products/${id}`,
+            {
+
+              method: "PUT",
+
+              headers:
+                authHeaders({
+                  "Content-Type":
+                    "application/json"
+                }),
+
+              body:
+                JSON.stringify({
+                  finalPrice:
+                    price
+                })
+
+            }
+          );
+
+
+        if (
+          await handleAuthFailure(
+            res
+          )
+        ) {
+          return;
+        }
+
+
+        if (!res.ok) {
+
+          const error =
+            await res.json()
+              .catch(() => ({}));
+
+
+          throw new Error(
+            error.message ||
+            "Could not update price"
+          );
+
+        }
+
+
+        const product =
+          allProducts.find(
+            item =>
+              item._id === id
+          );
+
+
+        if (product) {
+
+          product.finalPrice =
+            price;
+
+        }
+
+      } catch (error) {
+
+        alert(
+          error.message
+        );
+
+        await loadProducts();
+
+      }
+
+    }
+
+
+    /* =====================================================
+       DASHBOARD ANALYTICS
+    ===================================================== */
+
+    let revenueChartInstance = null;
+
+    let statusChartInstance = null;
+
+    let topProductsChartInstance = null;
+
+
+    function renderDashboard() {
+
+      if (!allOrders.length) {
+
+        document.getElementById(
+          "stat-cards"
+        ).innerHTML = `
+
+          <div class="empty-state">
+
+            No orders yet —
+            stats will appear once orders come in.
+
+          </div>
+
+        `;
+
+        return;
+
+      }
+
+
+      const totalRevenue =
+        allOrders.reduce(
+          (sum, order) =>
+            sum +
+            Number(
+              order.totalAmount || 0
+            ),
+          0
+        );
+
+
+      const totalOrders =
+        allOrders.length;
+
+
+      const pendingOrders =
+        allOrders.filter(
+          order =>
+            [
+              "PLACED",
+              "CONFIRMED"
+            ].includes(
+              order.orderStatus
+            )
+        ).length;
+
+
+      const avgOrderValue =
+        Math.round(
+          totalRevenue /
+          totalOrders
+        );
+
+
+      const delivered =
+        allOrders.filter(
+          order =>
+            order.orderStatus ===
+            "DELIVERED"
+        ).length;
+
+
+      document.getElementById(
+        "stat-cards"
+      ).innerHTML = `
+
+        <div class="stat-card">
+
+          <div class="label">
+            Total Revenue
+          </div>
+
+          <div class="value">
+            ₹${totalRevenue.toLocaleString("en-IN")}
+          </div>
+
+          <div class="sub">
+            Across ${totalOrders} orders
+          </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <div class="label">
+            Total Orders
+          </div>
+
+          <div class="value">
+            ${totalOrders}
+          </div>
+
+          <div class="sub">
+            ${pendingOrders}
+            pending action
+          </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <div class="label">
+            Avg. Order Value
+          </div>
+
+          <div class="value">
+            ₹${avgOrderValue.toLocaleString("en-IN")}
+          </div>
+
+          <div class="sub">
+            Per order
+          </div>
+
+        </div>
+
+
+        <div class="stat-card">
+
+          <div class="label">
+            Delivered
+          </div>
+
+          <div class="value">
+            ${delivered}
+          </div>
+
+          <div class="sub">
+            Completed orders
+          </div>
+
+        </div>
+
+      `;
+
+
+      renderRevenueChart();
+
+      renderStatusChart();
+
+      renderTopProductsChart();
+
+    }
+
+
+    /* =====================================================
+       REVENUE CHART
+    ===================================================== */
+
+    function renderRevenueChart() {
+
+      const days = [];
+
+      const totals = {};
+
+
+      for (
+        let i = 13;
+        i >= 0;
+        i--
+      ) {
+
+        const date =
+          new Date();
+
+
+        date.setDate(
+          date.getDate() - i
+        );
+
+
+        const key =
+          date.toLocaleDateString(
+            "en-IN",
+            {
+              day: "2-digit",
+              month: "short"
+            }
+          );
+
+
+        days.push(key);
+
+        totals[key] = 0;
+
+      }
+
+
+      allOrders.forEach(order => {
+
+        if (!order.createdAt)
+          return;
+
+
+        const key =
+          new Date(
+            order.createdAt
+          ).toLocaleDateString(
+            "en-IN",
+            {
+              day: "2-digit",
+              month: "short"
+            }
+          );
+
+
+        if (
+          key in totals
+        ) {
+
+          totals[key] +=
+            Number(
+              order.totalAmount || 0
+            );
+
+        }
+
+      });
+
+
+      const ctx =
+        document.getElementById(
+          "revenueChart"
+        );
+
+
+      if (
+        revenueChartInstance
+      ) {
+
+        revenueChartInstance.destroy();
+
+      }
+
+
+      revenueChartInstance =
+        new Chart(
+          ctx,
+          {
+
+            type: "line",
+
+            data: {
+
+              labels: days,
+
+              datasets: [
+
+                {
+
+                  label:
+                    "Revenue (₹)",
+
+                  data:
+                    days.map(
+                      day =>
+                        totals[day]
+                    ),
+
+                  borderColor:
+                    "#C43B26",
+
+                  backgroundColor:
+                    "rgba(196,59,38,0.08)",
+
+                  fill: true,
+
+                  tension:
+                    0.35,
+
+                  pointRadius:
+                    3,
+
+                  pointBackgroundColor:
+                    "#C43B26"
+
+                }
+
+              ]
+
+            },
+
+            options: {
+
+              responsive: true,
+
+              plugins: {
+
+                legend: {
+                  display: false
+                }
+
+              },
+
+              scales: {
+
+                y: {
+                  beginAtZero: true
+                },
+
+                x: {
+                  grid: {
+                    display: false
+                  }
+                }
+
+              }
+
+            }
+
+          }
+        );
+
+    }
+
+
+    /* =====================================================
+       STATUS CHART
+    ===================================================== */
+
+    function renderStatusChart() {
+
+      const counts = {};
+
+
+      STATUS_OPTIONS.forEach(
+        status =>
+          counts[status] = 0
+      );
+
+
+      allOrders.forEach(
+        order => {
+
+          const status =
+            order.orderStatus ||
+            "PLACED";
+
+
+          counts[status] =
+            (
+              counts[status] ||
+              0
+            ) + 1;
+
+        }
+      );
+
+
+      const ctx =
+        document.getElementById(
+          "statusChart"
+        );
+
+
+      if (
+        statusChartInstance
+      ) {
+
+        statusChartInstance.destroy();
+
+      }
+
+
+      statusChartInstance =
+        new Chart(
+          ctx,
+          {
+
+            type: "doughnut",
+
+            data: {
+
+              labels:
+                Object.keys(
+                  counts
+                ),
+
+              datasets: [
+
+                {
+
+                  data:
+                    Object.values(
+                      counts
+                    ),
+
+                  backgroundColor:
+                    CHART_COLORS,
+
+                  borderWidth:
+                    2,
+
+                  borderColor:
+                    "#FFFFFF"
+
+                }
+
+              ]
+
+            },
+
+            options: {
+
+              responsive: true,
+
+              plugins: {
+
+                legend: {
+
+                  position:
+                    "bottom",
+
+                  labels: {
+
+                    boxWidth:
+                      12,
+
+                    font: {
+                      size: 11
+                    }
+
+                  }
+
+                }
+
+              }
+
+            }
+
+          }
+        );
+
+    }
+
+
+    /* =====================================================
+       TOP PRODUCTS
+    ===================================================== */
+
+    function renderTopProductsChart() {
+
+      const productTotals = {};
+
+
+      allOrders.forEach(order => {
+
+        if (!Array.isArray(
+          order.items
+        )) return;
+
+
+        order.items.forEach(item => {
+
+          const name =
+            item.name ||
+            "Unknown Product";
+
+
+          productTotals[name] =
+            (
+              productTotals[name] ||
+              0
+            ) +
+            Number(
+              item.qty || 0
+            );
+
+        });
+
+      });
+
+
+      const sorted =
+        Object.entries(
+          productTotals
+        )
+        .sort(
+          (a, b) =>
+            b[1] - a[1]
+        )
+        .slice(0, 8);
+
+
+      const ctx =
+        document.getElementById(
+          "topProductsChart"
+        );
+
+
+      if (
+        topProductsChartInstance
+      ) {
+
+        topProductsChartInstance.destroy();
+
+      }
+
+
+      topProductsChartInstance =
+        new Chart(
+          ctx,
+          {
+
+            type: "bar",
+
+            data: {
+
+              labels:
+                sorted.map(
+                  item =>
+                    item[0]
+                ),
+
+              datasets: [
+
+                {
+
+                  label:
+                    "Units sold",
+
+                  data:
+                    sorted.map(
+                      item =>
+                        item[1]
+                    ),
+
+                  backgroundColor:
+                    "#D9A431",
+
+                  borderRadius:
+                    6
+
+                }
+
+              ]
+
+            },
+
+            options: {
+
+              indexAxis:
+                "y",
+
+              responsive:
+                true,
+
+              plugins: {
+
+                legend: {
+                  display: false
+                }
+
+              },
+
+              scales: {
+
+                x: {
+                  beginAtZero: true
+                },
+
+                y: {
+
+                  grid: {
+                    display: false
+                  }
+
+                }
+
+              }
+
+            }
+
+          }
+        );
+
+    }
+
+
+    /* =====================================================
+       INITIAL LOAD
+    ===================================================== */
+
+    loadOrders();
+
+  </script>
+
 </body>
+
 </html>
+```

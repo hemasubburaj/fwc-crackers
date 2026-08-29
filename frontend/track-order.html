@@ -1,1087 +1,874 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Track Order | familycrackersworld</title>
 
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    .track-page {
+      min-height: 70vh;
+      padding: 60px 20px 80px;
+    }
+
+    .track-box {
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    .track-box h2 {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .track-subtitle {
+      text-align: center;
+      color: var(--ink-soft);
+      margin-bottom: 30px;
+    }
+
+    .track-form {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 25px;
+    }
+
+    .track-form input {
+      flex: 1;
+      padding: 15px 18px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .track-form input:focus {
+      border-color: #e51b23;
+    }
+
+    .track-form button {
+      white-space: nowrap;
+    }
+
+    .message {
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 15px;
+      display: none;
+    }
+
+    .error-message {
+      background: #fff1f1;
+      border: 1px solid #ffd0d0;
+      color: #c40000;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 20px;
+      color: var(--ink-soft);
+      display: none;
+    }
+
+    .orders-container {
+      margin-top: 30px;
+    }
+
+    .order-card {
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 14px;
+      padding: 25px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+    }
+
+    .order-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 15px;
+      margin-bottom: 18px;
+    }
+
+    .order-header h3 {
+      margin: 0;
+    }
+
+    .status {
+      background: #fff4d6;
+      color: #9a6800;
+      padding: 7px 12px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .order-details {
+      line-height: 1.8;
+      color: var(--ink-soft);
+    }
+
+    .order-details strong {
+      color: var(--ink);
+    }
+
+    .items {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid #eee;
+    }
+
+    .item {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 8px 0;
+    }
+
+    .total {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px solid #eee;
+      font-size: 19px;
+      font-weight: 800;
+    }
+
+    @media (max-width: 600px) {
+      .track-form {
+        flex-direction: column;
+      }
+
+      .track-form button {
+        width: 100%;
+      }
+
+      .order-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .order-card {
+        padding: 20px;
+      }
+    }
+  </style>
+
 </head>
 
 <body>
 
-<header>
-  <div class="container nav">
+  <!-- ================= HEADER ================= -->
 
-    <a href="index.html" class="logo">
-      family<span class="spark">crackersworld</span>
+  <header>
+    <div class="container nav">
+
+```
+  <a href="index.html" class="logo">
+    family<span class="spark">crackersworld</span>
+  </a>
+
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="products.html">Shop</a>
+    <a href="track-order.html" class="active">
+      Track Order
     </a>
+  </nav>
 
-    <nav class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="products.html">Shop</a>
-      <a href="track-order.html" class="active">Track Order</a>
-    </nav>
+  <a href="cart.html" class="cart-link">
+    🛒 Cart (<span id="cart-count">0</span>)
+  </a>
 
-    <a href="cart.html" class="cart-link">
-      🛒 Cart (<span id="cart-count">0</span>)
-    </a>
+</div>
+```
 
-  </div>
-</header>
+  </header>
+
+  <!-- ================= TRACK ORDER ================= -->
+
+  <section class="container track-page">
+
+```
+<div class="track-box">
+
+  <h2>Track Your Order</h2>
+
+  <p class="track-subtitle">
+    Enter your registered phone number to check your orders.
+  </p>
 
 
-<section class="container cart-page" style="max-width:520px;">
+  <!-- TRACK FORM -->
 
-  <h2 style="margin-bottom:20px;">
-    Track Your Order
-  </h2>
-
-  <div class="form-group full">
-
-    <label>Order ID</label>
+  <form id="track-form" class="track-form">
 
     <input
-      type="text"
-      id="order-id-input"
-      placeholder="e.g. FWC123456789"
-    />
-
-  </div>
-
-  <button
-    class="btn btn-primary"
-    id="track-btn"
-    onclick="trackOrder()"
-  >
-    Track Order
-  </button>
-
-  <div
-    id="order-result"
-    style="margin-top:32px;"
-  ></div>
-
-</section>
-
-
-<footer id="contact">
-
-  <div class="container">
-
-    <div
-      class="footer-columns"
-      style="grid-template-columns: 1.3fr 1fr 1fr;"
+      type="tel"
+      id="track-phone"
+      placeholder="Enter 10-digit phone number"
+      maxlength="10"
+      inputmode="numeric"
+      required
     >
 
-      <div class="footer-col">
+    <button
+      type="submit"
+      class="btn btn-primary"
+      id="track-button"
+    >
+      Track Order
+    </button>
 
-        <h4
-          style="
-            font-family:'Fraunces',serif;
-            font-size:1.1rem;
-            text-transform:none;
-            letter-spacing:0;
-            margin-bottom:12px;
-          "
-        >
-          Our Profile
-        </h4>
-
-        <p
-          style="
-            font-weight:700;
-            color:var(--gold-pale);
-            margin-bottom:8px;
-          "
-        >
-          familycrackersworld
-        </p>
-
-        <p style="max-width:320px; margin-bottom:18px;">
-          Our products focus on our Customer's happiness.
-          Crackers are available in different specifications
-          as per the requirements of the clients.
-        </p>
-
-        <a
-          href="#contact"
-          class="btn btn-outline"
-          style="
-            border-color:rgba(255,255,255,0.25);
-            color:var(--bg);
-          "
-        >
-          Read More →
-        </a>
-
-      </div>
+  </form>
 
 
-      <div class="footer-col">
+  <!-- ERROR -->
 
-        <h4>Contact Us</h4>
-
-        <p
-          style="
-            font-weight:700;
-            color:var(--gold-pale);
-            margin:0 0 4px;
-          "
-        >
-          Address
-        </p>
-
-        <p style="margin-bottom:14px;">
-          Phoenix Crackers<br/>
-          Anil Kumar Eye Hospital Opp.<br/>
-          Sattur Road<br/>
-          Sivakasi
-        </p>
-
-        <p
-          style="
-            font-weight:700;
-            color:var(--gold-pale);
-            margin:0 0 4px;
-          "
-        >
-          Mobile
-        </p>
-
-        <p style="margin-bottom:14px;">
-          +91 63836 59214<br/>
-          +91 96554 56167
-        </p>
-
-        <p
-          style="
-            font-weight:700;
-            color:var(--gold-pale);
-            margin:0 0 4px;
-          "
-        >
-          Email
-        </p>
-
-        <p>
-          <a href="mailto:nivasramasamy27@gmail.com">
-            nivasramasamy27@gmail.com
-          </a>
-        </p>
-
-      </div>
+  <div
+    id="error-message"
+    class="message error-message"
+  ></div>
 
 
-      <div class="footer-col">
+  <!-- LOADING -->
 
-        <h4>Quick Links</h4>
+  <div
+    id="loading"
+    class="loading"
+  >
+    Searching your orders...
+  </div>
 
-        <a href="index.html">Home</a>
-        <a href="#contact">About Us</a>
-        <a href="products.html">Price List</a>
-        <a href="#faq">Safety Tips</a>
-        <a href="#contact">Contact Us</a>
 
-      </div>
+  <!-- RESULTS -->
+
+  <div
+    id="orders-container"
+    class="orders-container"
+  ></div>
+
+</div>
+```
+
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+
+  <footer id="contact">
+
+```
+<div class="container">
+
+  <div
+    class="footer-columns"
+    style="grid-template-columns:1.3fr 1fr 1fr;"
+  >
+
+    <!-- PROFILE -->
+
+    <div class="footer-col">
+
+      <h4
+        style="
+          font-family:'Fraunces',serif;
+          font-size:1.1rem;
+          text-transform:none;
+          letter-spacing:0;
+          margin-bottom:12px;
+        "
+      >
+        Our Profile
+      </h4>
+
+      <p
+        style="
+          font-weight:700;
+          color:var(--gold-pale);
+          margin-bottom:8px;
+        "
+      >
+        familycrackersworld
+      </p>
+
+      <p style="max-width:320px;">
+        Our products focus on our Customer's happiness.
+        Crackers are available in different specifications
+        as per the requirements of the clients.
+      </p>
 
     </div>
 
 
-    <div
-      style="
-        max-width:820px;
-        margin:0 auto 28px;
-        text-align:center;
-        font-size:0.85rem;
-        color:var(--ink-soft);
-        opacity:0.85;
-        line-height:1.7;
-      "
-    >
+    <!-- CONTACT -->
+
+    <div class="footer-col">
+
+      <h4>Contact Us</h4>
+
+      <p
+        style="
+          font-weight:700;
+          color:var(--gold-pale);
+          margin:0 0 4px;
+        "
+      >
+        Address
+      </p>
 
       <p style="margin-bottom:14px;">
-        As per 2018 Supreme Court order, online sale of
-        firecrackers are not permitted! We value our customers
-        and at the same time, respect jurisdiction.
-        We request you to add your products to the cart and
-        submit the required crackers through the enquiry button.
-        We will contact you within 24 hrs and confirm the order
-        through WhatsApp or phone call.
+        Phoenix Crackers<br>
+        Anil Kumar Eye Hospital Opp.<br>
+        Sattur Road<br>
+        Sivakasi
+      </p>
+
+      <p
+        style="
+          font-weight:700;
+          color:var(--gold-pale);
+          margin:0 0 4px;
+        "
+      >
+        Mobile
+      </p>
+
+      <p style="margin-bottom:14px;">
+        +91 63836 59214<br>
+        +91 96554 56167
+      </p>
+
+      <p
+        style="
+          font-weight:700;
+          color:var(--gold-pale);
+          margin:0 0 4px;
+        "
+      >
+        Email
       </p>
 
       <p>
-        Our License No. ----. familycrackersworld as a company
-        follows 100% legal &amp; statutory compliances, and all
-        our shops, go-downs are maintained as per the explosive
-        acts. We send the parcels through registered and legal
-        transport service providers.
+        <a href="mailto:nivasramasamy27@gmail.com">
+          nivasramasamy27@gmail.com
+        </a>
       </p>
 
     </div>
 
 
-    <div
-      style="
-        border-radius:var(--radius);
-        overflow:hidden;
-        border:1px solid rgba(255,255,255,0.15);
-        margin-bottom:32px;
-        box-shadow:var(--shadow-sm);
-      "
-    >
+    <!-- QUICK LINKS -->
 
-      <iframe
-        title="Phoenix Crackers Store Location"
-        src="https://www.google.com/maps?q=Phoenix+Crackers,+Anil+Kumar+Eye+Hospital+Opp,+Sattur+Road,+Sivakasi&output=embed"
-        width="100%"
-        height="260"
-        style="border:0;display:block;"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        allowfullscreen
-      >
-      </iframe>
+    <div class="footer-col">
 
-    </div>
+      <h4>Quick Links</h4>
 
+      <a href="index.html">
+        Home
+      </a>
 
-    <div class="footer-bottom">
-      <span>
-        Copyright © 2026, familycrackersworld.
-        All rights reserved.
-      </span>
+      <a href="products.html">
+        Shop
+      </a>
+
+      <a href="track-order.html">
+        Track Order
+      </a>
+
+      <a href="#contact">
+        Contact Us
+      </a>
+
     </div>
 
   </div>
 
-</footer>
+
+  <!-- LEGAL -->
+
+  <div
+    style="
+      max-width:820px;
+      margin:0 auto 28px;
+      text-align:center;
+      font-size:0.85rem;
+      color:var(--ink-soft);
+      opacity:0.85;
+      line-height:1.7;
+    "
+  >
+
+    <p style="margin-bottom:14px;">
+      As per 2018 Supreme Court order, online sale
+      of firecrackers are not permitted! We value our
+      customers and at the same time, respect jurisdiction.
+      We request you to add your products to the cart and
+      submit the required crackers through the enquiry button.
+      We will contact you within 24 hrs and confirm the order
+      through WhatsApp or phone call.
+    </p>
+
+    <p>
+      Our License No. ----.
+      familycrackersworld as a company follows
+      100% legal &amp; statutory compliances.
+    </p>
+
+  </div>
 
 
-<script src="js/config.js"></script>
-<script src="js/cart.js"></script>
+  <!-- MAP -->
+
+  <div
+    style="
+      border-radius:var(--radius);
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,0.15);
+      margin-bottom:32px;
+      box-shadow:var(--shadow-sm);
+    "
+  >
+
+    <iframe
+      title="Store location map"
+      src="https://maps.google.com/maps?q=Phoenix%20Crackers%2C%20Sattur%20Road%2C%20Sivakasi&z=15&output=embed"
+      width="100%"
+      height="260"
+      style="border:0;display:block;"
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    >
+    </iframe>
+
+  </div>
 
 
-<script>
+  <!-- FOOTER BOTTOM -->
 
-  // ==========================================
-  // AUTO LOAD LAST ORDER ID
-  // ==========================================
+  <div class="footer-bottom">
 
-  const savedOrderId =
-    localStorage.getItem("lastOrderId") ||
-    localStorage.getItem("last_order_id");
+    <span>
+      Copyright © 2026, familycrackersworld.
+      All rights reserved.
+    </span>
 
-  if (savedOrderId) {
+  </div>
 
-    const input =
-      document.getElementById("order-id-input");
+</div>
+```
 
-    if (input) {
-      input.value = savedOrderId;
+  </footer>
+
+  <!-- ================= JAVASCRIPT ================= -->
+
+  <script src="js/config.js"></script>
+
+  <script src="js/cart.js"></script>
+
+  <script>
+
+    // ===============================
+    // CART BADGE
+    // ===============================
+
+    function refreshCartBadge() {
+
+      const badge =
+        document.getElementById("cart-count");
+
+      if (!badge) return;
+
+      try {
+        badge.textContent = getCartCount();
+      } catch (error) {
+        badge.textContent = "0";
+      }
+
     }
 
-  }
+
+    // ===============================
+    // ELEMENTS
+    // ===============================
+
+    const trackForm =
+      document.getElementById("track-form");
+
+    const phoneInput =
+      document.getElementById("track-phone");
+
+    const ordersContainer =
+      document.getElementById("orders-container");
+
+    const errorMessage =
+      document.getElementById("error-message");
+
+    const loading =
+      document.getElementById("loading");
+
+    const trackButton =
+      document.getElementById("track-button");
 
 
-  // ==========================================
-  // TRACK ORDER
-  // ==========================================
+    // ===============================
+    // TRACK ORDER
+    // ===============================
 
-  async function trackOrder() {
+    trackForm.addEventListener("submit", async function (event) {
 
-    const input =
-      document.getElementById("order-id-input");
+      event.preventDefault();
 
-    const resultDiv =
-      document.getElementById("order-result");
-
-    const button =
-      document.getElementById("track-btn");
+      const phone =
+        phoneInput.value.trim();
 
 
-    const orderId =
-      input.value.trim();
+      // Clear previous result
+
+      ordersContainer.innerHTML = "";
+
+      errorMessage.style.display = "none";
 
 
-    if (!orderId) {
+      // Validate phone
 
-      alert("Please enter your Order ID.");
+      if (!/^[0-9]{10}$/.test(phone)) {
 
-      input.focus();
+        showError(
+          "Please enter a valid 10-digit phone number."
+        );
 
-      return;
-
-    }
-
-
-    button.disabled = true;
-
-    button.textContent = "Searching...";
+        return;
+      }
 
 
-    resultDiv.innerHTML = `
-      <div class="loader">
-        Searching your order...
-      </div>
-    `;
+      // Loading
 
+      loading.style.display = "block";
 
-    try {
+      trackButton.disabled = true;
 
-      // ========================================
-      // IMPORTANT:
-      // Backend route is:
-      // GET /api/orders/:orderId
-      // ========================================
+      trackButton.textContent = "Searching...";
 
-      const response = await fetch(
-        `${API_BASE_URL}/orders/${encodeURIComponent(orderId)}`
-      );
-
-
-      let data;
 
       try {
 
-        data = await response.json();
+        const response = await fetch(
+          `${API_BASE_URL}/orders/track-phone/${phone}`
+        );
 
-      } catch {
 
-        throw new Error(
-          "Server returned an invalid response."
+        let data;
+
+        try {
+          data = await response.json();
+        } catch (jsonError) {
+          data = null;
+        }
+
+
+        if (!response.ok) {
+
+          throw new Error(
+            data?.message ||
+            "No orders found for this phone number."
+          );
+
+        }
+
+
+        // Backend may return either
+        // an array or a single order
+
+        const orders =
+          Array.isArray(data)
+            ? data
+            : Array.isArray(data.orders)
+              ? data.orders
+              : data.order
+                ? [data.order]
+                : [];
+
+
+        if (orders.length === 0) {
+
+          throw new Error(
+            "No orders found for this phone number."
+          );
+
+        }
+
+
+        renderOrders(orders);
+
+      }
+
+      catch (error) {
+
+        console.error(
+          "Track order error:",
+          error
+        );
+
+        showError(
+          error.message ||
+          "Unable to track order."
         );
 
       }
 
+      finally {
 
-      if (!response.ok) {
+        loading.style.display = "none";
 
-        resultDiv.innerHTML = `
-          <div class="empty-state">
+        trackButton.disabled = false;
 
-            <strong>Order not found.</strong>
-
-            <br><br>
-
-            Please check your Order ID:
-
-            <br>
-
-            <strong>${orderId}</strong>
-
-          </div>
-        `;
-
-        return;
+        trackButton.textContent = "Track Order";
 
       }
 
-
-      const order = data;
-
-
-      console.log("📦 ORDER:", order);
+    });
 
 
-      // ========================================
-      // BACKEND USES "status"
-      // ========================================
+    // ===============================
+    // RENDER ORDERS
+    // ===============================
 
-      const currentStatus =
-        String(order.status || "Pending")
-          .toUpperCase();
+    function renderOrders(orders) {
 
+      ordersContainer.innerHTML = "";
 
-      const statusSteps = [
-        "PENDING",
-        "CONFIRMED",
-        "SHIPPED",
-        "DELIVERED"
-      ];
+      orders.forEach(function (order) {
 
-
-      let currentIndex =
-        statusSteps.indexOf(currentStatus);
+        const orderId =
+          order.orderId ||
+          order.id ||
+          order._id ||
+          "N/A";
 
 
-      // Pending = first step
+        const status =
+          order.orderStatus ||
+          order.status ||
+          "PLACED";
 
-      if (currentIndex === -1) {
 
-        if (currentStatus === "CANCELLED") {
+        const total =
+          Number(
+            order.totalAmount ??
+            order.total ??
+            order.subtotal ??
+            0
+          );
 
-          currentIndex = -1;
+
+        const createdDate =
+          order.createdAt
+            ? new Date(order.createdAt)
+                .toLocaleDateString("en-IN")
+            : "-";
+
+
+        const items =
+          Array.isArray(order.items)
+            ? order.items
+            : [];
+
+
+        let itemsHTML = "";
+
+
+        if (items.length > 0) {
+
+          itemsHTML = items.map(function (item) {
+
+            const name =
+              item.name ||
+              item.productName ||
+              "Product";
+
+
+            const quantity =
+              Number(
+                item.qty ??
+                item.quantity ??
+                1
+              );
+
+
+            const price =
+              Number(
+                item.price ??
+                0
+              );
+
+
+            return `
+              <div class="item">
+
+                <span>
+                  ${escapeHTML(name)}
+                  × ${quantity}
+                </span>
+
+                <strong>
+                  ₹${(price * quantity).toLocaleString("en-IN")}
+                </strong>
+
+              </div>
+            `;
+
+          }).join("");
 
         } else {
 
-          currentIndex = 0;
+          itemsHTML = `
+            <p>
+              No item details available.
+            </p>
+          `;
 
         }
 
-      }
+
+        const card = document.createElement("div");
+
+        card.className = "order-card";
 
 
-      // ========================================
-      // STATUS HTML
-      // ========================================
+        card.innerHTML = `
 
-      let stepsHtml = "";
+          <div class="order-header">
 
+            <h3>
+              Order #${escapeHTML(orderId)}
+            </h3>
 
-      if (currentStatus === "CANCELLED") {
-
-        stepsHtml = `
-          <div
-            style="
-              padding:14px;
-              background:rgba(200,0,0,0.08);
-              border-radius:10px;
-              color:var(--ember);
-              font-weight:700;
-              margin-bottom:16px;
-            "
-          >
-            ❌ This order has been cancelled.
-          </div>
-        `;
-
-      } else {
-
-        stepsHtml = statusSteps
-          .map((step, index) => {
-
-            const active =
-              index <= currentIndex;
-
-            return `
-              <div
-                style="
-                  display:flex;
-                  align-items:center;
-                  gap:10px;
-                  margin-bottom:12px;
-                "
-              >
-
-                <div
-                  style="
-                    width:12px;
-                    height:12px;
-                    min-width:12px;
-                    border-radius:50%;
-                    background:${
-                      active
-                        ? "var(--gold)"
-                        : "var(--line)"
-                    };
-                  "
-                ></div>
-
-                <span
-                  style="
-                    color:${
-                      active
-                        ? "var(--ember)"
-                        : "var(--ink-soft)"
-                    };
-                    font-weight:${
-                      step === currentStatus
-                        ? "700"
-                        : "500"
-                    };
-                  "
-                >
-                  ${step}
-                </span>
-
-              </div>
-            `;
-
-          })
-          .join("");
-
-      }
-
-
-      // ========================================
-      // ITEMS
-      // ========================================
-
-      const items =
-        Array.isArray(order.items)
-          ? order.items
-          : [];
-
-
-      const itemsHtml =
-        items.length
-          ? items
-              .map(item => {
-
-                const price =
-                  Number(item.price) || 0;
-
-                const qty =
-                  Number(item.qty) || 1;
-
-                return `
-                  <div
-                    style="
-                      display:flex;
-                      justify-content:space-between;
-                      gap:15px;
-                      padding:8px 0;
-                      color:var(--ink-soft);
-                      font-size:0.9rem;
-                    "
-                  >
-
-                    <span>
-                      ${item.name || "Product"}
-                      × ${qty}
-                    </span>
-
-                    <span>
-                      ₹${price * qty}
-                    </span>
-
-                  </div>
-                `;
-
-              })
-              .join("")
-          : `
-              <div style="color:var(--ink-soft);">
-                No items found.
-              </div>
-            `;
-
-
-      // ========================================
-      // PAYMENT
-      // ========================================
-
-      const paymentMethod =
-        order.paymentMethod || "COD";
-
-      const paymentStatus =
-        order.paymentStatus || "Pending";
-
-
-      // ========================================
-      // TOTAL
-      // ========================================
-
-      const total =
-        Number(order.totalAmount) || 0;
-
-
-      // ========================================
-      // DISPLAY ORDER
-      // ========================================
-
-      resultDiv.innerHTML = `
-
-        <div
-          class="cart-summary"
-          style="
-            max-width:none;
-            margin-left:0;
-          "
-        >
-
-          <h3 style="margin-bottom:6px;">
-            Order ${order.orderId}
-          </h3>
-
-          <p
-            style="
-              color:var(--ink-soft);
-              font-size:0.85rem;
-              margin-bottom:20px;
-            "
-          >
-            Order Status:
-            <strong>
-              ${currentStatus}
-            </strong>
-          </p>
-
-
-          <!-- STATUS -->
-
-          <div
-            style="
-              margin-bottom:20px;
-              padding:15px;
-              background:var(--bg-warm);
-              border-radius:var(--radius-sm);
-            "
-          >
-
-            ${stepsHtml}
-
-          </div>
-
-
-          <!-- ITEMS -->
-
-          <div
-            style="
-              border-top:1px solid var(--line);
-              border-bottom:1px solid var(--line);
-              padding:14px 0;
-            "
-          >
-
-            <h4 style="margin-bottom:8px;">
-              Order Items
-            </h4>
-
-            ${itemsHtml}
-
-          </div>
-
-
-          <!-- TOTAL -->
-
-          <div
-            class="summary-row total"
-            style="margin-top:15px;"
-          >
-
-            <span>Total</span>
-
-            <span>
-              ₹${total}
+            <span class="status">
+              ${escapeHTML(status)}
             </span>
 
           </div>
 
 
-          <p
-            style="
-              margin-top:14px;
-              font-size:0.85rem;
-              color:var(--ink-soft);
-            "
-          >
+          <div class="order-details">
 
-            Payment:
-            <strong>${paymentMethod}</strong>
+            <div>
+              <strong>Order Date:</strong>
+              ${createdDate}
+            </div>
 
-            <br>
+            <div>
+              <strong>Phone:</strong>
+              ${escapeHTML(
+                order.customer?.phone ||
+                order.phone ||
+                phoneInput.value
+              )}
+            </div>
 
-            Payment Status:
-            <strong>${paymentStatus}</strong>
+            <div>
+              <strong>Payment:</strong>
+              ${escapeHTML(
+                order.paymentMethod ||
+                "COD"
+              )}
+            </div>
 
-          </p>
+            <div>
+              <strong>Payment Status:</strong>
+              ${escapeHTML(
+                order.paymentStatus ||
+                "PENDING"
+              )}
+            </div>
 
-
-          <!-- VIEW BILL -->
-
-          <button
-            class="btn btn-primary"
-            style="
-              width:100%;
-              justify-content:center;
-              margin-top:16px;
-            "
-            onclick="viewBill()"
-          >
-            🧾 View / Download Bill
-          </button>
-
-
-        </div>
-
-      `;
+          </div>
 
 
-      // Save current order
+          <div class="items">
 
-      localStorage.setItem(
-        "lastOrderId",
-        order.orderId
-      );
+            <h4>
+              Order Items
+            </h4>
 
-      localStorage.setItem(
-        "last_order_id",
-        order.orderId
-      );
+            ${itemsHTML}
 
-      localStorage.setItem(
-        "last_order",
-        JSON.stringify(order)
-      );
+          </div>
 
 
-      // Store for bill
+          <div class="total">
 
-      window.currentOrder = order;
+            <span>
+              Total
+            </span>
 
+            <span>
+              ₹${total.toLocaleString("en-IN")}
+            </span>
 
-    } catch (error) {
+          </div>
 
-      console.error(
-        "❌ Track order error:",
-        error
-      );
-
-
-      resultDiv.innerHTML = `
-        <div class="empty-state">
-
-          Could not connect to the server.
-
-          <br><br>
-
-          Please try again.
-
-        </div>
-      `;
-
-    } finally {
-
-      button.disabled = false;
-
-      button.textContent = "Track Order";
-
-    }
-
-  }
-
-
-  // ==========================================
-  // VIEW BILL
-  // ==========================================
-
-  function viewBill() {
-
-    const order =
-      window.currentOrder ||
-      JSON.parse(
-        localStorage.getItem("last_order") || "null"
-      );
-
-
-    if (!order) {
-
-      alert(
-        "Order details are not available."
-      );
-
-      return;
-
-    }
-
-
-    const items =
-      Array.isArray(order.items)
-        ? order.items
-        : [];
-
-
-    const itemsHtml =
-      items.map(item => {
-
-        const price =
-          Number(item.price) || 0;
-
-        const qty =
-          Number(item.qty) || 1;
-
-        return `
-          <tr>
-
-            <td style="padding:8px;">
-              ${item.name || "Product"}
-            </td>
-
-            <td style="padding:8px;text-align:center;">
-              ${qty}
-            </td>
-
-            <td style="padding:8px;text-align:right;">
-              ₹${price}
-            </td>
-
-            <td style="padding:8px;text-align:right;">
-              ₹${price * qty}
-            </td>
-
-          </tr>
         `;
 
-      }).join("");
 
+        ordersContainer.appendChild(card);
 
-    const total =
-      Number(order.totalAmount) || 0;
-
-
-    const billWindow =
-      window.open(
-        "",
-        "_blank"
-      );
-
-
-    if (!billWindow) {
-
-      alert(
-        "Please allow pop-ups to view the bill."
-      );
-
-      return;
+      });
 
     }
 
 
-    billWindow.document.write(`
-
-      <!DOCTYPE html>
+    // ===============================
+    // ERROR
+    // ===============================
 
-      <html>
-
-      <head>
+    function showError(message) {
 
-        <title>
-          Invoice ${order.orderId}
-        </title>
+      errorMessage.textContent = message;
 
-        <meta
-          name="viewport"
-          content="width=device-width,initial-scale=1.0"
-        >
+      errorMessage.style.display = "block";
 
-        <style>
+    }
 
-          body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 20px;
-            color: #222;
-          }
 
-          .header {
-            text-align: center;
-            margin-bottom: 30px;
-          }
+    // ===============================
+    // ESCAPE HTML
+    // ===============================
 
-          .header h1 {
-            margin: 0;
-          }
+    function escapeHTML(value) {
 
-          .details {
-            margin-bottom: 25px;
-            line-height: 1.6;
-          }
+      return String(value ?? "")
 
-          table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-          }
+        .replace(/&/g, "&amp;")
 
-          th {
-            background: #f5f5f5;
-            text-align: left;
-          }
+        .replace(/</g, "&lt;")
 
-          th,
-          td {
-            border-bottom: 1px solid #ddd;
-            padding: 10px;
-          }
+        .replace(/>/g, "&gt;")
 
-          .total {
-            text-align: right;
-            font-size: 20px;
-            font-weight: bold;
-            margin-top: 25px;
-          }
+        .replace(/"/g, "&quot;")
 
-          .print-btn {
-            margin-top: 30px;
-            padding: 12px 22px;
-            border: none;
-            background: #222;
-            color: white;
-            cursor: pointer;
-            border-radius: 6px;
-          }
+        .replace(/'/g, "&#039;");
 
-          @media print {
+    }
 
-            .print-btn {
-              display: none;
-            }
 
-            body {
-              margin: 0;
-            }
+    // ===============================
+    // INITIALIZE
+    // ===============================
 
-          }
+    refreshCartBadge();
 
-        </style>
-
-      </head>
-
-      <body>
-
-        <div class="header">
-
-          <h1>
-            familycrackersworld
-          </h1>
-
-          <p>
-            Phoenix Crackers
-          </p>
-
-          <h2>
-            ORDER BILL
-          </h2>
-
-        </div>
-
-
-        <div class="details">
-
-          <strong>
-            Order ID:
-          </strong>
-
-          ${order.orderId}
-
-          <br>
-
-          <strong>
-            Customer:
-          </strong>
-
-          ${order.customer?.name || ""}
-
-          <br>
-
-          <strong>
-            Phone:
-          </strong>
-
-          ${order.customer?.phone || ""}
-
-          <br>
-
-          <strong>
-            Email:
-          </strong>
-
-          ${order.customer?.email || ""}
-
-          <br>
-
-          <strong>
-            Address:
-          </strong>
-
-          ${order.customer?.address || ""}
-
-          <br>
-
-          ${order.customer?.city || ""}
-
-          ${order.customer?.state || ""}
-
-          ${order.customer?.pincode || ""}
-
-          <br>
-
-          <strong>
-            Status:
-          </strong>
-
-          ${order.status || "Pending"}
-
-        </div>
-
-
-        <table>
-
-          <thead>
-
-            <tr>
-
-              <th>
-                Product
-              </th>
-
-              <th style="text-align:center;">
-                Qty
-              </th>
-
-              <th style="text-align:right;">
-                Price
-              </th>
-
-              <th style="text-align:right;">
-                Amount
-              </th>
-
-            </tr>
-
-          </thead>
-
-          <tbody>
-
-            ${itemsHtml}
-
-          </tbody>
-
-        </table>
-
-
-        <div class="total">
-
-          Total:
-          ₹${total}
-
-        </div>
-
-
-        <button
-          class="print-btn"
-          onclick="window.print()"
-        >
-          🖨️ Print / Save as PDF
-        </button>
-
-
-      </body>
-
-      </html>
-
-    `);
-
-
-    billWindow.document.close();
-
-  }
-
-
-  // ==========================================
-  // AUTO TRACK LAST ORDER
-  // ==========================================
-
-  if (savedOrderId) {
-
-    trackOrder();
-
-  }
-
-</script>
+  </script>
 
 </body>
+
 </html>

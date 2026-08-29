@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,943 +12,1605 @@
 
 <body>
 
-<header>
-  <div class="container nav">
+  <!-- ================= HEADER ================= -->
 
-    <a href="index.html" class="logo">
-      family<span class="spark">crackersworld</span>
-    </a>
+  <header>
+    <div class="container nav">
 
-    <nav class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="products.html" class="active">Shop</a>
-      <a href="track-order.html">Track Order</a>
-      <a href="index.html#contact">Contact</a>
-    </nav>
+      <a href="index.html" class="logo">
+        family<span class="spark">crackersworld</span>
+      </a>
 
-    <a href="cart.html" class="cart-link">
-      🛒 Cart (<span id="cart-count">0</span>)
-    </a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="products.html" class="active">Shop</a>
+        <a href="track-order.html">Track Order</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
 
-  </div>
-</header>
+      <a href="cart.html" class="cart-link">
+        🛒 Cart (<span id="cart-count">0</span>)
+      </a>
 
-
-<!-- ================= SHOP ================= -->
-
-<section class="container categories">
-
-  <div class="section-title">
-    <h2>Shop All Crackers</h2>
-  </div>
-
-  <div class="form-group full" style="max-width:420px;">
-    <input
-      type="text"
-      id="search-input"
-      placeholder="Search products e.g. sparklers, rocket..."
-    />
-  </div>
-
-  <div class="chip-row" id="category-chips"></div>
-
-</section>
-
-
-<section class="container">
-
-  <div class="product-grid" id="product-grid">
-    <div class="loader">
-      Loading products...
     </div>
-  </div>
-
-</section>
+  </header>
 
 
-<!-- ================= FOOTER ================= -->
+  <!-- ================= SHOP HEADER ================= -->
 
-<footer id="contact">
+  <section class="container shop-header">
 
-  <div class="container">
+    <div class="shop-title-row">
+
+      <div>
+        <span class="shop-small-title">
+          PREMIUM SIVAKASI CRACKERS
+        </span>
+
+        <h1>
+          Shop All Crackers
+        </h1>
+
+        <p>
+          Choose your favourite crackers and add them to your enquiry cart.
+        </p>
+      </div>
+
+    </div>
+
+
+    <!-- SEARCH -->
+
+    <div class="shop-search">
+
+      <input
+        type="text"
+        id="search-input"
+        placeholder="Search products e.g. sparklers, rocket..."
+      />
+
+      <span>🔍</span>
+
+    </div>
+
+
+    <!-- CATEGORY CHIPS -->
 
     <div
-      class="footer-columns"
-      style="grid-template-columns: 1.3fr 1fr 1fr;"
-    >
+      class="chip-row"
+      id="category-chips"
+    ></div>
 
-      <!-- Profile -->
+  </section>
 
-      <div class="footer-col">
 
-        <h4
-          style="
-            font-family:'Fraunces',serif;
-            font-size:1.1rem;
-            text-transform:none;
-            letter-spacing:0;
-            margin-bottom:12px;
-          "
+  <!-- ================= FILTER BAR ================= -->
+
+  <section class="container">
+
+    <div class="filterbar">
+
+      <!-- LEFT -->
+
+      <div class="filterbar-left">
+
+        <button
+          class="filter-main-btn"
+          type="button"
+          onclick="scrollToCategories()"
         >
-          Our Profile
-        </h4>
+          ☰ Filter
+        </button>
 
-        <p
-          style="
-            font-weight:700;
-            color:var(--gold-pale);
-            margin-bottom:8px;
-          "
+        <span
+          class="found-text"
+          id="foundText"
         >
-          familycrackersworld
-        </p>
-
-        <p
-          style="
-            max-width:320px;
-            margin-bottom:18px;
-          "
-        >
-          Our products focus on our Customer's happiness.
-          Crackers are available in different specifications
-          as per the requirements of the clients.
-        </p>
-
-        <a
-          href="#contact"
-          class="btn btn-outline"
-          style="
-            border-color:rgba(255,255,255,0.25);
-            color:var(--bg);
-          "
-        >
-          Read More →
-        </a>
+          We found 0 items!
+        </span>
 
       </div>
 
 
-      <!-- Contact -->
+      <!-- SORT -->
 
-      <div class="footer-col">
+      <div class="sort-group">
 
-        <h4>Contact Us</h4>
-
-        <p
-          style="
-            font-weight:700;
-            color:var(--gold-pale);
-            margin:0 0 4px;
-          "
+        <button
+          class="pill-btn active"
+          id="sortDefault"
+          onclick="setSort('default')"
         >
-          Address
-        </p>
+          Default
+        </button>
 
-        <p style="margin-bottom:14px;">
-          Phoenix Crackers<br/>
-          Anil Kumar Eye Hospital Opp.<br/>
-          Sattur Road<br/>
-          Sivakasi
-        </p>
-
-
-        <p
-          style="
-            font-weight:700;
-            color:var(--gold-pale);
-            margin:0 0 4px;
-          "
+        <button
+          class="pill-btn"
+          id="sortLow"
+          onclick="setSort('low')"
         >
-          Mobile
-        </p>
+          Price: Low to High
+        </button>
 
-        <p style="margin-bottom:14px;">
-          +91 63836 59214<br/>
-          +91 96554 56167
-        </p>
-
-
-        <p
-          style="
-            font-weight:700;
-            color:var(--gold-pale);
-            margin:0 0 4px;
-          "
+        <button
+          class="pill-btn"
+          id="sortHigh"
+          onclick="setSort('high')"
         >
-          Email
+          Price: High to Low
+        </button>
+
+      </div>
+
+
+      <!-- VIEW -->
+
+      <div class="view-group">
+
+        <button
+          class="view-btn active"
+          id="viewCard"
+          onclick="setView('card')"
+        >
+          ▦ Card View
+        </button>
+
+        <button
+          class="view-btn"
+          id="viewTable"
+          onclick="setView('table')"
+        >
+          ☰ Table View
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ================= SHOP CONTENT ================= -->
+
+  <section class="container shop-main">
+
+    <!-- SIDEBAR -->
+
+    <aside
+      class="shop-sidebar"
+      id="category-sidebar"
+    >
+
+      <div class="sidebar-title">
+        All Categories
+      </div>
+
+      <input
+        type="text"
+        id="category-search"
+        class="category-search"
+        placeholder="Search categories..."
+      />
+
+      <div
+        id="sidebar-categories"
+        class="sidebar-categories"
+      ></div>
+
+    </aside>
+
+
+    <!-- PRODUCTS -->
+
+    <main class="shop-products">
+
+      <div
+        id="catalogContent"
+        class="catalog-content"
+      >
+
+        <div class="loader">
+          Loading products...
+        </div>
+
+      </div>
+
+    </main>
+
+  </section>
+
+
+  <!-- ================= FOOTER ================= -->
+
+  <footer id="contact">
+
+    <div class="container">
+
+      <div class="footer-columns">
+
+        <!-- PROFILE -->
+
+        <div class="footer-col">
+
+          <h4>Our Profile</h4>
+
+          <p
+            style="
+              font-weight:700;
+              color:var(--gold-pale);
+              margin-bottom:8px;
+            "
+          >
+            familycrackersworld
+          </p>
+
+          <p>
+            Our products focus on our Customer's happiness.
+            Crackers are available in different specifications
+            as per the requirements of the clients.
+          </p>
+
+        </div>
+
+
+        <!-- CONTACT -->
+
+        <div class="footer-col">
+
+          <h4>Contact Us</h4>
+
+          <p>
+            <strong>Address</strong><br />
+
+            Phoenix Crackers<br />
+            Anil Kumar Eye Hospital Opp.<br />
+            Sattur Road<br />
+            Sivakasi
+          </p>
+
+          <p>
+            <strong>Mobile</strong><br />
+
+            +91 63836 59214<br />
+            +91 96554 56167
+          </p>
+
+          <p>
+            <strong>Email</strong><br />
+
+            <a href="mailto:sathiyasankar29@gmail.com">
+              sathiyasankar29@gmail.com
+            </a>
+          </p>
+
+        </div>
+
+
+        <!-- QUICK LINKS -->
+
+        <div class="footer-col">
+
+          <h4>Quick Links</h4>
+
+          <a href="index.html">Home</a>
+          <a href="products.html">Shop</a>
+          <a href="track-order.html">Track Order</a>
+          <a href="#contact">Contact Us</a>
+
+        </div>
+
+      </div>
+
+
+      <!-- LEGAL -->
+
+      <div class="legal-text">
+
+        <p>
+          As per 2018 Supreme Court order, online sale of firecrackers
+          are not permitted. We request you to add your products to the
+          cart and submit the required crackers through the enquiry button.
+          We will contact you within 24 hrs and confirm the order through
+          WhatsApp or phone call.
         </p>
 
         <p>
-          <a href="mailto:sathiyasankar29@gmail.com">
-            sathiyasankar29@gmail.com
-          </a>
+          familycrackersworld follows legal and statutory compliances,
+          and all our shops and godowns are maintained as per applicable
+          explosive safety requirements.
         </p>
 
       </div>
 
 
-      <!-- Quick Links -->
+      <div class="footer-bottom">
 
-      <div class="footer-col">
-
-        <h4>Quick Links</h4>
-
-        <a href="index.html">Home</a>
-
-        <a href="#contact">About Us</a>
-
-        <a href="products.html">Price List</a>
-
-        <a href="#faq">Safety Tips</a>
-
-        <a href="#contact">Contact Us</a>
+        Copyright © 2026, familycrackersworld.
+        All rights reserved.
 
       </div>
 
     </div>
 
-
-    <!-- Legal -->
-
-    <div
-      style="
-        max-width:820px;
-        margin:0 auto 28px;
-        text-align:center;
-        font-size:0.85rem;
-        color:var(--ink-soft);
-        opacity:0.85;
-        line-height:1.7;
-      "
-    >
-
-      <p style="margin-bottom:14px;">
-        As per 2018 Supreme Court order, online sale of firecrackers
-        are not permitted! We value our customers and at the same time,
-        respect jurisdiction. We request you to add your products to the
-        cart and submit the required crackers through the enquiry button.
-        We will contact you within 24 hrs and confirm the order through
-        WhatsApp or phone call. Please add and submit your enquiries and
-        enjoy your Diwali with familycrackersworld.
-      </p>
-
-      <p>
-        Our License No. ----. familycrackersworld as a company follows
-        100% legal &amp; statutory compliances, and all our shops,
-        go-downs are maintained as per the explosive acts. We send the
-        parcels through registered and legal transport service providers
-        as every other major company in Sivakasi is doing.
-      </p>
-
-    </div>
+  </footer>
 
 
-    <!-- Map -->
+  <!-- ================= JS ================= -->
 
-    <div
-      style="
-        border-radius:var(--radius);
-        overflow:hidden;
-        border:1px solid rgba(255,255,255,0.15);
-        margin-bottom:32px;
-        box-shadow:var(--shadow-sm);
-      "
-    >
-
-      <iframe
-  title="Phoenix Crackers Store Location"
-  src="https://www.google.com/maps?q=Phoenix+Crackers,+Anil+Kumar+Eye+Hospital+Opp,+Sattur+Road,+Sivakasi&output=embed"
-  width="100%"
-  height="260"
-  style="border:0;display:block;"
-  loading="lazy"
-  referrerpolicy="no-referrer-when-downgrade"
-  allowfullscreen
->
-</iframe>
-
-    </div>
+  <script src="js/config.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/category-styles.js"></script>
 
 
-    <div class="footer-bottom">
+  <script>
 
-      <span>
-        Copyright © 2026, familycrackersworld.
-        All rights reserved.
-      </span>
+    /* =====================================================
+       VARIABLES
+    ===================================================== */
 
-    </div>
+    let activeCategory =
+      new URLSearchParams(location.search).get("category") || "All";
 
-  </div>
+    let searchTerm = "";
 
-</footer>
+    let allProducts = [];
 
+    let sortMode = "default";
 
-<!-- ================= JS ================= -->
-<!-- ================= JS ================= -->
+    let viewMode = "card";
 
-<script src="js/config.js"></script>
-<script src="js/cart.js"></script>
-<script src="js/category-styles.js"></script>
-
-<script>
-
-/* =========================================================
-   VARIABLES
-========================================================= */
-
-let activeCategory =
-  new URLSearchParams(location.search).get("category") || "All";
-
-let searchTerm = "";
-
-let allProducts = [];
-
-let searchTimeout;
+    let searchTimeout;
 
 
-/* =========================================================
-   LOAD CATEGORIES
-========================================================= */
+    /* =====================================================
+       LOAD CATEGORIES
+    ===================================================== */
 
-async function loadCategories() {
+    async function loadCategories() {
 
-  try {
+      try {
 
-    const res = await fetch(
-      `${API_BASE_URL}/products/categories`
-    );
+        const res = await fetch(
+          `${API_BASE_URL}/products/categories`
+        );
 
-    if (!res.ok) {
-      throw new Error("Category loading failed");
-    }
-
-    const data = await res.json();
-
-    const categories = ["All", ...data];
-
-    renderChips(categories);
-
-  } catch (error) {
-
-    console.error("Categories error:", error);
-
-    document.getElementById(
-      "category-chips"
-    ).innerHTML = "";
-
-  }
-
-}
-
-
-/* =========================================================
-   CATEGORY CHIPS
-========================================================= */
-
-function renderChips(categories) {
-
-  const row =
-    document.getElementById("category-chips");
-
-  row.innerHTML = categories
-    .map(category => `
-
-      <button
-        class="chip ${
-          category === activeCategory
-            ? "active"
-            : ""
-        }"
-        data-cat="${category}"
-        type="button"
-      >
-        ${category}
-      </button>
-
-    `)
-    .join("");
-
-
-  row.querySelectorAll(".chip")
-    .forEach(button => {
-
-      button.addEventListener(
-        "click",
-        () => {
-
-          activeCategory =
-            button.dataset.cat;
-
-          row
-            .querySelectorAll(".chip")
-            .forEach(b =>
-              b.classList.remove("active")
-            );
-
-          button.classList.add("active");
-
-          loadProducts();
-
+        if (!res.ok) {
+          throw new Error("Category loading failed");
         }
-      );
 
-    });
+        const data = await res.json();
 
-}
+        const categories = ["All", ...data];
 
+        renderCategories(categories);
 
-/* =========================================================
-   LOAD PRODUCTS
-========================================================= */
+      } catch (error) {
 
-async function loadProducts() {
+        console.error(
+          "Categories error:",
+          error
+        );
 
-  const grid =
-    document.getElementById("product-grid");
-
-  grid.innerHTML = `
-
-    <div class="loader">
-      Loading products...
-    </div>
-
-  `;
-
-
-  try {
-
-    const params =
-      new URLSearchParams();
-
-
-    if (activeCategory !== "All") {
-
-      params.set(
-        "category",
-        activeCategory
-      );
+      }
 
     }
 
 
-    if (searchTerm) {
+    /* =====================================================
+       RENDER CATEGORIES
+    ===================================================== */
 
-      params.set(
-        "search",
-        searchTerm
-      );
+    function renderCategories(categories) {
+
+      const chipContainer =
+        document.getElementById("category-chips");
+
+      const sidebar =
+        document.getElementById("sidebar-categories");
+
+
+      /* CHIPS */
+
+      chipContainer.innerHTML =
+        categories.map(category => `
+
+          <button
+            type="button"
+            class="chip ${
+              category === activeCategory
+                ? "active"
+                : ""
+            }"
+            onclick="selectCategory('${escapeAttribute(category)}')"
+          >
+            ${escapeHTML(category)}
+          </button>
+
+        `).join("");
+
+
+      /* SIDEBAR */
+
+      sidebar.innerHTML =
+        categories.map(category => `
+
+          <button
+            type="button"
+            class="sidebar-category ${
+              category === activeCategory
+                ? "active"
+                : ""
+            }"
+            onclick="selectCategory('${escapeAttribute(category)}')"
+          >
+
+            <span class="category-icon">
+              ${category === "All" ? "🎆" : "🎇"}
+            </span>
+
+            <span>
+              ${escapeHTML(category)}
+            </span>
+
+          </button>
+
+        `).join("");
 
     }
 
 
-    const res = await fetch(
-      `${API_BASE_URL}/products?${params.toString()}`
-    );
+    /* =====================================================
+       SELECT CATEGORY
+    ===================================================== */
+
+    function selectCategory(category) {
+
+      activeCategory = category;
+
+      document
+        .querySelectorAll(".chip")
+        .forEach(btn => {
+
+          btn.classList.toggle(
+            "active",
+            btn.textContent.trim() === category
+          );
+
+        });
 
 
-    if (!res.ok) {
+      document
+        .querySelectorAll(".sidebar-category")
+        .forEach(btn => {
 
-      throw new Error(
-        `Products request failed: ${res.status}`
-      );
+          btn.classList.toggle(
+            "active",
+            btn.innerText
+              .replace("🎆", "")
+              .replace("🎇", "")
+              .trim() === category
+          );
+
+        });
+
+
+      loadProducts();
 
     }
 
 
-    const products =
-      await res.json();
+    /* =====================================================
+       LOAD PRODUCTS FROM BACKEND
+    ===================================================== */
 
-    allProducts = products;
+    async function loadProducts() {
+
+      const content =
+        document.getElementById("catalogContent");
 
 
-    if (!products.length) {
+      content.innerHTML = `
 
-      grid.innerHTML = `
-
-        <div class="empty-state">
-          No products found.
+        <div class="loader">
+          Loading products...
         </div>
 
       `;
 
-      return;
+
+      try {
+
+        const params =
+          new URLSearchParams();
+
+
+        if (activeCategory !== "All") {
+
+          params.set(
+            "category",
+            activeCategory
+          );
+
+        }
+
+
+        if (searchTerm) {
+
+          params.set(
+            "search",
+            searchTerm
+          );
+
+        }
+
+
+        const res = await fetch(
+          `${API_BASE_URL}/products?${params.toString()}`
+        );
+
+
+        if (!res.ok) {
+
+          throw new Error(
+            `Products request failed: ${res.status}`
+          );
+
+        }
+
+
+        allProducts =
+          await res.json();
+
+
+        renderCatalog();
+
+      } catch (error) {
+
+        console.error(
+          "Products error:",
+          error
+        );
+
+
+        content.innerHTML = `
+
+          <div class="empty-state">
+
+            <h3>
+              Could not load products
+            </h3>
+
+            <p>
+              Please make sure your backend is running.
+            </p>
+
+          </div>
+
+        `;
+
+      }
 
     }
 
 
-    renderProducts();
+    /* =====================================================
+       SORT
+    ===================================================== */
 
-  } catch (error) {
+    function setSort(mode) {
 
-    console.error(
-      "Products error:",
-      error
-    );
+      sortMode = mode;
 
-    grid.innerHTML = `
 
-      <div class="empty-state">
+      document
+        .getElementById("sortDefault")
+        .classList.toggle(
+          "active",
+          mode === "default"
+        );
 
-        Could not load products.
 
-        <br><br>
+      document
+        .getElementById("sortLow")
+        .classList.toggle(
+          "active",
+          mode === "low"
+        );
 
-        Make sure the backend server is running at:
 
-        <br>
+      document
+        .getElementById("sortHigh")
+        .classList.toggle(
+          "active",
+          mode === "high"
+        );
 
-        <strong>
-          ${API_BASE_URL}
-        </strong>
 
-      </div>
+      renderCatalog();
 
-    `;
+    }
 
-  }
 
-}
+    /* =====================================================
+       VIEW
+    ===================================================== */
 
+    function setView(mode) {
 
-/* =========================================================
-   RENDER PRODUCTS
-========================================================= */
+      viewMode = mode;
 
-function renderProducts() {
 
-  const grid =
-    document.getElementById(
-      "product-grid"
-    );
+      document
+        .getElementById("viewCard")
+        .classList.toggle(
+          "active",
+          mode === "card"
+        );
 
 
-  grid.innerHTML =
-    allProducts
-      .map(product =>
-        renderProductCard(product)
-      )
-      .join("");
+      document
+        .getElementById("viewTable")
+        .classList.toggle(
+          "active",
+          mode === "table"
+        );
 
 
-  updateCartCount();
+      renderCatalog();
 
-}
+    }
 
 
-/* =========================================================
-   GET PRODUCT QUANTITY
-========================================================= */
+    /* =====================================================
+       GET SORTED PRODUCTS
+    ===================================================== */
 
-function getProductQuantity(productId) {
+    function getSortedProducts() {
 
-  const cart = getCart();
+      const items =
+        [...allProducts];
 
-  const item =
-    cart.find(
-      item =>
-        String(item.productId) ===
-        String(productId)
-    );
 
+      if (sortMode === "low") {
 
-  return item
-    ? Number(item.qty)
-    : 0;
+        items.sort(
+          (a, b) =>
+            Number(a.finalPrice || 0) -
+            Number(b.finalPrice || 0)
+        );
 
-}
+      }
 
 
-/* =========================================================
-   PRODUCT CARD
-========================================================= */
+      if (sortMode === "high") {
 
-function renderProductCard(p) {
+        items.sort(
+          (a, b) =>
+            Number(b.finalPrice || 0) -
+            Number(a.finalPrice || 0)
+        );
 
-  const productId =
-    p._id || p.id;
+      }
 
 
-  const discount =
-    p.mrp > 0
-      ? Math.round(
-          ((p.mrp - p.finalPrice) /
-            p.mrp) *
-            100
-        )
-      : 0;
+      return items;
 
+    }
 
-  const cartQuantity =
-    getProductQuantity(productId);
 
+    /* =====================================================
+       RENDER CATALOG
+    ===================================================== */
 
-  const productData =
-    encodeSafeData(p);
+    function renderCatalog() {
 
+      const content =
+        document.getElementById(
+          "catalogContent"
+        );
 
-  return `
 
-    <div class="product-card">
+      const products =
+        getSortedProducts();
 
-      ${productImageHTML(
-        p.category,
-        p.image
-      )}
 
+      document.getElementById(
+        "foundText"
+      ).textContent =
+        `We found ${products.length} items!`;
 
-      <div class="product-body">
 
-        <div class="product-cat">
-          ${p.category || ""}
-        </div>
+      if (!products.length) {
 
+        content.innerHTML = `
 
-        <div class="product-name">
-          ${p.name || ""}
-        </div>
+          <div class="empty-state">
 
+            <div class="empty-icon">
+              🎆
+            </div>
 
-        <div class="product-content">
-          ${p.content || ""}
-        </div>
+            <h3>
+              No products found
+            </h3>
 
+            <p>
+              Try another search or category.
+            </p>
 
-        <div class="product-price-row">
+          </div>
 
-          <span class="price-final">
-            ₹${p.finalPrice}
-          </span>
+        `;
 
-          <span class="price-mrp">
-            ₹${p.mrp}
-          </span>
+        return;
 
-          <span class="price-discount">
-            ${discount}% off
-          </span>
+      }
 
-        </div>
 
+      if (viewMode === "table") {
 
-        <!-- CART CONTROL -->
+        renderTableView(products);
 
-        <div
-          class="product-cart-control"
-          style="
-            width:100%;
-            margin-top:auto;
-            padding-top:10px;
-          "
-        >
+      } else {
 
-          ${
-            cartQuantity > 0
+        renderCardView(products);
 
-              ? `
+      }
 
-                <div
-                  style="
-                    display:flex;
-                    align-items:center;
-                    justify-content:space-between;
-                    width:100%;
-                    background:#2b1208;
-                    border-radius:30px;
-                    padding:4px;
-                    box-sizing:border-box;
-                  "
-                >
+    }
 
-                  <!-- MINUS -->
 
-                  <button
-                    type="button"
-                    onclick="
-                      updateProductQuantity(
-                        '${productId}',
-                        ${cartQuantity - 1}
-                      )
-                    "
-                    style="
-                      width:38px;
-                      height:38px;
-                      border:none;
-                      border-radius:50%;
-                      background:#fff;
-                      color:#2b1208;
-                      font-size:23px;
-                      font-weight:700;
-                      cursor:pointer;
-                      display:flex;
-                      align-items:center;
-                      justify-content:center;
-                      flex-shrink:0;
-                    "
-                  >
-                    −
-                  </button>
+    /* =====================================================
+       CARD VIEW
+    ===================================================== */
 
+    function renderCardView(products) {
 
-                  <!-- QUANTITY -->
+      const content =
+        document.getElementById(
+          "catalogContent"
+        );
 
-                  <span
-                    style="
-                      color:#fff;
-                      font-size:17px;
-                      font-weight:700;
-                      min-width:35px;
-                      text-align:center;
-                    "
-                  >
-                    ${cartQuantity}
+
+      /* GROUP PRODUCTS BY CATEGORY */
+
+      const groups = {};
+
+
+      products.forEach(product => {
+
+        const category =
+          product.category || "Other Products";
+
+
+        if (!groups[category]) {
+          groups[category] = [];
+        }
+
+
+        groups[category].push(product);
+
+      });
+
+
+      content.innerHTML =
+        Object.entries(groups)
+          .map(([category, items]) => `
+
+            <section class="product-category-section">
+
+              <div class="product-category-title">
+                ${escapeHTML(category)}
+              </div>
+
+
+              <div class="product-card-grid">
+
+                ${items
+                  .map(product =>
+                    renderCard(product)
+                  )
+                  .join("")}
+
+              </div>
+
+            </section>
+
+          `)
+          .join("");
+
+    }
+
+
+    /* =====================================================
+       SINGLE CARD
+    ===================================================== */
+
+    function renderCard(p) {
+
+      const id =
+        p._id || p.id;
+
+
+      const mrp =
+        Number(p.mrp || 0);
+
+
+      const price =
+        Number(p.finalPrice || 0);
+
+
+      const discount =
+        mrp > 0
+          ? Math.round(
+              ((mrp - price) / mrp) * 100
+            )
+          : 0;
+
+
+      const quantity =
+        getProductQuantity(id);
+
+
+      const productData =
+        encodeSafeData(p);
+
+
+      return `
+
+        <article class="mano-product-card">
+
+
+          <!-- IMAGE -->
+
+          <div class="mano-product-image">
+
+            ${
+              productImageHTML
+                ? productImageHTML(
+                    p.category,
+                    p.image
+                  )
+                : `
+                  <img
+                    src="${escapeAttribute(
+                      p.image || ""
+                    )}"
+                    alt="${escapeAttribute(
+                      p.name || "Product"
+                    )}"
+                  />
+                `
+            }
+
+
+            ${
+              discount > 0
+                ? `
+                  <span class="best-selling-badge">
+                    🔥 ${discount}% OFF
                   </span>
+                `
+                : ""
+            }
+
+          </div>
 
 
-                  <!-- PLUS -->
+          <!-- DETAILS -->
 
-                  <button
-                    type="button"
-                    onclick="
-                      updateProductQuantity(
-                        '${productId}',
-                        ${cartQuantity + 1}
-                      )
-                    "
-                    style="
-                      width:38px;
-                      height:38px;
-                      border:none;
-                      border-radius:50%;
-                      background:#fff;
-                      color:#2b1208;
-                      font-size:23px;
-                      font-weight:700;
-                      cursor:pointer;
-                      display:flex;
-                      align-items:center;
-                      justify-content:center;
-                      flex-shrink:0;
-                    "
-                  >
-                    +
-                  </button>
-
-                </div>
-
-              `
-
-              : `
-
-                <button
-                  type="button"
-                  class="add-btn"
-                  onclick="
-                    addProductToCart(
-                      decodeSafeData(
-                        '${productData}'
-                      )
-                    )
-                  "
-                >
-                  Add to Cart
-                </button>
-
-              `
-          }
-
-        </div>
-
-      </div>
-
-    </div>
-
-  `;
-
-}
+          <div class="mano-product-details">
 
 
-/* =========================================================
-   ADD PRODUCT TO CART
-========================================================= */
+            <div class="mano-product-name">
 
-function addProductToCart(product) {
+              ${escapeHTML(
+                p.name || ""
+              )}
 
-  try {
+            </div>
 
-    if (!product) {
 
-      console.error(
-        "Product not found"
-      );
+            ${
+              p.content
+                ? `
+                  <div class="mano-product-content">
+                    ${escapeHTML(
+                      p.content
+                    )}
+                  </div>
+                `
+                : ""
+            }
 
-      return;
+
+            <div class="product-unit">
+
+              ${escapeHTML(
+                p.unit || "PACK"
+              )}
+
+            </div>
+
+
+            <!-- PRICE -->
+
+            <div class="mano-price">
+
+              ${
+                mrp > price
+                  ? `
+                    <span class="mano-mrp">
+                      ₹${mrp}
+                    </span>
+                  `
+                  : ""
+              }
+
+
+              <span class="mano-final-price">
+                ₹${price}
+              </span>
+
+            </div>
+
+
+            <!-- CART -->
+
+            <div class="mano-cart-area">
+
+              ${
+                quantity > 0
+
+                  ? `
+
+                    <div class="mano-quantity">
+
+                      <button
+                        onclick="updateProductQuantity(
+                          '${id}',
+                          ${quantity - 1}
+                        )"
+                      >
+                        −
+                      </button>
+
+
+                      <span>
+                        ${quantity}
+                      </span>
+
+
+                      <button
+                        onclick="updateProductQuantity(
+                          '${id}',
+                          ${quantity + 1}
+                        )"
+                      >
+                        +
+                      </button>
+
+                    </div>
+
+                  `
+
+                  : `
+
+                    <button
+                      class="mano-add-btn"
+                      onclick="addProductToCart(
+                        decodeSafeData('${productData}')
+                      )"
+                    >
+                      Add To Cart
+                    </button>
+
+                  `
+
+              }
+
+
+              <button
+                class="mano-wishlist"
+                type="button"
+                onclick="toggleWishlist('${id}')"
+              >
+                ♡
+              </button>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      `;
 
     }
 
 
-    console.log(
-      "Adding product:",
-      product
-    );
+    /* =====================================================
+       TABLE VIEW
+    ===================================================== */
+
+    function renderTableView(products) {
+
+      const content =
+        document.getElementById(
+          "catalogContent"
+        );
 
 
-    /* Use the REAL cart.js function */
-
-    addToCart(product);
+      const groups = {};
 
 
-    /* Re-render products */
+      products.forEach(product => {
 
-    renderProducts();
-
-
-    /* Update cart count */
-
-    updateCartCount();
+        const category =
+          product.category || "Other Products";
 
 
-  } catch (error) {
-
-    console.error(
-      "Add to cart error:",
-      error
-    );
-
-    alert(
-      "Could not add product to cart."
-    );
-
-  }
-
-}
+        if (!groups[category]) {
+          groups[category] = [];
+        }
 
 
-/* =========================================================
-   UPDATE PRODUCT QUANTITY
-========================================================= */
+        groups[category].push(product);
 
-function updateProductQuantity(
-  productId,
-  quantity
-) {
+      });
 
-  try {
 
-    updateQty(
+      content.innerHTML =
+        Object.entries(groups)
+          .map(([category, items]) => `
+
+            <section class="table-category-section">
+
+
+              <div class="table-category-title">
+                ${escapeHTML(category)}
+              </div>
+
+
+              <div class="product-table-wrapper">
+
+                <table class="mano-product-table">
+
+                  <thead>
+
+                    <tr>
+
+                      <th>IMAGE</th>
+
+                      <th>NAME</th>
+
+                      <th>MRP</th>
+
+                      <th>OFFER RATE</th>
+
+                      <th>CART</th>
+
+                      <th>TOTAL</th>
+
+                    </tr>
+
+                  </thead>
+
+
+                  <tbody>
+
+                    ${items
+                      .map(product =>
+                        renderTableRow(product)
+                      )
+                      .join("")}
+
+                  </tbody>
+
+                </table>
+
+              </div>
+
+            </section>
+
+          `)
+          .join("");
+
+    }
+
+
+    /* =====================================================
+       TABLE ROW
+    ===================================================== */
+
+    function renderTableRow(p) {
+
+      const id =
+        p._id || p.id;
+
+
+      const mrp =
+        Number(p.mrp || 0);
+
+
+      const price =
+        Number(p.finalPrice || 0);
+
+
+      const quantity =
+        getProductQuantity(id);
+
+
+      const total =
+        price * quantity;
+
+
+      const productData =
+        encodeSafeData(p);
+
+
+      return `
+
+        <tr>
+
+
+          <!-- IMAGE -->
+
+          <td class="table-image-cell">
+
+            ${
+              p.image
+                ? `
+                  <img
+                    src="${escapeAttribute(
+                      p.image
+                    )}"
+                    alt="${escapeAttribute(
+                      p.name || ""
+                    )}"
+                  />
+                `
+                : "🎆"
+            }
+
+          </td>
+
+
+          <!-- NAME -->
+
+          <td class="table-name-cell">
+
+            <strong>
+              ${escapeHTML(
+                p.name || ""
+              )}
+            </strong>
+
+
+            ${
+              p.content
+                ? `
+                  <small>
+                    ${escapeHTML(
+                      p.content
+                    )}
+                  </small>
+                `
+                : ""
+            }
+
+
+            <span class="table-unit">
+              ${escapeHTML(
+                p.unit || "PACK"
+              )}
+            </span>
+
+          </td>
+
+
+          <!-- MRP -->
+
+          <td>
+
+            ${
+              mrp > price
+                ? `
+                  <span class="table-mrp">
+                    ₹${mrp}
+                  </span>
+                `
+                : `₹${mrp}`
+            }
+
+          </td>
+
+
+          <!-- OFFER -->
+
+          <td>
+
+            <span class="table-offer-price">
+              ₹${price}
+            </span>
+
+          </td>
+
+
+          <!-- CART -->
+
+          <td>
+
+            ${
+              quantity > 0
+
+                ? `
+
+                  <div class="table-quantity">
+
+                    <button
+                      onclick="updateProductQuantity(
+                        '${id}',
+                        ${quantity - 1}
+                      )"
+                    >
+                      −
+                    </button>
+
+                    <span>
+                      ${quantity}
+                    </span>
+
+                    <button
+                      onclick="updateProductQuantity(
+                        '${id}',
+                        ${quantity + 1}
+                      )"
+                    >
+                      +
+                    </button>
+
+                  </div>
+
+                `
+
+                : `
+
+                  <button
+                    class="table-add-btn"
+                    onclick="addProductToCart(
+                      decodeSafeData('${productData}')
+                    )"
+                  >
+                    Add
+                  </button>
+
+                `
+
+            }
+
+          </td>
+
+
+          <!-- TOTAL -->
+
+          <td>
+
+            <strong class="table-total">
+              ₹${total.toFixed(2)}
+            </strong>
+
+          </td>
+
+
+        </tr>
+
+      `;
+
+    }
+
+
+    /* =====================================================
+       CART
+    ===================================================== */
+
+    function getProductQuantity(productId) {
+
+      try {
+
+        const cart =
+          getCart();
+
+
+        const item =
+          cart.find(
+            item =>
+              String(item.productId) ===
+              String(productId)
+          );
+
+
+        return item
+          ? Number(item.qty || 0)
+          : 0;
+
+      } catch (error) {
+
+        return 0;
+
+      }
+
+    }
+
+
+    /* =====================================================
+       ADD TO CART
+    ===================================================== */
+
+    function addProductToCart(product) {
+
+      try {
+
+        if (!product) {
+          return;
+        }
+
+
+        addToCart(product);
+
+
+        renderCatalog();
+
+
+        updateCartCount();
+
+      } catch (error) {
+
+        console.error(
+          "Add to cart error:",
+          error
+        );
+
+      }
+
+    }
+
+
+    /* =====================================================
+       UPDATE QUANTITY
+    ===================================================== */
+
+    function updateProductQuantity(
       productId,
       quantity
-    );
+    ) {
+
+      try {
+
+        updateQty(
+          productId,
+          quantity
+        );
 
 
-    renderProducts();
+        renderCatalog();
 
 
-    updateCartCount();
+        updateCartCount();
+
+      } catch (error) {
+
+        console.error(
+          "Quantity error:",
+          error
+        );
+
+      }
+
+    }
 
 
-  } catch (error) {
+    /* =====================================================
+       CART COUNT
+    ===================================================== */
 
-    console.error(
-      "Quantity update error:",
-      error
-    );
+    function updateCartCount() {
 
-  }
-
-}
-
-
-/* =========================================================
-   CART COUNT
-========================================================= */
-
-function updateCartCount() {
-
-  const cartCount =
-    document.getElementById(
-      "cart-count"
-    );
+      const element =
+        document.getElementById(
+          "cart-count"
+        );
 
 
-  if (!cartCount) {
-    return;
-  }
+      if (!element) {
+        return;
+      }
 
 
-  try {
+      try {
 
-    const cart =
-      getCart();
+        const cart =
+          getCart();
 
 
-    const totalQuantity =
-      cart.reduce(
-        (total, item) =>
-          total +
-          Number(item.qty || 0),
-        0
+        const count =
+          cart.reduce(
+            (total, item) =>
+              total +
+              Number(item.qty || 0),
+            0
+          );
+
+
+        element.textContent =
+          count;
+
+      } catch (error) {
+
+        element.textContent =
+          "0";
+
+      }
+
+    }
+
+
+    /* =====================================================
+       SEARCH
+    ===================================================== */
+
+    document
+      .getElementById("search-input")
+      .addEventListener(
+        "input",
+        event => {
+
+          clearTimeout(
+            searchTimeout
+          );
+
+
+          searchTimeout =
+            setTimeout(() => {
+
+              searchTerm =
+                event.target.value.trim();
+
+
+              loadProducts();
+
+            }, 300);
+
+        }
       );
 
 
-    cartCount.textContent =
-      totalQuantity;
+    /* =====================================================
+       CATEGORY SEARCH
+    ===================================================== */
+
+    document
+      .getElementById("category-search")
+      .addEventListener(
+        "input",
+        event => {
+
+          const value =
+            event.target.value
+              .toLowerCase()
+              .trim();
 
 
-  } catch (error) {
+          document
+            .querySelectorAll(
+              ".sidebar-category"
+            )
+            .forEach(button => {
 
-    console.error(
-      "Cart count error:",
-      error
-    );
+              button.style.display =
+                button.innerText
+                  .toLowerCase()
+                  .includes(value)
+                    ? "flex"
+                    : "none";
 
-    cartCount.textContent = "0";
+            });
 
-  }
-
-}
-
-
-/* =========================================================
-   SEARCH
-========================================================= */
-
-document
-  .getElementById("search-input")
-  .addEventListener(
-    "input",
-    event => {
-
-      clearTimeout(
-        searchTimeout
+        }
       );
 
 
-      searchTimeout =
-        setTimeout(
-          () => {
+    /* =====================================================
+       WISHLIST
+    ===================================================== */
 
-            searchTerm =
-              event.target.value.trim();
+    function toggleWishlist(id) {
 
-            loadProducts();
+      const button =
+        event.currentTarget;
 
-          },
-          300
+
+      button.classList.toggle(
+        "active"
+      );
+
+
+      button.textContent =
+        button.classList.contains("active")
+          ? "♥"
+          : "♡";
+
+    }
+
+
+    /* =====================================================
+       SCROLL CATEGORY
+    ===================================================== */
+
+    function scrollToCategories() {
+
+      document
+        .getElementById(
+          "category-sidebar"
+        )
+        .scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+
+    }
+
+
+    /* =====================================================
+       SECURITY HELPERS
+    ===================================================== */
+
+    function escapeHTML(value) {
+
+      return String(value ?? "")
+        .replace(
+          /&/g,
+          "&amp;"
+        )
+        .replace(
+          /</g,
+          "&lt;"
+        )
+        .replace(
+          />/g,
+          "&gt;"
+        )
+        .replace(
+          /"/g,
+          "&quot;"
+        )
+        .replace(
+          /'/g,
+          "&#039;"
         );
 
     }
-  );
 
 
-/* =========================================================
-   INITIAL LOAD
-========================================================= */
+    function escapeAttribute(value) {
 
-loadCategories();
+      return escapeHTML(value);
 
-loadProducts();
+    }
 
-updateCartCount();
 
-</script>
+    /* =====================================================
+       INITIAL LOAD
+    ===================================================== */
+
+    loadCategories();
+
+    loadProducts();
+
+    updateCartCount();
+
+  </script>
+
+</body>
+
+</html>
