@@ -5147,3 +5147,182 @@ table.product-table tr.cat-row td{
 
 }
 
+
+/* =====================================================
+   FINAL LAPTOP PRODUCTS LAYOUT
+   769px - 1199px ONLY
+===================================================== */
+
+@media (min-width: 769px) and (max-width: 1199px) {
+
+  /* Full products area */
+  .shop-main {
+    display: grid !important;
+    grid-template-columns: 200px minmax(0, 1fr) !important;
+    gap: 20px !important;
+    width: 100% !important;
+    max-width: 1400px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Sidebar */
+  .shop-sidebar {
+    width: 200px !important;
+    min-width: 200px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Product area */
+  .shop-products {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    box-sizing: border-box !important;
+  }
+
+  /* ================= CARD VIEW ================= */
+
+  .product-category-section {
+    width: 100% !important;
+    max-width: none !important;
+    box-sizing: border-box !important;
+  }
+
+  .product-card-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 14px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .mano-product-card {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    box-sizing: border-box !important;
+  }
+
+  .mano-product-image {
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .mano-product-image img {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 155px !important;
+    object-fit: contain !important;
+  }
+
+  .mano-product-details {
+    width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* ================= TABLE VIEW ================= */
+
+  .table-category-section {
+    width: 100% !important;
+    max-width: none !important;
+    box-sizing: border-box !important;
+  }
+
+  .product-table-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    box-sizing: border-box !important;
+  }
+
+  .mano-product-table {
+    width: 100% !important;
+    min-width: 700px !important;
+    max-width: none !important;
+    table-layout: auto !important;
+    box-sizing: border-box !important;
+  }
+
+  .mano-product-table th,
+  .mano-product-table td {
+    padding: 10px 9px !important;
+    font-size: 12px !important;
+    white-space: nowrap !important;
+    vertical-align: middle !important;
+  }
+
+  .mano-product-table th:first-child,
+  .mano-product-table td:first-child {
+    width: 75px !important;
+  }
+
+  .mano-product-table img {
+    width: 55px !important;
+    height: 55px !important;
+    object-fit: contain !important;
+  }
+
+}
+
+
+/* =====================================================
+   DESKTOP 1200px+
+===================================================== */
+
+@media (min-width: 1200px) {
+
+  .shop-main {
+    display: grid !important;
+    grid-template-columns: 220px minmax(0, 1fr) !important;
+    gap: 25px !important;
+    width: 100% !important;
+    max-width: 1400px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+  }
+
+  .shop-sidebar {
+    width: 220px !important;
+    min-width: 220px !important;
+  }
+
+  .shop-products {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .product-card-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 18px !important;
+    width: 100% !important;
+  }
+
+  .mano-product-card {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .mano-product-image img {
+    width: 100% !important;
+    height: 175px !important;
+    object-fit: contain !important;
+  }
+
+  .product-table-wrapper {
+    width: 100% !important;
+    overflow-x: auto !important;
+  }
+
+  .mano-product-table {
+    width: 100% !important;
+    min-width: 760px !important;
+    table-layout: auto !important;
+  }
+
+}
+
