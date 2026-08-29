@@ -5480,3 +5480,126 @@ table.product-table tr.cat-row td{
 
 }
 
+/* =========================================================
+   SHOP ALL - FINAL LAPTOP FIX
+========================================================= */
+
+/* DEFAULT - NO CATEGORY FILTER */
+@media (min-width: 769px) {
+
+  .shop-main {
+    display: block !important;
+    width: 100% !important;
+    max-width: 1400px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+  }
+
+  .shop-products {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  .catalog-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* CARD */
+  .product-card-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    width: 100% !important;
+    gap: 18px !important;
+    box-sizing: border-box !important;
+  }
+
+  .mano-product-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* TABLE */
+  .product-table-wrapper {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    box-sizing: border-box !important;
+  }
+
+  .mano-product-table {
+    width: 100% !important;
+    min-width: 760px !important;
+    box-sizing: border-box !important;
+  }
+
+}
+
+
+/* =========================================================
+   FILTER OPEN - LAPTOP
+========================================================= */
+
+@media (min-width: 769px) {
+
+  .shop-main.category-filter-open {
+    display: grid !important;
+    grid-template-columns: 220px minmax(0, 1fr) !important;
+    gap: 24px !important;
+    width: 100% !important;
+    max-width: 1400px !important;
+  }
+
+  .shop-main.category-filter-open .shop-sidebar {
+    display: block !important;
+    width: 220px !important;
+    min-width: 220px !important;
+  }
+
+  .shop-main.category-filter-open .shop-products {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+}
+
+
+/* =========================================================
+   PHONE
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .shop-main,
+  .shop-main.category-filter-open {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .shop-products {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .product-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    width: 100% !important;
+    gap: 10px !important;
+  }
+
+  .product-table-wrapper {
+    width: 100% !important;
+    overflow-x: auto !important;
+  }
+
+}
