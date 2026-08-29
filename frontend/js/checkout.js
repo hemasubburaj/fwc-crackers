@@ -303,46 +303,111 @@ document.addEventListener(
 
     function updateMinimumOrder() {
 
-      const minimum =
-        getMinimumOrder();
-
-      const subtotal =
-        getCartTotal();
+      const minimum = getMinimumOrder();
+      const subtotal = getCartTotal();
 
       if (!minimumBox) return;
 
       if (!minimum) {
 
-        minimumBox.textContent =
-          "Select your state to see the minimum order amount.";
+        minimumBox.innerHTML = `
+          <div class="shipping-road">
+            <div class="shipping-bus">🚌</div>
+            <div class="shipping-pin">📍</div>
+          </div>
 
-        minimumBox.style.color = "";
+          <div class="minimum-order-content">
+            Select your state to see the minimum order amount.
+          </div>
+        `;
 
+        minimumBox.className = "minimum-order-box";
         return;
       }
 
-      const remaining =
-        Math.max(0, minimum - subtotal);
+      const remaining = Math.max(0, minimum - subtotal);
 
       if (remaining > 0) {
 
-        minimumBox.innerHTML =
-          `⚠️ Minimum order: ₹${minimum.toLocaleString("en-IN")}<br>
-           Add ₹${remaining.toLocaleString("en-IN")} more to continue.`;
+        minimumBox.innerHTML = `
+          <div class="shipping-road">
 
-        minimumBox.style.color = "#b45309";
+            <div class="shipping-bus animated-bus">
+              🚌
+            </div>
+
+            <div class="shipping-line"></div>
+
+            <div class="shipping-pin">
+              ��
+            </div>
+
+          </div>
+
+          <div class="minimum-order-content">
+
+            <strong>
+              ${stateSelect.value}
+            </strong>
+
+            <div class="minimum-price">
+              ₹${minimum.toLocaleString("en-IN")}
+            </div>
+
+            <div class="minimum-warning">
+              Add ₹${remaining.toLocaleString("en-IN")} more to continue
+            </div>
+
+          </div>
+        `;
+
+        minimumBox.className =
+          "minimum-order-box minimum-pending";
 
       } else {
 
-        minimumBox.innerHTML =
-          `✅ Minimum order ₹${minimum.toLocaleString("en-IN")} reached. You can confirm your booking.`;
+        minimumBox.innerHTML = `
+          <div class="shipping-road">
 
-        minimumBox.style.color = "#15803d";
+            <div class="shipping-bus animated-bus">
+              🚌
+            </div>
+
+            <div class="shipping-line"></div>
+
+            <div class="shipping-pin">
+              📍
+            </div>
+
+          </div>
+
+          <div class="minimum-order-content">
+
+            <strong>
+              ${stateSelect.value}
+            </strong>
+
+            <div class="minimum-price">
+              ₹${minimum.toLocaleString("en-IN")}
+            </div>
+
+            <div class="minimum-success">
+              ✅ Minimum order reached
+            </div>
+
+            <div class="minimum-ready">
+              You can confirm your booking
+            </div>
+
+          </div>
+        `;
+
+        minimumBox.className =
+          "minimum-order-box minimum-ready-box";
 
       }
 
     }
-
 
     function populateDistricts() {
 

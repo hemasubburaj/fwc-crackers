@@ -240,20 +240,120 @@
 
     <!-- ================= MINIMUM ORDER ================= -->
 
-<div
-  id="minimum-order-box"
-  style="
-    margin:15px 0;
-    padding:14px 16px;
-    border-radius:12px;
-    background:#fff7ed;
-    border:1px solid #fed7aa;
-    font-weight:700;
-    text-align:center;
-  "
->
-  Select your state to see the minimum order amount.
+<div id="minimum-order-box" class="minimum-order-box">
+  <div class="shipping-road">
+    <div class="shipping-bus">🚌</div>
+  </div>
+
+  <div class="minimum-order-content">
+    <div class="minimum-order-pin">📍</div>
+    <div id="minimum-order-text">
+      Select your state to see the minimum order amount.
+    </div>
+  </div>
 </div>
+
+<style>
+.minimum-order-box {
+  margin: 18px 0;
+  padding: 16px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #fff7ed, #fff);
+  border: 1px solid #fed7aa;
+  overflow: hidden;
+  position: relative;
+  font-weight: 700;
+}
+
+.shipping-road {
+  height: 42px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 3px dashed #cbd5e1;
+}
+
+.shipping-bus {
+  position: absolute;
+  left: -70px;
+  bottom: 2px;
+  font-size: 34px;
+  line-height: 1;
+  animation: busDrive 4s linear infinite;
+}
+
+@keyframes busDrive {
+  0% {
+    left: -70px;
+    transform: translateY(0);
+  }
+
+  25% {
+    transform: translateY(-2px);
+  }
+
+  50% {
+    transform: translateY(0);
+  }
+
+  75% {
+    transform: translateY(-2px);
+  }
+
+  100% {
+    left: calc(100% + 70px);
+    transform: translateY(0);
+  }
+}
+
+.minimum-order-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+  text-align: center;
+  font-size: 15px;
+}
+
+.minimum-order-pin {
+  font-size: 20px;
+}
+
+#minimum-order-box.minimum-active {
+  animation: minimumPulse 0.5s ease;
+}
+
+@keyframes minimumPulse {
+  0% {
+    transform: scale(0.98);
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .minimum-order-box {
+    margin: 14px 0;
+    padding: 12px;
+  }
+
+  .shipping-road {
+    height: 38px;
+  }
+
+  .shipping-bus {
+    font-size: 30px;
+  }
+
+  .minimum-order-content {
+    font-size: 13px;
+  }
+}
+</style>
 
 
    <!-- ================= SUMMARY ================= -->

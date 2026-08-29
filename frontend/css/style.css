@@ -5326,3 +5326,157 @@ table.product-table tr.cat-row td{
 
 }
 
+
+/* =====================================================
+   MINIMUM ORDER - ANIMATED BUS
+===================================================== */
+
+.minimum-order-box {
+  margin: 15px 0;
+  padding: 18px;
+  border-radius: 14px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  text-align: center;
+  overflow: hidden;
+}
+
+.shipping-road {
+  position: relative;
+  width: 100%;
+  height: 48px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.shipping-line {
+  position: absolute;
+  left: 45px;
+  right: 45px;
+  top: 25px;
+  height: 3px;
+  border-top: 3px dashed #f59e0b;
+}
+
+.shipping-bus {
+  position: relative;
+  z-index: 2;
+  font-size: 32px;
+  background: #fff7ed;
+  padding: 0 5px;
+}
+
+.shipping-pin {
+  position: relative;
+  z-index: 2;
+  font-size: 27px;
+  background: #fff7ed;
+  padding: 0 5px;
+}
+
+.animated-bus {
+  animation: busMove 2.5s ease-in-out infinite;
+}
+
+@keyframes busMove {
+
+  0% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(calc(100% - 70px));
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+
+}
+
+.minimum-order-content {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.minimum-price {
+  margin-top: 4px;
+  font-size: 24px;
+  font-weight: 900;
+  color: #d71920;
+}
+
+.minimum-warning {
+  margin-top: 4px;
+  color: #b45309;
+}
+
+.minimum-success {
+  margin-top: 4px;
+  color: #15803d;
+  font-weight: 900;
+}
+
+.minimum-ready {
+  margin-top: 3px;
+  color: #166534;
+  font-size: 13px;
+}
+
+/* Laptop / desktop */
+
+@media (min-width: 769px) {
+
+  .minimum-order-box {
+    max-width: 100%;
+  }
+
+  .shipping-road {
+    height: 55px;
+  }
+
+  .shipping-bus {
+    font-size: 36px;
+  }
+
+  .shipping-pin {
+    font-size: 30px;
+  }
+
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+
+  .minimum-order-box {
+    margin: 12px 0;
+    padding: 14px;
+  }
+
+  .shipping-road {
+    height: 42px;
+  }
+
+  .shipping-line {
+    left: 38px;
+    right: 38px;
+  }
+
+  .shipping-bus {
+    font-size: 28px;
+  }
+
+  .shipping-pin {
+    font-size: 24px;
+  }
+
+  .minimum-price {
+    font-size: 21px;
+  }
+
+}
+
