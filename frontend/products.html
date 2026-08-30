@@ -432,15 +432,11 @@
         const normalizedCategory =
           String(category || "").trim().toLowerCase();
 
-        const categoryProducts =
-          allProducts.filter(product =>
+        const categoryProduct =
+          allProducts.find(product =>
             String(product.category || "")
               .trim()
-              .toLowerCase() === normalizedCategory
-          );
-
-        const categoryProduct =
-          categoryProducts.find(product =>
+              .toLowerCase() === normalizedCategory &&
             product.image &&
             String(product.image).trim() !== ""
           );
@@ -483,7 +479,9 @@
                   `
                   : `
                     <span class="chip-category-icon">
-                      🎆
+                      ${
+                        getCategoryStyle(category).icon
+                      }
                     </span>
                   `
               }
