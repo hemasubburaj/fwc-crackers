@@ -419,52 +419,124 @@
         document.getElementById("sidebar-categories");
 
 
-      /* CHIPS */
+      /* =====================================================
+         FIND IMAGE FOR EACH CATEGORY
+      ===================================================== */
+
+      function getCategoryImage(category) {
+
+        if (category === "All") {
+
+          return "🎆";
+
+        }
+
+        const categoryProduct =
+          allProducts.find(product =>
+            String(product.category || "").trim() ===
+            String(category).trim()
+          );
+
+        return categoryProduct?.image || "";
+
+      }
+
+
+      /* =====================================================
+         CATEGORY CHIPS
+      ===================================================== */
 
       chipContainer.innerHTML =
-        categories.map(category => `
+        categories.map(category => {
 
-          <button
-            type="button"
-            class="chip ${
-              category === activeCategory
-                ? "active"
-                : ""
-            }"
-            onclick="selectCategory('${escapeAttribute(category)}')"
-          >
-            ${escapeHTML(category)}
-          </button>
+          const image = getCategoryImage(category);
 
-        `).join("");
+          return `
+
+            <button
+              type="button"
+              class="chip ${
+                category === activeCategory
+                  ? "active"
+                  : ""
+              }"
+              onclick="selectCategory('${escapeAttribute(category)}')"
+            >
+
+              ${
+                image && category !== "All"
+                  ? `
+                    <img
+                      src="${escapeAttribute(image)}"
+                      class="chip-category-image"
+                      alt=""
+                      loading="lazy"
+                    >
+                  `
+                  : `
+                    <span class="chip-category-icon">
+                      🎆
+                    </span>
+                  `
+              }
+
+              <span>
+                ${escapeHTML(category)}
+              </span>
+
+            </button>
+
+          `;
+
+        }).join("");
 
 
-      /* SIDEBAR */
+      /* =====================================================
+         SIDEBAR CATEGORIES
+      ===================================================== */
 
       sidebar.innerHTML =
-        categories.map(category => `
+        categories.map(category => {
 
-          <button
-            type="button"
-            class="sidebar-category ${
-              category === activeCategory
-                ? "active"
-                : ""
-            }"
-            onclick="selectCategory('${escapeAttribute(category)}')"
-          >
+          const image = getCategoryImage(category);
 
-            <span class="category-icon">
-              ${category === "All" ? "🎆" : "🎇"}
-            </span>
+          return `
 
-            <span>
-              ${escapeHTML(category)}
-            </span>
+            <button
+              type="button"
+              class="sidebar-category ${
+                category === activeCategory
+                  ? "active"
+                  : ""
+              }"
+              onclick="selectCategory('${escapeAttribute(category)}')"
+            >
 
-          </button>
+              <span class="category-icon">
 
-        `).join("");
+                ${
+                  image && category !== "All"
+                    ? `
+                      <img
+                        src="${escapeAttribute(image)}"
+                        alt=""
+                        loading="lazy"
+                      >
+                    `
+                    : "🎆"
+                }
+
+              </span>
+
+              <span class="sidebar-category-name">
+                ${escapeHTML(category)}
+              </span>
+
+            </button>
+
+          `;
+
+        }).join("");
 
     }
 
