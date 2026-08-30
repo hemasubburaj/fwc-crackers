@@ -124,71 +124,22 @@
       return;
     }
 
-    container.innerHTML = cart.map(item => {
-      const image = item.image || "";
-
-      const imageHTML = image
-        ? `<img
-            src="${image}"
-            alt="${item.name || "Product"}"
-            class="cart-product-image"
-            loading="lazy"
-            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-          >
-          <div class="cart-item-fallback" style="display:none;">🎆</div>`
-        : `<div class="cart-item-fallback">🎆</div>`;
-
-      return `
-        <div class="cart-item">
-
-          <div class="cart-product-image-wrap">
-            ${imageHTML}
-          </div>
-
-          <div class="cart-product-info">
-            <div class="cart-product-name">
-              ${item.name || "Product"}
-            </div>
-
-            ${
-              item.productCode
-                ? `<div class="cart-product-code">
-                    Code: ${item.productCode}
-                  </div>`
-                : ""
-            }
-
-            <div class="cart-product-price">
-              ₹${Number(item.price || 0).toLocaleString("en-IN")} each
-            </div>
-          </div>
-
-          <div class="qty-control">
-            <button
-              onclick="changeQty('${item.productId}', ${item.qty - 1})"
-            >−</button>
-
-            <span>${item.qty}</span>
-
-            <button
-              onclick="changeQty('${item.productId}', ${item.qty + 1})"
-            >+</button>
-          </div>
-
-          <div class="cart-product-total">
-            ₹${(Number(item.price || 0) * Number(item.qty || 0)).toLocaleString("en-IN")}
-          </div>
-
-          <button
-            class="remove-btn"
-            onclick="removeItem('${item.productId}')"
-          >
-            Remove
-          </button>
-
+    container.innerHTML = cart.map(item => `
+      <div class="cart-item">
+        <div class="cart-item-icon">🎆</div>
+        <div>
+          <div style="font-weight:600;">${item.name}</div>
+          <div style="color:var(--ink-soft); font-size:0.85rem;">₹${item.price} each</div>
         </div>
-      `;
-    }).join('');
+        <div class="qty-control">
+          <button onclick="changeQty('${item.productId}', ${item.qty - 1})">−</button>
+          <span>${item.qty}</span>
+          <button onclick="changeQty('${item.productId}', ${item.qty + 1})">+</button>
+        </div>
+        <div style="font-weight:700; color:var(--ember);">₹${item.price * item.qty}</div>
+        <button class="remove-btn" onclick="removeItem('${item.productId}')">Remove</button>
+      </div>
+    `).join('');
 
     const subtotal = getCartTotal();
     const shipping = subtotal >= 2000 || subtotal === 0 ? 0 : 150;
@@ -211,6 +162,11 @@
   }
 
   render();
+  getCart()
+addToCart(product)
+updateQty(productId, qty)
+
+
 
 </script>
 
