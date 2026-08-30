@@ -1332,29 +1332,46 @@
 
                 ? `
 
-                  <div class="table-quantity">
+                  <div class="table-cart-controls">
 
-                    <button
-                      onclick="updateProductQuantity(
-                        '${id}',
-                        ${quantity - 1}
-                      )"
+                    <div class="table-quantity">
+
+                      <button
+                        type="button"
+                        onclick="updateProductQuantity(
+                          '${id}',
+                          ${quantity - 1}
+                        )"
+                      >
+                        −
+                      </button>
+
+                      <span>
+                        ${quantity}
+                      </span>
+
+                      <button
+                        type="button"
+                        onclick="updateProductQuantity(
+                          '${id}',
+                          ${quantity + 1}
+                        )"
+                      >
+                        +
+                      </button>
+
+                    </div>
+
+                    <strong class="mobile-product-total">
+                      ₹${total.toFixed(2)}
+                    </strong>
+
+                    <a
+                      href="cart.html"
+                      class="table-checkout-btn"
                     >
-                      −
-                    </button>
-
-                    <span>
-                      ${quantity}
-                    </span>
-
-                    <button
-                      onclick="updateProductQuantity(
-                        '${id}',
-                        ${quantity + 1}
-                      )"
-                    >
-                      +
-                    </button>
+                      Checkout
+                    </a>
 
                   </div>
 
@@ -1441,14 +1458,27 @@
           return;
         }
 
-
         addToCart(product);
-
 
         renderCatalog();
 
-
         updateCartCount();
+
+        /* Scroll cart button into view after adding */
+        setTimeout(() => {
+
+          const cartLink =
+            document.querySelector(".cart-link");
+
+          if (cartLink) {
+            cartLink.classList.add("cart-added");
+
+            setTimeout(() => {
+              cartLink.classList.remove("cart-added");
+            }, 700);
+          }
+
+        }, 50);
 
       } catch (error) {
 

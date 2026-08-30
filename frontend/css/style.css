@@ -7247,3 +7247,119 @@ body > :not(header):not(script):not(style) {
   /* keep normal page elements */
 }
 
+
+/* =========================================================
+   TABLE CART CONTROLS
+========================================================= */
+
+.table-cart-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.mobile-product-total {
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.table-checkout-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 7px 14px;
+  border-radius: 9px;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 0.78rem;
+  white-space: nowrap;
+  background: var(--primary);
+  color: #fff;
+}
+
+@media (max-width: 600px) {
+
+  .table-cart-controls {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .table-cart-controls .table-quantity {
+    flex-shrink: 0;
+  }
+
+  .mobile-product-total {
+    font-size: 0.88rem;
+  }
+
+  .table-checkout-btn {
+    min-height: 36px;
+    padding: 7px 12px;
+    font-size: 0.75rem;
+  }
+
+}
+
+
+/* =========================================================
+   TABLE CART CONTROLS
+========================================================= */
+
+.table-cart-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.mobile-product-total {
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.table-checkout-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 7px 14px;
+  border-radius: 9px;
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 0.78rem;
+  white-space: nowrap;
+  background: var(--primary);
+  color: #fff;
+}
+
+@media (max-width: 600px) {
+
+  .table-cart-controls {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .table-cart-controls .table-quantity {
+    flex-shrink: 0;
+  }
+
+  .mobile-product-total {
+    font-size: 0.88rem;
+  }
+
+  .table-checkout-btn {
+    min-height: 36px;
+    padding: 7px 12px;
+    font-size: 0.75rem;
+  }
+
+}
+
