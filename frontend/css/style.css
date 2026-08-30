@@ -5966,3 +5966,152 @@ table.product-table tr.cat-row td{
   }
 }
 
+
+/* =====================================================
+   MOBILE LIST VIEW (table → row list, like app UI)
+===================================================== */
+
+@media (max-width: 768px) {
+
+  .product-table-wrapper {
+    overflow-x: visible;
+    border: none;
+    border-radius: 0;
+  }
+
+  .mano-product-table {
+    width: 100%;
+    min-width: 0;
+    display: block;
+  }
+
+  .mano-product-table thead {
+    display: none;
+  }
+
+  .mano-product-table tbody {
+    display: block;
+  }
+
+  /* Category divider row stays as a banner */
+  .mano-product-table tr.table-category-row td {
+    display: block;
+    background: var(--secondary);
+    color: #111;
+    font-weight: 900;
+    text-align: center;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: .3px;
+  }
+
+  /* Product row becomes a flex card */
+  .mano-product-table tr.table-product-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 8px;
+    border-bottom: 1px solid var(--line);
+    background: #fff;
+  }
+
+  .mano-product-table tr.table-product-row td {
+    display: block;
+    border: none;
+    padding: 0;
+  }
+
+  /* image cell */
+  .table-image-cell {
+    flex-shrink: 0;
+    width: 56px;
+    height: 64px;
+  }
+
+  .table-image-cell img {
+    width: 56px;
+    height: 64px;
+    border-radius: 6px;
+    object-fit: cover;
+    border: 1px solid var(--line);
+  }
+
+  /* name + price + unit cell */
+  .table-name-cell {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .table-name-cell strong {
+    font-size: 14.5px;
+    font-weight: 700;
+    line-height: 1.3;
+    display: block;
+    margin-bottom: 4px;
+    white-space: normal;
+  }
+
+  .table-offer-price {
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--green);
+    margin-right: 6px;
+  }
+
+  .table-mrp {
+    font-size: 11.5px;
+  }
+
+  .table-unit {
+    margin-top: 4px;
+  }
+
+  .table-total {
+    display: block;
+    margin-top: 5px;
+    font-size: 12px;
+    font-weight: 700;
+    background: #e8f7ee;
+    color: var(--green);
+    padding: 3px 9px;
+    border-radius: 20px;
+    width: fit-content;
+  }
+
+  /* action cell: add button / qty stepper */
+  .table-action-cell {
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+
+  .table-add-btn {
+    min-width: 58px;
+    padding: 9px 16px;
+    font-size: 13px;
+    border-radius: 8px;
+  }
+
+  .table-quantity {
+    background: var(--primary);
+    border-radius: 8px;
+    padding: 3px;
+    height: 32px;
+  }
+
+  .table-quantity button {
+    width: 26px;
+    height: 26px;
+    font-size: 15px;
+    background: #fff;
+    color: var(--primary);
+  }
+
+  .table-quantity span {
+    color: #fff;
+    font-size: 13px;
+    min-width: 22px;
+  }
+}
+
