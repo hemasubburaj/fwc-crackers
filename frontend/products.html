@@ -426,15 +426,23 @@
       function getCategoryImage(category) {
 
         if (category === "All") {
-
-          return "🎆";
-
+          return "";
         }
 
+        const normalizedCategory =
+          String(category || "").trim().toLowerCase();
+
+        const categoryProducts =
+          allProducts.filter(product =>
+            String(product.category || "")
+              .trim()
+              .toLowerCase() === normalizedCategory
+          );
+
         const categoryProduct =
-          allProducts.find(product =>
-            String(product.category || "").trim() ===
-            String(category).trim()
+          categoryProducts.find(product =>
+            product.image &&
+            String(product.image).trim() !== ""
           );
 
         return categoryProduct?.image || "";

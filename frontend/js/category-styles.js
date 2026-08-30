@@ -15,6 +15,7 @@ const CATEGORY_STYLES = {
   "Matches":            { icon: "🔥", from: "#C43B26", to: "#E8654A" },
   "Sparklers":          { icon: "✨", from: "#F2CB6B", to: "#F2B84B" },
   "New Arrivals":       { icon: "🎁", from: "#D9A431", to: "#7A2A17" },
+  "Pendulum":            { icon: "🔴", from: "#C43B26", to: "#7A2A17" },
 };
 
 const DEFAULT_CATEGORY_STYLE = { icon: "🎆", from: "#D9A431", to: "#C43B26" };
