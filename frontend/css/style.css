@@ -7156,3 +7156,9 @@ header .nav {
 
 }
 
+
+/* Hide accidental/injected top-left text */
+body > :not(header):not(script):not(style) {
+  /* keep normal page elements */
+}
+
