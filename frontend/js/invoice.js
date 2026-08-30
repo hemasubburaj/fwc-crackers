@@ -59,7 +59,7 @@ function generateBillHTML(order) {
       <div class="brand-header">
         <h1>familycrackersworld</h1>
         <div class="tagline">Sivakasi's Finest Fireworks</div>
-        <div class="contact-line">www.familycrackersworld.com &nbsp;|&nbsp; +91 63836 59214 &nbsp;|&nbsp; nivasramasamy27@gmail.com</div>
+        <div class="contact-line">+91 89038 70348 &nbsp;|&nbsp; +91 96989 86444 &nbsp;|&nbsp; sathiyasankar29@gmail.com</div>
       </div>
 
       <div class="bill-title">ESTIMATE BILL</div>
@@ -68,10 +68,10 @@ function generateBillHTML(order) {
         <div class="party-box">
           <h3>From</h3>
           <strong>familycrackersworld</strong><br/>
-          Sivakasi, Tamil Nadu<br/>
-          +91 63836 59214<br/>
-          nivasramasamy27@gmail.com<br/>
-          www.familycrackersworld.com
+          Anil Kumar Eye Hospital Opp.,<br/>
+          Sattur Road, Sivakasi<br/>
+          +91 89038 70348 / +91 96989 86444<br/>
+          sathiyasankar29@gmail.com
         </div>
         <div class="party-box">
           <h3>Bill To</h3>
