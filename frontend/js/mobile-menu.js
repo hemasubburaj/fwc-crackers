@@ -1,143 +1,67 @@
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
 
   const menuButton =
     document.querySelector(".mobile-menu-btn");
 
-  const nav =
+  const navLinks =
     document.querySelector(".nav-links");
 
-  if (!menuButton || !nav) return;
+  if (!menuButton || !navLinks) return;
 
+  menuButton.addEventListener("click", function (event) {
 
-  /* Create overlay */
+    event.stopPropagation();
 
-  let overlay =
-    document.querySelector(".mobile-menu-overlay");
-
-  if (!overlay) {
-
-    overlay =
-      document.createElement("div");
-
-    overlay.className =
-      "mobile-menu-overlay";
-
-    document.body.appendChild(overlay);
-
-  }
-
-
-  function openMenu() {
-
-    nav.classList.add("mobile-open");
-
-    overlay.classList.add(
-      "mobile-overlay-open"
-    );
-
-    document.body.classList.add(
-      "mobile-menu-active"
-    );
-
-    menuButton.textContent = "✕";
+    const isOpen =
+      navLinks.classList.toggle("active");
 
     menuButton.setAttribute(
       "aria-expanded",
-      "true"
+      String(isOpen)
     );
 
-  }
+    menuButton.textContent =
+      isOpen ? "✕" : "☰";
 
+  });
 
-  function closeMenu() {
+  document.addEventListener("click", function (event) {
 
-    nav.classList.remove("mobile-open");
+    if (
+      !navLinks.contains(event.target) &&
+      !menuButton.contains(event.target)
+    ) {
 
-    overlay.classList.remove(
-      "mobile-overlay-open"
-    );
+      navLinks.classList.remove("active");
 
-    document.body.classList.remove(
-      "mobile-menu-active"
-    );
-
-    menuButton.textContent = "☰";
-
-    menuButton.setAttribute(
-      "aria-expanded",
-      "false"
-    );
-
-  }
-
-
-  menuButton.addEventListener(
-    "click",
-    () => {
-
-      if (
-        nav.classList.contains(
-          "mobile-open"
-        )
-      ) {
-        closeMenu();
-      } else {
-        openMenu();
-      }
-
-    }
-  );
-
-
-  /* Click outside */
-
-  overlay.addEventListener(
-    "click",
-    closeMenu
-  );
-
-
-  /* Click menu item */
-
-  nav.querySelectorAll("a").forEach(
-    link => {
-
-      link.addEventListener(
-        "click",
-        closeMenu
+      menuButton.setAttribute(
+        "aria-expanded",
+        "false"
       );
 
-    }
-  );
-
-
-  /* ESC */
-
-  document.addEventListener(
-    "keydown",
-    event => {
-
-      if (event.key === "Escape") {
-        closeMenu();
-      }
+      menuButton.textContent = "☰";
 
     }
-  );
 
+  });
 
-  /* Resize */
+  navLinks.querySelectorAll("a").forEach(function (link) {
 
-  window.addEventListener(
-    "resize",
-    () => {
+    link.addEventListener("click", function () {
 
-      if (window.innerWidth > 768) {
-        closeMenu();
-      }
+      navLinks.classList.remove("active");
 
-    }
-  );
+      menuButton.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+      menuButton.textContent = "☰";
+
+    });
+
+  });
 
 });
 

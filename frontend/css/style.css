@@ -5838,3 +5838,131 @@ table.product-table tr.cat-row td{
 
 }
 
+
+/* =====================================================
+   FINAL MOBILE MENU FIX
+===================================================== */
+
+.mobile-menu-btn {
+  display: none;
+}
+
+@media (max-width: 768px) {
+
+  header {
+    position: relative;
+    z-index: 9999;
+  }
+
+  header .nav {
+    position: relative;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 10px !important;
+    min-height: 64px;
+  }
+
+  header .logo {
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+    font-size: 20px;
+  }
+
+  .mobile-menu-btn {
+    display: flex !important;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 0;
+    border-radius: 10px;
+    background: transparent;
+    font-size: 28px;
+    line-height: 1;
+    cursor: pointer;
+    color: inherit;
+    position: relative;
+    z-index: 10001;
+  }
+
+  header .cart-link {
+    flex-shrink: 0;
+    white-space: nowrap;
+    font-size: 14px;
+  }
+
+  header .nav-links {
+    display: none !important;
+    position: absolute !important;
+    top: calc(100% + 8px) !important;
+    right: 0 !important;
+    left: auto !important;
+    width: 210px !important;
+    max-width: calc(100vw - 30px) !important;
+    padding: 10px !important;
+    margin: 0 !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 4px !important;
+    background: #ffffff !important;
+    border: 1px solid rgba(0,0,0,0.08) !important;
+    border-radius: 14px !important;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.16) !important;
+    z-index: 10000 !important;
+  }
+
+  header .nav-links.active {
+    display: flex !important;
+  }
+
+  header .nav-links a {
+    display: flex !important;
+    width: 100% !important;
+    min-height: 44px;
+    align-items: center !important;
+    padding: 10px 14px !important;
+    box-sizing: border-box;
+    border-radius: 9px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 700;
+    color: #222 !important;
+    background: transparent;
+  }
+
+  header .nav-links a:hover,
+  header .nav-links a.active {
+    background: #fff1f1 !important;
+    color: #d71920 !important;
+  }
+}
+
+@media (max-width: 420px) {
+
+  header .nav {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+  }
+
+  header .logo {
+    font-size: 17px;
+  }
+
+  header .cart-link {
+    font-size: 12px;
+  }
+
+  .mobile-menu-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 25px;
+  }
+
+  header .nav-links {
+    width: 190px !important;
+  }
+}
+
