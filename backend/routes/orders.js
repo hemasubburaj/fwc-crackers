@@ -257,6 +257,47 @@ router.get("/:orderId", async (req, res) => {
   }
 });
 
+
+/* =====================================================
+   DELETE ORDER
+===================================================== */
+
+router.delete("/:id", async (req, res) => {
+  try {
+    const order = await Order.findOne({
+      orderId: req.params.id.trim(),
+    });
+
+    if (!order) {
+      return res.status(404).json({
+        success: false,
+        message: "Order not found",
+      });
+    }
+
+    await Order.deleteOne({
+      _id: order._id,
+    });
+
+    console.log("Order deleted:", order.orderId);
+
+    res.json({
+      success: true,
+      message: "Order deleted successfully",
+      orderId: order.orderId,
+    });
+
+  } catch (error) {
+    console.error("Delete order error:", error);
+
+    res.status(500).json({
+      success: false,
+      message: "Could not delete order",
+      error: error.message,
+    });
+  }
+});
+
 router.put("/:id/status", async (req, res) => {
   try {
     const { orderStatus } = req.body;

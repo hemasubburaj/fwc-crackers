@@ -1515,6 +1515,24 @@
                     🧾 Bill
                   </button>
 
+                  <button
+                    type="button"
+                    style="
+                      padding:6px 12px;
+                      font-size:0.78rem;
+                      white-space:nowrap;
+                      border:1px solid #dc2626;
+                      background:#dc2626;
+                      color:#fff;
+                      border-radius:6px;
+                      cursor:pointer;
+                      margin-left:6px;
+                    "
+                    onclick="deleteOrder('${order.orderId}')"
+                  >
+                    🗑️ Delete
+                  </button>
+
                 </td>
 
               </tr>
@@ -1526,6 +1544,63 @@
         </table>
 
       `;
+
+    }
+
+
+    async function deleteOrder(orderId) {
+
+      if (!orderId) {
+        alert("Invalid order ID");
+        return;
+      }
+
+      if (!confirm(
+        "Are you sure you want to delete order " +
+        orderId +
+        "?\\n\\nThis action cannot be undone."
+      )) {
+        return;
+      }
+
+      try {
+
+        const response = await fetch(
+          `${API_BASE}/orders/${encodeURIComponent(orderId)}`,
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("adminToken") || ""}`
+            }
+          }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok || !data.success) {
+          throw new Error(
+            data.message || "Could not delete order"
+          );
+        }
+
+        alert("Order " + orderId + " deleted successfully.");
+
+        allOrders = allOrders.filter(
+          order => order.orderId !== orderId
+        );
+
+        renderOrdersTable();
+
+      } catch (error) {
+
+        console.error("Delete order error:", error);
+
+        alert(
+          error.message ||
+          "Failed to delete order"
+        );
+
+      }
 
     }
 
