@@ -5682,3 +5682,159 @@ table.product-table tr.cat-row td{
   }
 
 }
+/* =====================================================
+   MOBILE SIDE MENU
+===================================================== */
+
+.mobile-menu-btn {
+  display: none;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-size: 28px;
+  font-weight: 900;
+  cursor: pointer;
+  padding: 6px;
+  line-height: 1;
+  z-index: 10002;
+}
+
+
+/* Dark overlay */
+
+.mobile-menu-overlay {
+  display: none;
+}
+
+
+/* =====================================================
+   MOBILE ONLY
+===================================================== */
+
+@media (max-width: 768px) {
+
+  .mobile-menu-btn {
+    display: block !important;
+    margin-left: auto;
+  }
+
+
+  .nav {
+    position: relative;
+  }
+
+
+  /* SIDE MENU */
+
+  .nav-links {
+    position: fixed !important;
+
+    top: 0;
+    right: 0;
+
+    width: min(82vw, 320px);
+    height: 100vh;
+
+    margin: 0 !important;
+    padding: 90px 20px 30px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 8px !important;
+
+    background: #ffffff;
+
+    box-shadow:
+      -10px 0 35px rgba(0, 0, 0, 0.18);
+
+    transform: translateX(110%);
+    transition:
+      transform 0.3s ease;
+
+    z-index: 10001;
+
+    overflow-y: auto;
+  }
+
+
+  /* OPEN */
+
+  .nav-links.mobile-open {
+    transform: translateX(0);
+  }
+
+
+  .nav-links a {
+    display: flex !important;
+    align-items: center;
+
+    width: 100% !important;
+
+    padding: 15px 16px !important;
+
+    box-sizing: border-box;
+
+    border-radius: 10px;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    text-decoration: none;
+  }
+
+
+  .nav-links a:hover,
+  .nav-links a.active {
+    background: #f3f4f6;
+  }
+
+
+  /* OVERLAY */
+
+  .mobile-menu-overlay {
+    display: block;
+
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.45);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+      opacity 0.3s ease,
+      visibility 0.3s ease;
+
+    z-index: 10000;
+  }
+
+
+  .mobile-menu-overlay.mobile-overlay-open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+
+  /* Prevent page scroll */
+
+  body.mobile-menu-active {
+    overflow: hidden;
+  }
+
+}
+
+
+/* Desktop */
+
+@media (min-width: 769px) {
+
+  .mobile-menu-btn,
+  .mobile-menu-overlay {
+    display: none !important;
+  }
+
+}
+

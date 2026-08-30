@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", () => {
 
   const menuButton =
@@ -9,39 +10,134 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!menuButton || !nav) return;
 
 
-  menuButton.addEventListener("click", () => {
+  /* Create overlay */
 
-    const isOpen =
-      nav.classList.toggle("mobile-open");
+  let overlay =
+    document.querySelector(".mobile-menu-overlay");
+
+  if (!overlay) {
+
+    overlay =
+      document.createElement("div");
+
+    overlay.className =
+      "mobile-menu-overlay";
+
+    document.body.appendChild(overlay);
+
+  }
+
+
+  function openMenu() {
+
+    nav.classList.add("mobile-open");
+
+    overlay.classList.add(
+      "mobile-overlay-open"
+    );
+
+    document.body.classList.add(
+      "mobile-menu-active"
+    );
+
+    menuButton.textContent = "✕";
 
     menuButton.setAttribute(
       "aria-expanded",
-      isOpen ? "true" : "false"
+      "true"
     );
 
-    menuButton.textContent =
-      isOpen ? "✕" : "☰";
-
-  });
+  }
 
 
-  /* Close menu after clicking a link */
+  function closeMenu() {
 
-  nav.querySelectorAll("a").forEach(link => {
+    nav.classList.remove("mobile-open");
 
-    link.addEventListener("click", () => {
+    overlay.classList.remove(
+      "mobile-overlay-open"
+    );
 
-      nav.classList.remove("mobile-open");
+    document.body.classList.remove(
+      "mobile-menu-active"
+    );
 
-      menuButton.setAttribute(
-        "aria-expanded",
-        "false"
+    menuButton.textContent = "☰";
+
+    menuButton.setAttribute(
+      "aria-expanded",
+      "false"
+    );
+
+  }
+
+
+  menuButton.addEventListener(
+    "click",
+    () => {
+
+      if (
+        nav.classList.contains(
+          "mobile-open"
+        )
+      ) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+
+    }
+  );
+
+
+  /* Click outside */
+
+  overlay.addEventListener(
+    "click",
+    closeMenu
+  );
+
+
+  /* Click menu item */
+
+  nav.querySelectorAll("a").forEach(
+    link => {
+
+      link.addEventListener(
+        "click",
+        closeMenu
       );
 
-      menuButton.textContent = "☰";
+    }
+  );
 
-    });
 
-  });
+  /* ESC */
+
+  document.addEventListener(
+    "keydown",
+    event => {
+
+      if (event.key === "Escape") {
+        closeMenu();
+      }
+
+    }
+  );
+
+
+  /* Resize */
+
+  window.addEventListener(
+    "resize",
+    () => {
+
+      if (window.innerWidth > 768) {
+        closeMenu();
+      }
+
+    }
+  );
 
 });
+
