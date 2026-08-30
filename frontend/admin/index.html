@@ -1566,7 +1566,7 @@
       try {
 
         const response = await fetch(
-          `${API_BASE}/orders/${encodeURIComponent(orderId)}`,
+          `${API_BASE_URL}/orders/${encodeURIComponent(orderId)}`,
           {
             method: "DELETE",
             headers: {
