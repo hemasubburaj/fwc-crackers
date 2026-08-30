@@ -429,6 +429,12 @@
           return "";
         }
 
+        const style = getCategoryStyle(category);
+
+        if (style && style.image) {
+          return style.image;
+        }
+
         const normalizedCategory =
           String(category || "").trim().toLowerCase();
 
