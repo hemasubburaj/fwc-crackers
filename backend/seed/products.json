@@ -1,6 +1,6 @@
 [
   {
-    "productCode": "FWC-1",
+    "productCode": "FCW-1",
     "name": "2.75\" Kuruvi",
     "category": "One Sound Crackers",
     "content": "1 pkt",
@@ -11,7 +11,7 @@
     "description": "2.75\" Kuruvi - One Sound Crackers"
   },
   {
-    "productCode": "FWC-2",
+    "productCode": "FCW-2",
     "name": "4'' Laxmi",
     "category": "One Sound Crackers",
     "content": "1 pkt",
@@ -22,7 +22,7 @@
     "description": "4'' Laxmi - One Sound Crackers"
   },
   {
-    "productCode": "FWC-3",
+    "productCode": "FCW-3",
     "name": "4'' Deluxe Laxmi",
     "category": "One Sound Crackers",
     "content": "1 pkt",
@@ -33,7 +33,7 @@
     "description": "4'' Deluxe Laxmi - One Sound Crackers"
   },
   {
-    "productCode": "FWC-4",
+    "productCode": "FCW-4",
     "name": "4'' Super Deluxe Laxmi",
     "category": "One Sound Crackers",
     "content": "1 pkt",
@@ -44,7 +44,7 @@
     "description": "4'' Super Deluxe Laxmi - One Sound Crackers"
   },
   {
-    "productCode": "FWC-5",
+    "productCode": "FCW-5",
     "name": "5'' Laxmi",
     "category": "One Sound Crackers",
     "content": "1 pkt",
@@ -55,7 +55,7 @@
     "description": "5'' Laxmi - One Sound Crackers"
   },
   {
-    "productCode": "FWC-6",
+    "productCode": "FCW-6",
     "name": "6'' Laxmi",
     "category": "One Sound Crackers",
     "content": "1 pkt",
@@ -66,7 +66,7 @@
     "description": "6'' Laxmi - One Sound Crackers"
   },
   {
-    "productCode": "FWC-7",
+    "productCode": "FCW-7",
     "name": "4'' Gold Laxmi",
     "category": "One Sound Crackers",
     "content": "1 pkt",
@@ -77,7 +77,7 @@
     "description": "4'' Gold Laxmi - One Sound Crackers"
   },
   {
-    "productCode": "FWC-127",
+    "productCode": "FCW-127",
     "name": "3.5'' Laxmi",
     "category": "One Sound Crackers",
     "content": "1 pkt",
@@ -88,7 +88,7 @@
     "description": "3.5'' Laxmi - One Sound Crackers"
   },
   {
-    "productCode": "FWC-9",
+    "productCode": "FCW-9",
     "name": "Ground Chakkar Big",
     "category": "Ground Chakkar",
     "content": "1 box",
@@ -99,7 +99,7 @@
     "description": "Ground Chakkar Big - Ground Chakkar"
   },
   {
-    "productCode": "FWC-10",
+    "productCode": "FCW-10",
     "name": "Ground Chakkar Special",
     "category": "Ground Chakkar",
     "content": "1 box",
@@ -110,7 +110,7 @@
     "description": "Ground Chakkar Special - Ground Chakkar"
   },
   {
-    "productCode": "FWC-11",
+    "productCode": "FCW-11",
     "name": "Ground Chakkar Deluxe",
     "category": "Ground Chakkar",
     "content": "1 box",
@@ -121,7 +121,7 @@
     "description": "Ground Chakkar Deluxe - Ground Chakkar"
   },
   {
-    "productCode": "FWC-12",
+    "productCode": "FCW-12",
     "name": "Whizling Wheel (5pcs)",
     "category": "Ground Chakkar",
     "content": "1 box",
@@ -132,7 +132,7 @@
     "description": "Whizling Wheel (5pcs) - Ground Chakkar"
   },
   {
-    "productCode": "FWC-13",
+    "productCode": "FCW-13",
     "name": "Wire Chakkar",
     "category": "Ground Chakkar",
     "content": "1 box",
@@ -143,7 +143,7 @@
     "description": "Wire Chakkar - Ground Chakkar"
   },
   {
-    "productCode": "FWC-14",
+    "productCode": "FCW-14",
     "name": "Spinner Super Deluxe",
     "category": "Ground Chakkar",
     "content": "1 box",
@@ -154,7 +154,7 @@
     "description": "Spinner Super Deluxe - Ground Chakkar"
   },
   {
-    "productCode": "FWC-15",
+    "productCode": "FCW-15",
     "name": "Colour Spinner Combo",
     "category": "Ground Chakkar",
     "content": "1 box",
@@ -165,7 +165,7 @@
     "description": "Colour Spinner Combo - Ground Chakkar"
   },
   {
-    "productCode": "FWC-DW",
+    "productCode": "FCW-DW",
     "name": "Drizzling Wheel",
     "category": "Ground Chakkar",
     "content": "1 box",
@@ -176,7 +176,7 @@
     "description": "Drizzling Wheel - Ground Chakkar"
   },
   {
-    "productCode": "FWC-LW",
+    "productCode": "FCW-LW",
     "name": "Lotus Wheel",
     "category": "Ground Chakkar",
     "content": "1 box",
@@ -187,7 +187,7 @@
     "description": "Lotus Wheel - Ground Chakkar"
   },
   {
-    "productCode": "FWC-MC",
+    "productCode": "FCW-MC",
     "name": "Masks Chaska",
     "category": "Ground Chakkar",
     "content": "1 box",
@@ -198,7 +198,7 @@
     "description": "Masks Chaska - Ground Chakkar"
   },
   {
-    "productCode": "FWC-SMM",
+    "productCode": "FCW-SMM",
     "name": "Spin Master Mini",
     "category": "Ground Chakkar",
     "content": "1 box",
@@ -209,7 +209,7 @@
     "description": "Spin Master Mini - Ground Chakkar"
   },
   {
-    "productCode": "FWC-16",
+    "productCode": "FCW-16",
     "name": "Flower Pots Big",
     "category": "Flower Pots",
     "content": "1 box",
@@ -220,7 +220,7 @@
     "description": "Flower Pots Big - Flower Pots"
   },
   {
-    "productCode": "FWC-17",
+    "productCode": "FCW-17",
     "name": "Flower Pots Special",
     "category": "Flower Pots",
     "content": "1 box",
@@ -231,7 +231,7 @@
     "description": "Flower Pots Special - Flower Pots"
   },
   {
-    "productCode": "FWC-18",
+    "productCode": "FCW-18",
     "name": "Flower Pots Asoka",
     "category": "Flower Pots",
     "content": "1 box",
@@ -242,7 +242,7 @@
     "description": "Flower Pots Asoka - Flower Pots"
   },
   {
-    "productCode": "FWC-19",
+    "productCode": "FCW-19",
     "name": "Colour Koti",
     "category": "Flower Pots",
     "content": "1 box",
@@ -253,7 +253,7 @@
     "description": "Colour Koti - Flower Pots"
   },
   {
-    "productCode": "FWC-20",
+    "productCode": "FCW-20",
     "name": "Pot Girl",
     "category": "Flower Pots",
     "content": "1 box",
@@ -264,7 +264,7 @@
     "description": "Pot Girl - Flower Pots"
   },
   {
-    "productCode": "FWC-23",
+    "productCode": "FCW-23",
     "name": "Gypsy (5 PCS)",
     "category": "Flower Pots",
     "content": "1 box",
@@ -275,7 +275,7 @@
     "description": "Gypsy (5 PCS) - Flower Pots"
   },
   {
-    "productCode": "FWC-24",
+    "productCode": "FCW-24",
     "name": "Tricolour Fountain",
     "category": "Flower Pots",
     "content": "1 box",
@@ -286,7 +286,7 @@
     "description": "Tricolour Fountain - Flower Pots"
   },
   {
-    "productCode": "FWC-26",
+    "productCode": "FCW-26",
     "name": "Colour Cone (Vanitha)",
     "category": "Flower Pots",
     "content": "1 box",
@@ -297,7 +297,7 @@
     "description": "Colour Cone (Vanitha) - Flower Pots"
   },
   {
-    "productCode": "FWC-FPSD",
+    "productCode": "FCW-FPSD",
     "name": "Flower Pot Super Deluxe (10pcs)",
     "category": "Flower Pots",
     "content": "1 box",
@@ -308,7 +308,7 @@
     "description": "Flower Pot Super Deluxe (10pcs) - Flower Pots"
   },
   {
-    "productCode": "FWC-28",
+    "productCode": "FCW-28",
     "name": "1.5ft Twinkling Star",
     "category": "Twinkling Star",
     "content": "1 box",
@@ -319,7 +319,7 @@
     "description": "1.5ft Twinkling Star - Twinkling Star"
   },
   {
-    "productCode": "FWC-29",
+    "productCode": "FCW-29",
     "name": "4ft Twinkling Star",
     "category": "Twinkling Star",
     "content": "1 box",
@@ -330,7 +330,7 @@
     "description": "4ft Twinkling Star - Twinkling Star"
   },
   {
-    "productCode": "FWC-30",
+    "productCode": "FCW-30",
     "name": "Rocket Bomb",
     "category": "Rockets",
     "content": "1 box",
@@ -341,7 +341,7 @@
     "description": "Rocket Bomb - Rockets"
   },
   {
-    "productCode": "FWC-31",
+    "productCode": "FCW-31",
     "name": "Lunik Rocket",
     "category": "Rockets",
     "content": "1 box",
@@ -352,7 +352,7 @@
     "description": "Lunik Rocket - Rockets"
   },
   {
-    "productCode": "FWC-129",
+    "productCode": "FCW-129",
     "name": "Colour Rocket",
     "category": "Rockets",
     "content": "1 box",
@@ -363,7 +363,7 @@
     "description": "Colour Rocket - Rockets"
   },
   {
-    "productCode": "FWC-130",
+    "productCode": "FCW-130",
     "name": "2 Sound Rocket",
     "category": "Rockets",
     "content": "1 box",
@@ -374,7 +374,7 @@
     "description": "2 Sound Rocket - Rockets"
   },
   {
-    "productCode": "FWC-131",
+    "productCode": "FCW-131",
     "name": "3 Sound Rocket",
     "category": "Rockets",
     "content": "1 box",
@@ -385,7 +385,7 @@
     "description": "3 Sound Rocket - Rockets"
   },
   {
-    "productCode": "FWC-132",
+    "productCode": "FCW-132",
     "name": "Whiziling Rocket (5 Pcs)",
     "category": "Rockets",
     "content": "1 box",
@@ -396,7 +396,7 @@
     "description": "Whiziling Rocket (5 Pcs) - Rockets"
   },
   {
-    "productCode": "FWC-32",
+    "productCode": "FCW-32",
     "name": "Hydro Bomb",
     "category": "Bombs",
     "content": "1 box",
@@ -407,7 +407,7 @@
     "description": "Hydro Bomb - Bombs"
   },
   {
-    "productCode": "FWC-33",
+    "productCode": "FCW-33",
     "name": "King Bomb",
     "category": "Bombs",
     "content": "1 box",
@@ -418,7 +418,7 @@
     "description": "King Bomb - Bombs"
   },
   {
-    "productCode": "FWC-34",
+    "productCode": "FCW-34",
     "name": "Classic Bomb",
     "category": "Bombs",
     "content": "1 box",
@@ -429,7 +429,7 @@
     "description": "Classic Bomb - Bombs"
   },
   {
-    "productCode": "FWC-36",
+    "productCode": "FCW-36",
     "name": "100 Bijili Crackers",
     "category": "Bombs",
     "content": "1 pkt",
@@ -440,7 +440,7 @@
     "description": "100 Bijili Crackers - Bombs"
   },
   {
-    "productCode": "FWC-136",
+    "productCode": "FCW-136",
     "name": "Hacker Bomb",
     "category": "Bombs",
     "content": "1 box",
@@ -451,7 +451,7 @@
     "description": "Hacker Bomb - Bombs"
   },
   {
-    "productCode": "FWC-DB",
+    "productCode": "FCW-DB",
     "name": "Digital Bomb",
     "category": "Bombs",
     "content": "1 box",
@@ -462,7 +462,7 @@
     "description": "Digital Bomb - Bombs"
   },
   {
-    "productCode": "FWC-Db2",
+    "productCode": "FCW-Db2",
     "name": "Durandhar Bomb",
     "category": "Bombs",
     "content": "1 box",
@@ -473,7 +473,7 @@
     "description": "Durandhar Bomb - Bombs"
   },
   {
-    "productCode": "FWC-37",
+    "productCode": "FCW-37",
     "name": "12 Shot",
     "category": "Repeating Shots",
     "content": "1 pieces",
@@ -484,7 +484,7 @@
     "description": "12 Shot - Repeating Shots"
   },
   {
-    "productCode": "FWC-38",
+    "productCode": "FCW-38",
     "name": "15 Shot",
     "category": "Repeating Shots",
     "content": "1 pieces",
@@ -495,7 +495,7 @@
     "description": "15 Shot - Repeating Shots"
   },
   {
-    "productCode": "FWC-39",
+    "productCode": "FCW-39",
     "name": "30 Shot",
     "category": "Repeating Shots",
     "content": "1 pieces",
@@ -506,7 +506,7 @@
     "description": "30 Shot - Repeating Shots"
   },
   {
-    "productCode": "FWC-40",
+    "productCode": "FCW-40",
     "name": "60 Shot",
     "category": "Repeating Shots",
     "content": "1 pieces",
@@ -517,7 +517,7 @@
     "description": "60 Shot - Repeating Shots"
   },
   {
-    "productCode": "FWC-41",
+    "productCode": "FCW-41",
     "name": "120 Shot",
     "category": "Repeating Shots",
     "content": "1 pieces",
@@ -528,7 +528,7 @@
     "description": "120 Shot - Repeating Shots"
   },
   {
-    "productCode": "FWC-44",
+    "productCode": "FCW-44",
     "name": "30 Shot Premium",
     "category": "Repeating Shots",
     "content": "1 pieces",
@@ -539,7 +539,7 @@
     "description": "30 Shot Premium - Repeating Shots"
   },
   {
-    "productCode": "FWC-45",
+    "productCode": "FCW-45",
     "name": "60 Shot Premium",
     "category": "Repeating Shots",
     "content": "1 pieces",
@@ -550,7 +550,7 @@
     "description": "60 Shot Premium - Repeating Shots"
   },
   {
-    "productCode": "FWC-46",
+    "productCode": "FCW-46",
     "name": "120 Shot Premium",
     "category": "Repeating Shots",
     "content": "1 pieces",
@@ -561,7 +561,7 @@
     "description": "120 Shot Premium - Repeating Shots"
   },
   {
-    "productCode": "FWC-47",
+    "productCode": "FCW-47",
     "name": "240 Shot Premium",
     "category": "Repeating Shots",
     "content": "1 pieces",
@@ -572,7 +572,7 @@
     "description": "240 Shot Premium - Repeating Shots"
   },
   {
-    "productCode": "FWC-48",
+    "productCode": "FCW-48",
     "name": "10*10 IPL",
     "category": "Repeating Shots",
     "content": "1 pieces",
@@ -583,7 +583,7 @@
     "description": "10*10 IPL - Repeating Shots"
   },
   {
-    "productCode": "FWC-49",
+    "productCode": "FCW-49",
     "name": "2'' Shell Setout (30 Shot)",
     "category": "Repeating Shots",
     "content": "1 pieces",
@@ -594,7 +594,7 @@
     "description": "2'' Shell Setout (30 Shot) - Repeating Shots"
   },
   {
-    "productCode": "FWC-143",
+    "productCode": "FCW-143",
     "name": "25 Shot Whistling",
     "category": "Repeating Shots",
     "content": "1 pieces",
@@ -605,7 +605,7 @@
     "description": "25 Shot Whistling - Repeating Shots"
   },
   {
-    "productCode": "FWC-144",
+    "productCode": "FCW-144",
     "name": "50 Shot Whistling",
     "category": "Repeating Shots",
     "content": "1 pieces",
@@ -616,7 +616,7 @@
     "description": "50 Shot Whistling - Repeating Shots"
   },
   {
-    "productCode": "FWC-146",
+    "productCode": "FCW-146",
     "name": "3.5\" Shell Setout (24 Shots)",
     "category": "Repeating Shots",
     "content": "1 pieces",
@@ -627,7 +627,7 @@
     "description": "3.5\" Shell Setout (24 Shots) - Repeating Shots"
   },
   {
-    "productCode": "FWC-147",
+    "productCode": "FCW-147",
     "name": "30 Shot Peacock Dance",
     "category": "Repeating Shots",
     "content": "1 pieces",
@@ -638,7 +638,7 @@
     "description": "30 Shot Peacock Dance - Repeating Shots"
   },
   {
-    "productCode": "FWC-210",
+    "productCode": "FCW-210",
     "name": "5*10",
     "category": "Repeating Shots",
     "content": "1 box",
@@ -649,7 +649,7 @@
     "description": "5*10 - Repeating Shots"
   },
   {
-    "productCode": "FWC-50",
+    "productCode": "FCW-50",
     "name": "Up (5pcs)",
     "category": "Comets & Sky Shots",
     "content": "1 box",
@@ -660,7 +660,7 @@
     "description": "Up (5pcs) - Comets & Sky Shots"
   },
   {
-    "productCode": "FWC-51",
+    "productCode": "FCW-51",
     "name": "Hot Shot (6pcs)",
     "category": "Comets & Sky Shots",
     "content": "1 box",
@@ -671,7 +671,7 @@
     "description": "Hot Shot (6pcs) - Comets & Sky Shots"
   },
   {
-    "productCode": "FWC-52",
+    "productCode": "FCW-52",
     "name": "Chotta Pipe",
     "category": "Comets & Sky Shots",
     "content": "1 box",
@@ -682,7 +682,7 @@
     "description": "Chotta Pipe - Comets & Sky Shots"
   },
   {
-    "productCode": "FWC-53",
+    "productCode": "FCW-53",
     "name": "2'' Shell",
     "category": "Comets & Sky Shots",
     "content": "1 box",
@@ -693,7 +693,7 @@
     "description": "2'' Shell - Comets & Sky Shots"
   },
   {
-    "productCode": "FWC-55",
+    "productCode": "FCW-55",
     "name": "1.75'' Shell (3Pcs) Premium",
     "category": "Comets & Sky Shots",
     "content": "1 box",
@@ -704,7 +704,7 @@
     "description": "1.75'' Shell (3Pcs) Premium - Comets & Sky Shots"
   },
   {
-    "productCode": "FWC-56",
+    "productCode": "FCW-56",
     "name": "3.5'' Shell",
     "category": "Comets & Sky Shots",
     "content": "1 box",
@@ -715,7 +715,7 @@
     "description": "3.5'' Shell - Comets & Sky Shots"
   },
   {
-    "productCode": "FWC-57",
+    "productCode": "FCW-57",
     "name": "4'' Shell",
     "category": "Comets & Sky Shots",
     "content": "1 box",
@@ -726,7 +726,7 @@
     "description": "4'' Shell - Comets & Sky Shots"
   },
   {
-    "productCode": "FWC-58",
+    "productCode": "FCW-58",
     "name": "Double Ball",
     "category": "Comets & Sky Shots",
     "content": "1 box",
@@ -737,7 +737,7 @@
     "description": "Double Ball - Comets & Sky Shots"
   },
   {
-    "productCode": "FWC-59",
+    "productCode": "FCW-59",
     "name": "12 Step",
     "category": "Comets & Sky Shots",
     "content": "1 box",
@@ -748,7 +748,7 @@
     "description": "12 Step - Comets & Sky Shots"
   },
   {
-    "productCode": "FWC-60",
+    "productCode": "FCW-60",
     "name": "3 Step",
     "category": "Comets & Sky Shots",
     "content": "1 box",
@@ -759,7 +759,7 @@
     "description": "3 Step - Comets & Sky Shots"
   },
   {
-    "productCode": "FWC-61",
+    "productCode": "FCW-61",
     "name": "7 Step",
     "category": "Comets & Sky Shots",
     "content": "1 box",
@@ -770,7 +770,7 @@
     "description": "7 Step - Comets & Sky Shots"
   },
   {
-    "productCode": "FWC-BM",
+    "productCode": "FCW-BM",
     "name": "Bat Man (2pcs)",
     "category": "Comets & Sky Shots",
     "content": "1 box",
@@ -781,7 +781,7 @@
     "description": "Bat Man (2pcs) - Comets & Sky Shots"
   },
   {
-    "productCode": "FWC-BS",
+    "productCode": "FCW-BS",
     "name": "Battle shot (5pcs)",
     "category": "Comets & Sky Shots",
     "content": "1 box",
@@ -792,7 +792,7 @@
     "description": "Battle shot (5pcs) - Comets & Sky Shots"
   },
   {
-    "productCode": "FWC-DT",
+    "productCode": "FCW-DT",
     "name": "Dup Tip (3pcs)",
     "category": "Comets & Sky Shots",
     "content": "1 box",
@@ -803,7 +803,7 @@
     "description": "Dup Tip (3pcs) - Comets & Sky Shots"
   },
   {
-    "productCode": "FWC-MB",
+    "productCode": "FCW-MB",
     "name": "Mr.Bean (5pcs)",
     "category": "Comets & Sky Shots",
     "content": "1 box",
@@ -814,7 +814,7 @@
     "description": "Mr.Bean (5pcs) - Comets & Sky Shots"
   },
   {
-    "productCode": "FWC-N",
+    "productCode": "FCW-N",
     "name": "Nano (5pcs)",
     "category": "Comets & Sky Shots",
     "content": "1 box",
@@ -825,7 +825,7 @@
     "description": "Nano (5pcs) - Comets & Sky Shots"
   },
   {
-    "productCode": "FWC-SM",
+    "productCode": "FCW-SM",
     "name": "Sony Mines (5pcs)",
     "category": "Comets & Sky Shots",
     "content": "1 box",
@@ -836,7 +836,7 @@
     "description": "Sony Mines (5pcs) - Comets & Sky Shots"
   },
   {
-    "productCode": "FWC-WM",
+    "productCode": "FCW-WM",
     "name": "Whatsapp Mines (3pcs)",
     "category": "Comets & Sky Shots",
     "content": "1 box",
@@ -847,7 +847,7 @@
     "description": "Whatsapp Mines (3pcs) - Comets & Sky Shots"
   },
   {
-    "productCode": "FWC-66",
+    "productCode": "FCW-66",
     "name": "Laser Candle (3 Pcs)",
     "category": "Fancy Pencil Varieties",
     "content": "1 box",
@@ -858,7 +858,7 @@
     "description": "Laser Candle (3 Pcs) - Fancy Pencil Varieties"
   },
   {
-    "productCode": "FWC-67",
+    "productCode": "FCW-67",
     "name": "Selfie Stick",
     "category": "Fancy Pencil Varieties",
     "content": "1 box",
@@ -869,7 +869,7 @@
     "description": "Selfie Stick - Fancy Pencil Varieties"
   },
   {
-    "productCode": "FWC-69",
+    "productCode": "FCW-69",
     "name": "Star Gun/Pistol 5G (2Pcs)",
     "category": "Fancy Pencil Varieties",
     "content": "1 box",
@@ -880,7 +880,7 @@
     "description": "Star Gun/Pistol 5G (2Pcs) - Fancy Pencil Varieties"
   },
   {
-    "productCode": "FWC-70",
+    "productCode": "FCW-70",
     "name": "Magic Light",
     "category": "Fancy Pencil Varieties",
     "content": "1 box",
@@ -891,7 +891,7 @@
     "description": "Magic Light - Fancy Pencil Varieties"
   },
   {
-    "productCode": "FWC-329",
+    "productCode": "FCW-329",
     "name": "Jelly Bean Candle",
     "category": "Fancy Pencil Varieties",
     "content": "1 box",
@@ -902,7 +902,7 @@
     "description": "Jelly Bean Candle - Fancy Pencil Varieties"
   },
   {
-    "productCode": "FWC-76",
+    "productCode": "FCW-76",
     "name": "Kit Kat",
     "category": "Fountain & Fancy Novelties",
     "content": "1 box",
@@ -913,7 +913,7 @@
     "description": "Kit Kat - Fountain & Fancy Novelties"
   },
   {
-    "productCode": "FWC-77",
+    "productCode": "FCW-77",
     "name": "Butterfly",
     "category": "Fountain & Fancy Novelties",
     "content": "1 box",
@@ -924,7 +924,7 @@
     "description": "Butterfly - Fountain & Fancy Novelties"
   },
   {
-    "productCode": "FWC-78",
+    "productCode": "FCW-78",
     "name": "Bambaram",
     "category": "Fountain & Fancy Novelties",
     "content": "1 box",
@@ -935,7 +935,7 @@
     "description": "Bambaram - Fountain & Fancy Novelties"
   },
   {
-    "productCode": "FWC-79",
+    "productCode": "FCW-79",
     "name": "Helicopter",
     "category": "Fountain & Fancy Novelties",
     "content": "1 box",
@@ -946,7 +946,7 @@
     "description": "Helicopter - Fountain & Fancy Novelties"
   },
   {
-    "productCode": "FWC-83",
+    "productCode": "FCW-83",
     "name": "Disco Shower",
     "category": "Fountain & Fancy Novelties",
     "content": "1 box",
@@ -957,7 +957,7 @@
     "description": "Disco Shower - Fountain & Fancy Novelties"
   },
   {
-    "productCode": "FWC-84",
+    "productCode": "FCW-84",
     "name": "Ganga Jamuna",
     "category": "Fountain & Fancy Novelties",
     "content": "1 box",
@@ -968,7 +968,7 @@
     "description": "Ganga Jamuna - Fountain & Fancy Novelties"
   },
   {
-    "productCode": "FWC-86",
+    "productCode": "FCW-86",
     "name": "Peacock",
     "category": "Fountain & Fancy Novelties",
     "content": "1 pieces",
@@ -979,7 +979,7 @@
     "description": "Peacock - Fountain & Fancy Novelties"
   },
   {
-    "productCode": "FWC-87",
+    "productCode": "FCW-87",
     "name": "Bada Peacock",
     "category": "Fountain & Fancy Novelties",
     "content": "1 pieces",
@@ -990,7 +990,7 @@
     "description": "Bada Peacock - Fountain & Fancy Novelties"
   },
   {
-    "productCode": "FWC-88",
+    "productCode": "FCW-88",
     "name": "4*4 Wheel",
     "category": "Fountain & Fancy Novelties",
     "content": "1 box",
@@ -1001,7 +1001,7 @@
     "description": "4*4 Wheel - Fountain & Fancy Novelties"
   },
   {
-    "productCode": "FWC-97",
+    "productCode": "FCW-97",
     "name": "Colour Fountain Mini",
     "category": "Fountain & Fancy Novelties",
     "content": "1 box",
@@ -1012,7 +1012,7 @@
     "description": "Colour Fountain Mini - Fountain & Fancy Novelties"
   },
   {
-    "productCode": "FWC-102",
+    "productCode": "FCW-102",
     "name": "Pom Pom",
     "category": "Fountain & Fancy Novelties",
     "content": "1 box",
@@ -1023,7 +1023,7 @@
     "description": "Pom Pom - Fountain & Fancy Novelties"
   },
   {
-    "productCode": "FWC-171",
+    "productCode": "FCW-171",
     "name": "Tin Fountain",
     "category": "Fountain & Fancy Novelties",
     "content": "1 pieces",
@@ -1034,7 +1034,7 @@
     "description": "Tin Fountain - Fountain & Fancy Novelties"
   },
   {
-    "productCode": "FWC-172",
+    "productCode": "FCW-172",
     "name": "Rain and Shine",
     "category": "Fountain & Fancy Novelties",
     "content": "1 pieces",
@@ -1045,7 +1045,7 @@
     "description": "Rain and Shine - Fountain & Fancy Novelties"
   },
   {
-    "productCode": "FWC-173",
+    "productCode": "FCW-173",
     "name": "Color Smoke 3pcs",
     "category": "Fountain & Fancy Novelties",
     "content": "1 box",
@@ -1056,7 +1056,7 @@
     "description": "Color Smoke 3pcs - Fountain & Fancy Novelties"
   },
   {
-    "productCode": "FWC-174",
+    "productCode": "FCW-174",
     "name": "Scooby Doo Fountain",
     "category": "Fountain & Fancy Novelties",
     "content": "1 pieces",
@@ -1067,7 +1067,7 @@
     "description": "Scooby Doo Fountain - Fountain & Fancy Novelties"
   },
   {
-    "productCode": "FWC-177",
+    "productCode": "FCW-177",
     "name": "Motu Patlu Fountain",
     "category": "Fountain & Fancy Novelties",
     "content": "1 pieces",
@@ -1078,7 +1078,7 @@
     "description": "Motu Patlu Fountain - Fountain & Fancy Novelties"
   },
   {
-    "productCode": "FWC-178",
+    "productCode": "FCW-178",
     "name": "Violet Matrix",
     "category": "Fountain & Fancy Novelties",
     "content": "1 pieces",
@@ -1089,7 +1089,7 @@
     "description": "Violet Matrix - Fountain & Fancy Novelties"
   },
   {
-    "productCode": "FWC-179",
+    "productCode": "FCW-179",
     "name": "Tower Pots",
     "category": "Fountain & Fancy Novelties",
     "content": "1 pieces",
@@ -1100,7 +1100,7 @@
     "description": "Tower Pots - Fountain & Fancy Novelties"
   },
   {
-    "productCode": "FWC-180",
+    "productCode": "FCW-180",
     "name": "Ludo King",
     "category": "Fountain & Fancy Novelties",
     "content": "1 pieces",
@@ -1111,7 +1111,7 @@
     "description": "Ludo King - Fountain & Fancy Novelties"
   },
   {
-    "productCode": "FWC-181",
+    "productCode": "FCW-181",
     "name": "Friends Flower",
     "category": "Fountain & Fancy Novelties",
     "content": "1 pieces",
@@ -1122,7 +1122,7 @@
     "description": "Friends Flower - Fountain & Fancy Novelties"
   },
   {
-    "productCode": "FWC-182",
+    "productCode": "FCW-182",
     "name": "Pappu Shower",
     "category": "Fountain & Fancy Novelties",
     "content": "1 pieces",
@@ -1133,7 +1133,7 @@
     "description": "Pappu Shower - Fountain & Fancy Novelties"
   },
   {
-    "productCode": "FWC-183",
+    "productCode": "FCW-183",
     "name": "Animal Shower",
     "category": "Fountain & Fancy Novelties",
     "content": "1 pieces",
@@ -1144,7 +1144,7 @@
     "description": "Animal Shower - Fountain & Fancy Novelties"
   },
   {
-    "productCode": "FWC-184",
+    "productCode": "FCW-184",
     "name": "4 in 1 Chocolate Chakkar",
     "category": "Fountain & Fancy Novelties",
     "content": "1 pkt",
@@ -1155,7 +1155,7 @@
     "description": "4 in 1 Chocolate Chakkar - Fountain & Fancy Novelties"
   },
   {
-    "productCode": "FWC-185",
+    "productCode": "FCW-185",
     "name": "Barbie Fountain",
     "category": "Fountain & Fancy Novelties",
     "content": "1 box",
@@ -1166,7 +1166,7 @@
     "description": "Barbie Fountain - Fountain & Fancy Novelties"
   },
   {
-    "productCode": "FWC-186",
+    "productCode": "FCW-186",
     "name": "Photo Flash",
     "category": "Fountain & Fancy Novelties",
     "content": "1 box",
@@ -1177,7 +1177,7 @@
     "description": "Photo Flash - Fountain & Fancy Novelties"
   },
   {
-    "productCode": "FWC-187",
+    "productCode": "FCW-187",
     "name": "Twin Lighting Ball",
     "category": "Fountain & Fancy Novelties",
     "content": "1 pieces",
@@ -1188,7 +1188,7 @@
     "description": "Twin Lighting Ball - Fountain & Fancy Novelties"
   },
   {
-    "productCode": "FWC-188",
+    "productCode": "FCW-188",
     "name": "Holi Fruits",
     "category": "Fountain & Fancy Novelties",
     "content": "1 box",
@@ -1199,7 +1199,7 @@
     "description": "Holi Fruits - Fountain & Fancy Novelties"
   },
   {
-    "productCode": "FWC-195",
+    "productCode": "FCW-195",
     "name": "Snake Beats",
     "category": "Fountain & Fancy Novelties",
     "content": "1 pkt",
@@ -1210,7 +1210,7 @@
     "description": "Snake Beats - Fountain & Fancy Novelties"
   },
   {
-    "productCode": "FWC-196",
+    "productCode": "FCW-196",
     "name": "Snake Chakkar",
     "category": "Fountain & Fancy Novelties",
     "content": "1 pkt",
@@ -1221,7 +1221,7 @@
     "description": "Snake Chakkar - Fountain & Fancy Novelties"
   },
   {
-    "productCode": "FWC-197",
+    "productCode": "FCW-197",
     "name": "Barbie Sky",
     "category": "Fountain & Fancy Novelties",
     "content": "1 box",
@@ -1232,7 +1232,7 @@
     "description": "Barbie Sky - Fountain & Fancy Novelties"
   },
   {
-    "productCode": "FWC-214",
+    "productCode": "FCW-214",
     "name": "Paris Tower",
     "category": "Fountain & Fancy Novelties",
     "content": "1 box",
@@ -1243,7 +1243,7 @@
     "description": "Paris Tower - Fountain & Fancy Novelties"
   },
   {
-    "productCode": "FWC-220",
+    "productCode": "FCW-220",
     "name": "Chikoo Bunty",
     "category": "Fountain & Fancy Novelties",
     "content": "1 pieces",
@@ -1254,7 +1254,7 @@
     "description": "Chikoo Bunty - Fountain & Fancy Novelties"
   },
   {
-    "productCode": "FWC-CS",
+    "productCode": "FCW-CS",
     "name": "Cluster 5 in 1 Sony",
     "category": "Fountain & Fancy Novelties",
     "content": "1 box",
@@ -1265,7 +1265,7 @@
     "description": "Cluster 5 in 1 Sony - Fountain & Fancy Novelties"
   },
   {
-    "productCode": "FWC-TFS",
+    "productCode": "FCW-TFS",
     "name": "Titanic Flower Sony",
     "category": "Fountain & Fancy Novelties",
     "content": "1 pieces",
@@ -1276,7 +1276,7 @@
     "description": "Titanic Flower Sony - Fountain & Fancy Novelties"
   },
   {
-    "productCode": "FWC-103",
+    "productCode": "FCW-103",
     "name": "Deluxe Matches 10's",
     "category": "Matches",
     "content": "1 box",
@@ -1287,7 +1287,7 @@
     "description": "Deluxe Matches 10's - Matches"
   },
   {
-    "productCode": "FWC-104",
+    "productCode": "FCW-104",
     "name": "Lamba 5's",
     "category": "Matches",
     "content": "1 box",
@@ -1298,7 +1298,7 @@
     "description": "Lamba 5's - Matches"
   },
   {
-    "productCode": "FWC-105",
+    "productCode": "FCW-105",
     "name": "Titanic 5's",
     "category": "Matches",
     "content": "1 box",
@@ -1309,7 +1309,7 @@
     "description": "Titanic 5's - Matches"
   },
   {
-    "productCode": "FWC-108",
+    "productCode": "FCW-108",
     "name": "10cm Electric",
     "category": "Sparklers",
     "content": "1 box",
@@ -1320,7 +1320,7 @@
     "description": "10cm Electric - Sparklers"
   },
   {
-    "productCode": "FWC-109",
+    "productCode": "FCW-109",
     "name": "10cm Colour",
     "category": "Sparklers",
     "content": "1 box",
@@ -1331,7 +1331,7 @@
     "description": "10cm Colour - Sparklers"
   },
   {
-    "productCode": "FWC-110",
+    "productCode": "FCW-110",
     "name": "10cm Green",
     "category": "Sparklers",
     "content": "1 box",
@@ -1342,7 +1342,7 @@
     "description": "10cm Green - Sparklers"
   },
   {
-    "productCode": "FWC-111",
+    "productCode": "FCW-111",
     "name": "10cm Red",
     "category": "Sparklers",
     "content": "1 box",
@@ -1353,7 +1353,7 @@
     "description": "10cm Red - Sparklers"
   },
   {
-    "productCode": "FWC-112",
+    "productCode": "FCW-112",
     "name": "12cm Electric",
     "category": "Sparklers",
     "content": "1 box",
@@ -1364,7 +1364,7 @@
     "description": "12cm Electric - Sparklers"
   },
   {
-    "productCode": "FWC-113",
+    "productCode": "FCW-113",
     "name": "12cm Colour",
     "category": "Sparklers",
     "content": "1 box",
@@ -1375,7 +1375,7 @@
     "description": "12cm Colour - Sparklers"
   },
   {
-    "productCode": "FWC-114",
+    "productCode": "FCW-114",
     "name": "12cm Green",
     "category": "Sparklers",
     "content": "1 box",
@@ -1386,7 +1386,7 @@
     "description": "12cm Green - Sparklers"
   },
   {
-    "productCode": "FWC-115",
+    "productCode": "FCW-115",
     "name": "12cm Red",
     "category": "Sparklers",
     "content": "1 box",
@@ -1397,7 +1397,7 @@
     "description": "12cm Red - Sparklers"
   },
   {
-    "productCode": "FWC-116",
+    "productCode": "FCW-116",
     "name": "15cm Electric",
     "category": "Sparklers",
     "content": "1 box",
@@ -1408,7 +1408,7 @@
     "description": "15cm Electric - Sparklers"
   },
   {
-    "productCode": "FWC-117",
+    "productCode": "FCW-117",
     "name": "15cm Colour",
     "category": "Sparklers",
     "content": "1 box",
@@ -1419,7 +1419,7 @@
     "description": "15cm Colour - Sparklers"
   },
   {
-    "productCode": "FWC-118",
+    "productCode": "FCW-118",
     "name": "15cm Green",
     "category": "Sparklers",
     "content": "1 box",
@@ -1430,7 +1430,7 @@
     "description": "15cm Green - Sparklers"
   },
   {
-    "productCode": "FWC-119",
+    "productCode": "FCW-119",
     "name": "15cm Red",
     "category": "Sparklers",
     "content": "1 box",
@@ -1441,7 +1441,7 @@
     "description": "15cm Red - Sparklers"
   },
   {
-    "productCode": "FWC-120",
+    "productCode": "FCW-120",
     "name": "30cm Electric",
     "category": "Sparklers",
     "content": "1 box",
@@ -1452,7 +1452,7 @@
     "description": "30cm Electric - Sparklers"
   },
   {
-    "productCode": "FWC-121",
+    "productCode": "FCW-121",
     "name": "30cm Colour",
     "category": "Sparklers",
     "content": "1 box",
@@ -1463,7 +1463,7 @@
     "description": "30cm Colour - Sparklers"
   },
   {
-    "productCode": "FWC-122",
+    "productCode": "FCW-122",
     "name": "30cm Green",
     "category": "Sparklers",
     "content": "1 box",
@@ -1474,7 +1474,7 @@
     "description": "30cm Green - Sparklers"
   },
   {
-    "productCode": "FWC-123",
+    "productCode": "FCW-123",
     "name": "30cm Red",
     "category": "Sparklers",
     "content": "1 box",
@@ -1485,7 +1485,7 @@
     "description": "30cm Red - Sparklers"
   },
   {
-    "productCode": "FWC-124",
+    "productCode": "FCW-124",
     "name": "50cm Electric",
     "category": "Sparklers",
     "content": "1 box",
@@ -1496,7 +1496,7 @@
     "description": "50cm Electric - Sparklers"
   },
   {
-    "productCode": "FWC-125",
+    "productCode": "FCW-125",
     "name": "50cm Colour",
     "category": "Sparklers",
     "content": "1 box",
@@ -1507,7 +1507,7 @@
     "description": "50cm Colour - Sparklers"
   },
   {
-    "productCode": "FWC-126",
+    "productCode": "FCW-126",
     "name": "Rotating Sparklers",
     "category": "Sparklers",
     "content": "1 pieces",
@@ -1518,7 +1518,7 @@
     "description": "Rotating Sparklers - Sparklers"
   },
   {
-    "productCode": "FWC-321",
+    "productCode": "FCW-321",
     "name": "Bharath Tank",
     "category": "New Arrivals",
     "content": "1 box",
@@ -1529,7 +1529,7 @@
     "description": "Bharath Tank - New Arrivals"
   },
   {
-    "productCode": "FWC-322",
+    "productCode": "FCW-322",
     "name": "Black Berry",
     "category": "New Arrivals",
     "content": "1 box",
@@ -1540,7 +1540,7 @@
     "description": "Black Berry - New Arrivals"
   },
   {
-    "productCode": "FWC-323",
+    "productCode": "FCW-323",
     "name": "Bubbles",
     "category": "New Arrivals",
     "content": "1 box",
@@ -1551,7 +1551,7 @@
     "description": "Bubbles - New Arrivals"
   },
   {
-    "productCode": "FWC-324",
+    "productCode": "FCW-324",
     "name": "Hand Siren",
     "category": "New Arrivals",
     "content": "1 pieces",

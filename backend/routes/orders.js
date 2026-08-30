@@ -83,7 +83,7 @@ router.post("/", async (req, res) => {
         : subtotal + shipping;
 
     const orderId =
-      "FWC" +
+      "FCW" +
       Date.now().toString().slice(-8) +
       Math.floor(100 + Math.random() * 900);
 
