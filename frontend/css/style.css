@@ -7075,34 +7075,119 @@ header .nav {
 
   .product-table-wrapper {
     width: 100%;
-    overflow-x: auto;
+    overflow: visible !important;
     border-radius: 12px;
   }
 
   .mano-product-table {
-    min-width: 680px;
+    width: 100% !important;
+    min-width: 0 !important;
+    display: block;
+  }
+
+  .mano-product-table thead {
+    display: none;
+  }
+
+  .mano-product-table tbody {
+    display: block;
+    width: 100%;
+  }
+
+  .mano-product-table tr {
+    display: grid !important;
+    grid-template-columns: 82px 1fr;
+    gap: 8px 12px;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 14px;
+    box-sizing: border-box;
+  }
+
+  .mano-product-table td {
+    display: block !important;
+    padding: 0 !important;
+    border: 0 !important;
+    white-space: normal !important;
   }
 
   .mano-product-table .table-image-cell {
-    width: 75px;
-    min-width: 75px;
-    padding: 8px !important;
+    grid-row: span 4;
+    width: 82px !important;
+    min-width: 82px !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
   }
 
   .mano-product-table .table-image-cell img {
-    display: block !important;
-    width: 58px !important;
-    height: 58px !important;
-    max-width: 58px !important;
-    max-height: 58px !important;
+    width: 76px !important;
+    height: 76px !important;
+    max-width: 76px !important;
+    max-height: 76px !important;
     object-fit: contain !important;
-    margin: 0 auto !important;
+    margin: 0 !important;
   }
 
-  .mano-product-table th,
-  .mano-product-table td {
-    padding: 10px 8px;
-    white-space: nowrap;
+  .mano-product-table .table-name-cell {
+    display: flex !important;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .mano-product-table .table-name-cell strong {
+    font-size: 0.95rem;
+    line-height: 1.25;
+  }
+
+  .mano-product-table .table-unit {
+    font-size: 0.72rem;
+  }
+
+  .mano-product-table td:nth-child(3)::before {
+    content: "MRP ";
+    font-size: 0.72rem;
+  }
+
+  .mano-product-table td:nth-child(4)::before {
+    content: "Offer ";
+    font-size: 0.72rem;
+  }
+
+  .mano-product-table td:nth-child(5) {
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mano-product-table td:nth-child(5)::before {
+    content: "Qty";
+    font-size: 0.72rem;
+    font-weight: 700;
+  }
+
+  .mano-product-table td:nth-child(6) {
+    display: flex !important;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .mano-product-table td:nth-child(6)::before {
+    content: "Total ";
+    font-size: 0.72rem;
+    font-weight: 700;
+  }
+
+  .table-quantity {
+    display: inline-flex !important;
+    align-items: center;
+  }
+
+  .table-add-btn {
+    min-height: 38px;
+    padding: 7px 16px;
   }
 
 }
