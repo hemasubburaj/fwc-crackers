@@ -17,7 +17,7 @@ const allowedOrigins = [
   "http://localhost:5173",
   "https://familycrackersworld.com",
   "https://www.familycrackersworld.com",
-  "https://familycrackersworld-fwc.netlify.app"
+  "https://familycrackersworld-fcw.netlify.app"
 ];
 
 app.use(
