@@ -8,6 +8,173 @@
   <title>Shop All Crackers | familycrackersworld</title>
 
   <link rel="stylesheet" href="css/style.css" />
+
+<style>
+/* ===== IMAGE CATEGORY + FILTER UI ===== */
+#category-chips {
+  display: none;
+  margin-top: 18px;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 4px 2px 12px;
+  scrollbar-width: thin;
+}
+
+.shop-main.category-filter-open #category-sidebar,
+.shop-main.category-filter-open ~ * #category-sidebar {
+  display: grid;
+}
+
+/* Show the image category cards only while Filter is open */
+.filter-category-visible #category-chips {
+  display: grid;
+}
+
+#category-chips .chip {
+  min-width: 118px;
+  min-height: 118px;
+  padding: 10px 8px;
+  border: 1px solid #e8e8e8;
+  border-radius: 14px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  cursor: pointer;
+  transition: .2s ease;
+  font-weight: 700;
+  text-align: center;
+}
+
+#category-chips .chip:hover,
+#category-chips .chip.active {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 14px rgba(0,0,0,.10);
+  border-color: #f5b400;
+}
+
+#category-chips .chip-category-image,
+#category-chips .chip-category-icon {
+  width: 62px;
+  height: 62px;
+  border-radius: 12px;
+  object-fit: cover;
+  display: grid;
+  place-items: center;
+  background: #f5f5f5;
+  font-size: 30px;
+}
+
+/* Sidebar becomes an image-card filter panel */
+.shop-sidebar {
+  display: none !important;
+}
+
+.shop-main.category-filter-open .shop-sidebar {
+  display: block !important;
+}
+
+.shop-main.category-filter-open .shop-sidebar .sidebar-title {
+  font-size: 18px;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.shop-main.category-filter-open .category-search {
+  margin-bottom: 14px;
+}
+
+.sidebar-categories {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.sidebar-category {
+  min-height: 118px;
+  padding: 10px 8px;
+  border: 1px solid #e8e8e8;
+  border-radius: 14px;
+  background: #fff;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  cursor: pointer;
+  transition: .2s ease;
+  text-align: center;
+}
+
+.sidebar-category:hover,
+.sidebar-category.active {
+  transform: translateY(-2px);
+  border-color: #f5b400;
+  box-shadow: 0 5px 14px rgba(0,0,0,.10);
+}
+
+.sidebar-category .category-icon {
+  width: 62px;
+  height: 62px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f5f5f5;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  font-size: 28px;
+}
+
+.sidebar-category .category-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.sidebar-category-name {
+  font-weight: 800;
+  font-size: 13px;
+  line-height: 1.15;
+}
+
+@media (max-width: 900px) {
+  .shop-main.category-filter-open {
+    display: block;
+  }
+
+  .shop-main.category-filter-open .shop-sidebar {
+    margin-bottom: 18px;
+  }
+
+  .sidebar-categories {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  #category-chips .chip {
+    min-width: 102px;
+    min-height: 105px;
+  }
+
+  #category-chips .chip-category-image,
+  #category-chips .chip-category-icon,
+  .sidebar-category .category-icon {
+    width: 54px;
+    height: 54px;
+  }
+
+  .sidebar-categories {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+</style>
+
 </head>
 
 <body>
@@ -1670,12 +1837,13 @@
 
       if (!shopMain) return;
 
-      shopMain.classList.toggle("category-filter-open");
+      const isOpen = shopMain.classList.toggle("category-filter-open");
+      document.body.classList.toggle("filter-category-visible", isOpen);
 
       const button =
         document.querySelector(".filter-main-btn");
 
-      if (shopMain.classList.contains("category-filter-open")) {
+      if (isOpen) {
         button.innerHTML = "✕ Close Filter";
       } else {
         button.innerHTML = "☰ Filter";
