@@ -1,6 +1,11 @@
 /*
-  Category colours, icons and optional images
+  Product card colours and icons.
+
+  Category chip and filter sidebar-ல்
+  icon பயன்படுத்தப்படாது.
+  அங்கு image மட்டும் காட்டப்படும்.
 */
+
 
 const CATEGORY_STYLES = {
 
@@ -99,20 +104,34 @@ const DEFAULT_CATEGORY_STYLE = {
 };
 
 
-/* Get category style */
+/* =========================
+   GET CATEGORY STYLE
+========================= */
 
 function getCategoryStyle(category) {
 
   const categoryName =
-    String(category || "").trim();
+    String(category || "")
+      .trim()
+      .toLowerCase();
 
-  return CATEGORY_STYLES[categoryName] ||
-    DEFAULT_CATEGORY_STYLE;
+  const matchedKey =
+    Object.keys(CATEGORY_STYLES)
+      .find(key =>
+        key.toLowerCase() ===
+        categoryName
+      );
+
+  return matchedKey
+    ? CATEGORY_STYLES[matchedKey]
+    : DEFAULT_CATEGORY_STYLE;
 
 }
 
 
-/* Escape HTML */
+/* =========================
+   ESCAPE HTML
+========================= */
 
 function categoryEscapeHTML(value) {
 
@@ -126,7 +145,9 @@ function categoryEscapeHTML(value) {
 }
 
 
-/* Product card image */
+/* =========================
+   PRODUCT IMAGE HTML
+========================= */
 
 function productImageHTML(
   category,
@@ -137,16 +158,22 @@ function productImageHTML(
     getCategoryStyle(category);
 
   const image =
-    String(imageUrl || "").trim();
+    String(imageUrl || "")
+      .trim();
 
-  const hasImage =
+  const validImage =
     image &&
     !image
       .toLowerCase()
       .includes("placeholder");
 
 
-  if (hasImage) {
+  /*
+    Product image இருந்தால்
+    product card-ல் image காட்டும்
+  */
+
+  if (validImage) {
 
     return `
 
@@ -192,6 +219,11 @@ function productImageHTML(
 
   }
 
+
+  /*
+    Product image இல்லையெனில்
+    product card-க்கு மட்டும் icon fallback
+  */
 
   return `
 
