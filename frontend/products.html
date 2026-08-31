@@ -3,16 +3,87 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
 
   <title>Shop All Crackers | familycrackersworld</title>
 
   <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    .chip-category-image {
+      width: 42px;
+      height: 42px;
+      object-fit: cover;
+      border-radius: 50%;
+      display: block;
+      margin-bottom: 5px;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .chip-category-icon {
+      width: 42px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 25px;
+      margin-bottom: 5px;
+    }
+
+    .category-icon {
+      width: 42px;
+      height: 42px;
+      min-width: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .category-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .sidebar-category {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sidebar-category-name {
+      flex: 1;
+    }
+
+    .chip {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .no-product-image {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 42px;
+    }
+  </style>
 </head>
 
 <body>
 
-  <!-- ================= HEADER ================= -->
+  <!-- HEADER -->
 
   <header>
     <div class="container nav">
@@ -21,15 +92,14 @@
         family<span class="spark">crackersworld</span>
       </a>
 
-      
-<button
-  class="mobile-menu-btn"
-  type="button"
-  aria-label="Open menu"
-  aria-expanded="false"
->
-  ☰
-</button>
+      <button
+        class="mobile-menu-btn"
+        type="button"
+        aria-label="Open menu"
+        aria-expanded="false"
+      >
+        ☰
+      </button>
 
       <nav class="nav-links">
         <a href="index.html">Home</a>
@@ -46,13 +116,14 @@
   </header>
 
 
-  <!-- ================= SHOP HEADER ================= -->
+  <!-- SHOP HEADER -->
 
   <section class="container shop-header">
 
     <div class="shop-title-row">
 
       <div>
+
         <span class="shop-small-title">
           PREMIUM SIVAKASI CRACKERS
         </span>
@@ -64,6 +135,7 @@
         <p>
           Choose your favourite crackers and add them to your enquiry cart.
         </p>
+
       </div>
 
     </div>
@@ -94,13 +166,11 @@
   </section>
 
 
-  <!-- ================= FILTER BAR ================= -->
+  <!-- FILTER BAR -->
 
   <section class="container">
 
     <div class="filterbar">
-
-      <!-- LEFT -->
 
       <div class="filterbar-left">
 
@@ -122,13 +192,12 @@
       </div>
 
 
-      <!-- SORT -->
-
       <div class="sort-group">
 
         <button
           class="pill-btn active"
           id="sortDefault"
+          type="button"
           onclick="setSort('default')"
         >
           Default
@@ -137,6 +206,7 @@
         <button
           class="pill-btn"
           id="sortLow"
+          type="button"
           onclick="setSort('low')"
         >
           Price: Low to High
@@ -145,6 +215,7 @@
         <button
           class="pill-btn"
           id="sortHigh"
+          type="button"
           onclick="setSort('high')"
         >
           Price: High to Low
@@ -153,13 +224,12 @@
       </div>
 
 
-      <!-- VIEW -->
-
       <div class="view-group">
 
         <button
           class="view-btn active"
           id="viewCard"
+          type="button"
           onclick="setView('card')"
         >
           ▦ Card View
@@ -168,6 +238,7 @@
         <button
           class="view-btn"
           id="viewTable"
+          type="button"
           onclick="setView('table')"
         >
           ☰ Table View
@@ -180,11 +251,11 @@
   </section>
 
 
-  <!-- ================= SHOP CONTENT ================= -->
+  <!-- SHOP MAIN -->
 
   <section class="container shop-main">
 
-    <!-- SIDEBAR -->
+    <!-- CATEGORY FILTER SIDEBAR -->
 
     <aside
       class="shop-sidebar"
@@ -230,7 +301,7 @@
   </section>
 
 
-  <!-- ================= FOOTER ================= -->
+  <!-- FOOTER -->
 
   <footer id="contact">
 
@@ -238,17 +309,15 @@
 
       <div class="footer-columns">
 
-        <!-- PROFILE -->
-
         <div class="footer-col">
 
           <h4>Our Profile</h4>
 
           <p
             style="
-              font-weight:700;
-              color:var(--gold-pale);
-              margin-bottom:8px;
+              font-weight: 700;
+              color: var(--gold-pale);
+              margin-bottom: 8px;
             "
           >
             familycrackersworld
@@ -262,8 +331,6 @@
 
         </div>
 
-
-        <!-- CONTACT -->
 
         <div class="footer-col">
 
@@ -296,8 +363,6 @@
         </div>
 
 
-        <!-- QUICK LINKS -->
-
         <div class="footer-col">
 
           <h4>Quick Links</h4>
@@ -311,8 +376,6 @@
 
       </div>
 
-
-      <!-- LEGAL -->
 
       <div class="legal-text">
 
@@ -334,10 +397,8 @@
 
 
       <div class="footer-bottom">
-
         Copyright © 2026, familycrackersworld.
         All rights reserved.
-
       </div>
 
     </div>
@@ -345,7 +406,7 @@
   </footer>
 
 
-  <!-- ================= JS ================= -->
+  <!-- JAVASCRIPT FILES -->
 
   <script src="js/config.js"></script>
   <script src="js/cart.js"></script>
@@ -354,16 +415,17 @@
 
   <script>
 
-    /* =====================================================
-       VARIABLES
-    ===================================================== */
-
     let activeCategory =
-      new URLSearchParams(location.search).get("category") || "All";
+      new URLSearchParams(location.search)
+        .get("category") || "All";
 
     let searchTerm = "";
 
     let allProducts = [];
+
+    let allCategories = [];
+
+    let categoryImageMap = {};
 
     let sortMode = "default";
 
@@ -372,27 +434,59 @@
     let searchTimeout;
 
 
-    /* =====================================================
+    /* =========================
+       CATEGORY STYLE
+    ========================= */
+
+    function getSafeCategoryStyle(category) {
+
+      if (
+        typeof getCategoryStyle === "function"
+      ) {
+        return getCategoryStyle(category);
+      }
+
+      return {
+        icon: "🎆",
+        from: "#D9A431",
+        to: "#C43B26"
+      };
+
+    }
+
+
+    /* =========================
        LOAD CATEGORIES
-    ===================================================== */
+    ========================= */
 
     async function loadCategories() {
 
       try {
 
-        const res = await fetch(
-          `${API_BASE_URL}/products/categories`
-        );
+        const response =
+          await fetch(
+            `${API_BASE_URL}/products/categories`
+          );
 
-        if (!res.ok) {
-          throw new Error("Category loading failed");
+        if (!response.ok) {
+          throw new Error(
+            "Category loading failed"
+          );
         }
 
-        const data = await res.json();
+        const data =
+          await response.json();
 
-        const categories = ["All", ...data];
+        allCategories = [
+          "All",
+          ...data
+        ];
 
-        renderCategories(categories);
+        renderCategories(
+          allCategories
+        );
+
+        await loadCategoryImages();
 
       } catch (error) {
 
@@ -406,168 +500,336 @@
     }
 
 
-    /* =====================================================
-       RENDER CATEGORIES
-    ===================================================== */
+    /* =========================
+       LOAD CATEGORY IMAGES
+    ========================= */
 
-    function renderCategories(categories) {
+    async function loadCategoryImages() {
 
-      const chipContainer =
-        document.getElementById("category-chips");
+      try {
 
-      const sidebar =
-        document.getElementById("sidebar-categories");
-
-
-      /* =====================================================
-         FIND IMAGE FOR EACH CATEGORY
-      ===================================================== */
-
-      function getCategoryImage(category) {
-
-        if (category === "All") {
-          return "";
-        }
-
-        const style = getCategoryStyle(category);
-
-        if (style && style.image) {
-          return style.image;
-        }
-
-        const normalizedCategory =
-          String(category || "").trim().toLowerCase();
-
-        const categoryProduct =
-          allProducts.find(product =>
-            String(product.category || "")
-              .trim()
-              .toLowerCase() === normalizedCategory &&
-            product.image &&
-            String(product.image).trim() !== ""
+        const response =
+          await fetch(
+            `${API_BASE_URL}/products`
           );
 
-        return categoryProduct?.image || "";
+        if (!response.ok) {
+          return;
+        }
+
+        const products =
+          await response.json();
+
+        categoryImageMap = {};
+
+        products.forEach(product => {
+
+          const category =
+            String(
+              product.category || ""
+            )
+              .trim()
+              .toLowerCase();
+
+          const image =
+            String(
+              product.image || ""
+            )
+              .trim();
+
+          if (
+            category &&
+            image &&
+            !image
+              .toLowerCase()
+              .includes("placeholder") &&
+            !categoryImageMap[category]
+          ) {
+            categoryImageMap[category] =
+              image;
+          }
+
+        });
+
+        renderCategories(
+          allCategories
+        );
+
+      } catch (error) {
+
+        console.error(
+          "Category image error:",
+          error
+        );
 
       }
-
-
-      /* =====================================================
-         CATEGORY CHIPS
-      ===================================================== */
-
-      chipContainer.innerHTML =
-        categories.map(category => {
-
-          const image = getCategoryImage(category);
-
-          return `
-
-            <button
-              type="button"
-              class="chip ${
-                category === activeCategory
-                  ? "active"
-                  : ""
-              }"
-              onclick="selectCategory('${escapeAttribute(category)}')"
-            >
-
-              ${
-                image && category !== "All"
-                  ? `
-                    <img
-                      src="${escapeAttribute(image)}"
-                      class="chip-category-image"
-                      alt=""
-                      loading="lazy"
-                    >
-                  `
-                  : `
-                    <span class="chip-category-icon">
-                      ${
-                        getCategoryStyle(category).icon
-                      }
-                    </span>
-                  `
-              }
-
-              <span>
-                ${escapeHTML(category)}
-              </span>
-
-            </button>
-
-          `;
-
-        }).join("");
-
-
-      /* =====================================================
-         SIDEBAR CATEGORIES
-      ===================================================== */
-
-      sidebar.innerHTML =
-        categories.map(category => {
-
-          const image = getCategoryImage(category);
-
-          return `
-
-            <button
-              type="button"
-              class="sidebar-category ${
-                category === activeCategory
-                  ? "active"
-                  : ""
-              }"
-              onclick="selectCategory('${escapeAttribute(category)}')"
-            >
-
-              <span class="category-icon">
-
-                ${
-                  image && category !== "All"
-                    ? `
-                      <img
-                        src="${escapeAttribute(image)}"
-                        alt=""
-                        loading="lazy"
-                      >
-                    `
-                    : "🎆"
-                }
-
-              </span>
-
-              <span class="sidebar-category-name">
-                ${escapeHTML(category)}
-              </span>
-
-            </button>
-
-          `;
-
-        }).join("");
 
     }
 
 
-    /* =====================================================
+    /* =========================
+       GET CATEGORY IMAGE
+    ========================= */
+
+    function getCategoryImage(category) {
+
+      if (category === "All") {
+        return "";
+      }
+
+      const style =
+        getSafeCategoryStyle(
+          category
+        );
+
+      /*
+        Fixed image இருந்தால்
+        முதலில் அதைப் பயன்படுத்தும்
+      */
+      if (
+        style.image &&
+        String(style.image).trim() !== ""
+      ) {
+        return style.image;
+      }
+
+      const normalizedCategory =
+        String(category || "")
+          .trim()
+          .toLowerCase();
+
+      /*
+        இல்லையெனில் product image பயன்படுத்தும்
+      */
+      return categoryImageMap[
+        normalizedCategory
+      ] || "";
+
+    }
+
+
+    /* =========================
+       RENDER CATEGORY CHIPS
+    ========================= */
+
+    function renderCategories(categories) {
+
+      const chipContainer =
+        document.getElementById(
+          "category-chips"
+        );
+
+      const sidebar =
+        document.getElementById(
+          "sidebar-categories"
+        );
+
+
+      /*
+        TOP CATEGORY CHIPS
+      */
+
+      chipContainer.innerHTML =
+        categories
+          .map(category => {
+
+            const image =
+              getCategoryImage(
+                category
+              );
+
+            const style =
+              getSafeCategoryStyle(
+                category
+              );
+
+            return `
+
+              <button
+                type="button"
+                class="chip ${
+                  category === activeCategory
+                    ? "active"
+                    : ""
+                }"
+                data-category="${escapeAttribute(category)}"
+                onclick="
+                  selectCategory(
+                    this.dataset.category
+                  )
+                "
+              >
+
+                ${
+                  image &&
+                  category !== "All"
+                    ? `
+                      <img
+                        src="${escapeAttribute(image)}"
+                        class="chip-category-image"
+                        alt="${escapeAttribute(category)}"
+                        loading="lazy"
+                        onerror="
+                          this.style.display='none';
+                          this.nextElementSibling.style.display='flex';
+                        "
+                      />
+
+                      <span
+                        class="chip-category-icon"
+                        style="display:none"
+                      >
+                        ${escapeHTML(style.icon)}
+                      </span>
+                    `
+                    : `
+                      <span
+                        class="chip-category-icon"
+                      >
+                        ${escapeHTML(style.icon)}
+                      </span>
+                    `
+                }
+
+                <span>
+                  ${escapeHTML(category)}
+                </span>
+
+              </button>
+
+            `;
+
+          })
+          .join("");
+
+
+      /*
+        LEFT FILTER SIDEBAR
+      */
+
+      sidebar.innerHTML =
+        categories
+          .map(category => {
+
+            const image =
+              getCategoryImage(
+                category
+              );
+
+            const style =
+              getSafeCategoryStyle(
+                category
+              );
+
+            return `
+
+              <button
+                type="button"
+                class="sidebar-category ${
+                  category === activeCategory
+                    ? "active"
+                    : ""
+                }"
+                data-category="${escapeAttribute(category)}"
+                onclick="
+                  selectCategory(
+                    this.dataset.category
+                  )
+                "
+              >
+
+                <span class="category-icon">
+
+                  ${
+                    image &&
+                    category !== "All"
+                      ? `
+                        <img
+                          src="${escapeAttribute(image)}"
+                          alt="${escapeAttribute(category)}"
+                          loading="lazy"
+                          onerror="
+                            this.style.display='none';
+                            this.nextElementSibling.style.display='flex';
+                          "
+                        />
+
+                        <span
+                          style="
+                            display:none;
+                            font-size:22px;
+                          "
+                        >
+                          ${escapeHTML(style.icon)}
+                        </span>
+                      `
+                      : `
+                        <span
+                          style="font-size:22px"
+                        >
+                          ${escapeHTML(style.icon)}
+                        </span>
+                      `
+                  }
+
+                </span>
+
+                <span
+                  class="sidebar-category-name"
+                >
+                  ${escapeHTML(category)}
+                </span>
+
+              </button>
+
+            `;
+
+          })
+          .join("");
+
+    }
+
+
+    /* =========================
        SELECT CATEGORY
-    ===================================================== */
+    ========================= */
 
     function selectCategory(category) {
 
-      activeCategory = category;
+      activeCategory =
+        category || "All";
+
+      const url =
+        new URL(
+          window.location.href
+        );
+
+      if (activeCategory === "All") {
+        url.searchParams.delete(
+          "category"
+        );
+      } else {
+        url.searchParams.set(
+          "category",
+          activeCategory
+        );
+      }
+
+      window.history.replaceState(
+        {},
+        "",
+        url
+      );
+
 
       document
         .querySelectorAll(".chip")
-        .forEach(btn => {
+        .forEach(button => {
 
-          btn.classList.toggle(
+          button.classList.toggle(
             "active",
-            btn.textContent.trim() === category
+            button.dataset.category ===
+              activeCategory
           );
 
         });
@@ -575,14 +837,12 @@
 
       document
         .querySelectorAll(".sidebar-category")
-        .forEach(btn => {
+        .forEach(button => {
 
-          btn.classList.toggle(
+          button.classList.toggle(
             "active",
-            btn.innerText
-              .replace("🎆", "")
-              .replace("🎇", "")
-              .trim() === category
+            button.dataset.category ===
+              activeCategory
           );
 
         });
@@ -593,15 +853,16 @@
     }
 
 
-    /* =====================================================
-       LOAD PRODUCTS FROM BACKEND
-    ===================================================== */
+    /* =========================
+       LOAD PRODUCTS
+    ========================= */
 
     async function loadProducts() {
 
       const content =
-        document.getElementById("catalogContent");
-
+        document.getElementById(
+          "catalogContent"
+        );
 
       content.innerHTML = `
 
@@ -618,43 +879,37 @@
           new URLSearchParams();
 
 
-        if (activeCategory !== "All") {
-
+        if (
+          activeCategory !== "All"
+        ) {
           params.set(
             "category",
             activeCategory
           );
-
         }
 
 
         if (searchTerm) {
-
           params.set(
             "search",
             searchTerm
           );
-
         }
 
 
-        const res = await fetch(
-          `${API_BASE_URL}/products?${params.toString()}`
-        );
-
-
-        if (!res.ok) {
-
-          throw new Error(
-            `Products request failed: ${res.status}`
+        const response =
+          await fetch(
+            `${API_BASE_URL}/products?${params.toString()}`
           );
 
+        if (!response.ok) {
+          throw new Error(
+            `Products request failed: ${response.status}`
+          );
         }
 
-
         allProducts =
-          await res.json();
-
+          await response.json();
 
         renderCatalog();
 
@@ -664,7 +919,6 @@
           "Products error:",
           error
         );
-
 
         content.innerHTML = `
 
@@ -687,14 +941,13 @@
     }
 
 
-    /* =====================================================
+    /* =========================
        SORT
-    ===================================================== */
+    ========================= */
 
     function setSort(mode) {
 
       sortMode = mode;
-
 
       document
         .getElementById("sortDefault")
@@ -703,14 +956,12 @@
           mode === "default"
         );
 
-
       document
         .getElementById("sortLow")
         .classList.toggle(
           "active",
           mode === "low"
         );
-
 
       document
         .getElementById("sortHigh")
@@ -719,45 +970,10 @@
           mode === "high"
         );
 
-
       renderCatalog();
 
     }
 
-
-    /* =====================================================
-       VIEW
-    ===================================================== */
-
-    function setView(mode) {
-
-      viewMode = mode;
-
-
-      document
-        .getElementById("viewCard")
-        .classList.toggle(
-          "active",
-          mode === "card"
-        );
-
-
-      document
-        .getElementById("viewTable")
-        .classList.toggle(
-          "active",
-          mode === "table"
-        );
-
-
-      renderCatalog();
-
-    }
-
-
-    /* =====================================================
-       GET SORTED PRODUCTS
-    ===================================================== */
 
     function getSortedProducts() {
 
@@ -792,9 +1008,36 @@
     }
 
 
-    /* =====================================================
+    /* =========================
+       VIEW
+    ========================= */
+
+    function setView(mode) {
+
+      viewMode = mode;
+
+      document
+        .getElementById("viewCard")
+        .classList.toggle(
+          "active",
+          mode === "card"
+        );
+
+      document
+        .getElementById("viewTable")
+        .classList.toggle(
+          "active",
+          mode === "table"
+        );
+
+      renderCatalog();
+
+    }
+
+
+    /* =========================
        RENDER CATALOG
-    ===================================================== */
+    ========================= */
 
     function renderCatalog() {
 
@@ -802,7 +1045,6 @@
         document.getElementById(
           "catalogContent"
         );
-
 
       const products =
         getSortedProducts();
@@ -842,21 +1084,17 @@
 
 
       if (viewMode === "table") {
-
         renderTableView(products);
-
       } else {
-
         renderCardView(products);
-
       }
 
     }
 
 
-    /* =====================================================
+    /* =========================
        CARD VIEW
-    ===================================================== */
+    ========================= */
 
     function renderCardView(products) {
 
@@ -865,22 +1103,18 @@
           "catalogContent"
         );
 
-
-      /* GROUP PRODUCTS BY CATEGORY */
-
       const groups = {};
 
 
       products.forEach(product => {
 
         const category =
-          product.category || "Other Products";
-
+          product.category ||
+          "Other Products";
 
         if (!groups[category]) {
           groups[category] = [];
         }
-
 
         groups[category].push(product);
 
@@ -889,50 +1123,54 @@
 
       content.innerHTML =
         Object.entries(groups)
-          .map(([category, items]) => `
+          .map(
+            ([category, items]) => `
 
-            <section class="product-category-section">
+              <section
+                class="product-category-section"
+              >
 
-              <div class="product-category-title">
-                ${escapeHTML(category)}
-              </div>
+                <div
+                  class="product-category-title"
+                >
+                  ${escapeHTML(category)}
+                </div>
 
+                <div
+                  class="product-card-grid"
+                >
 
-              <div class="product-card-grid">
+                  ${items
+                    .map(product =>
+                      renderCard(product)
+                    )
+                    .join("")}
 
-                ${items
-                  .map(product =>
-                    renderCard(product)
-                  )
-                  .join("")}
+                </div>
 
-              </div>
+              </section>
 
-            </section>
-
-          `)
+            `
+          )
           .join("");
 
     }
 
 
-    /* =====================================================
-       SINGLE CARD
-    ===================================================== */
+    /* =========================
+       PRODUCT CARD
+    ========================= */
 
-    function renderCard(p) {
+    function renderCard(product) {
 
       const id =
-        p._id || p.id;
-
+        product._id || product.id;
 
       const mrp =
-        Number(p.mrp || 0);
-
+        Number(product.mrp || 0);
 
       const price =
-        Number(p.finalPrice || 0);
-
+        Number(product.finalPrice || 0);
 
       const discount =
         mrp > 0
@@ -941,47 +1179,69 @@
             )
           : 0;
 
-
       const quantity =
         getProductQuantity(id);
 
-
       const productData =
-        encodeSafeData(p);
+        encodeSafeData(product);
+
+      let imageHTML = "";
+
+
+      if (
+        typeof productImageHTML ===
+        "function"
+      ) {
+
+        imageHTML =
+          productImageHTML(
+            product.category,
+            product.image
+          );
+
+      } else if (product.image) {
+
+        imageHTML = `
+
+          <img
+            src="${escapeAttribute(product.image)}"
+            alt="${escapeAttribute(product.name || "Product")}"
+            loading="lazy"
+          />
+
+        `;
+
+      } else {
+
+        imageHTML = `
+
+          <div class="no-product-image">
+            🎆
+          </div>
+
+        `;
+
+      }
 
 
       return `
 
-        <article class="mano-product-card">
+        <article
+          class="mano-product-card"
+        >
 
+          <div
+            class="mano-product-image"
+          >
 
-          <!-- IMAGE -->
-
-          <div class="mano-product-image">
-
-            ${
-              productImageHTML
-                ? productImageHTML(
-                    p.category,
-                    p.image
-                  )
-                : `
-                  <img
-                    src="${escapeAttribute(
-                      p.image || ""
-                    )}"
-                    alt="${escapeAttribute(
-                      p.name || "Product"
-                    )}"
-                  />
-                `
-            }
-
+            ${imageHTML}
 
             ${
               discount > 0
                 ? `
-                  <span class="best-selling-badge">
+                  <span
+                    class="best-selling-badge"
+                  >
                     🔥 ${discount}% OFF
                   </span>
                 `
@@ -991,27 +1251,24 @@
           </div>
 
 
-          <!-- DETAILS -->
+          <div
+            class="mano-product-details"
+          >
 
-          <div class="mano-product-details">
-
-
-            <div class="mano-product-name">
-
-              ${escapeHTML(
-                p.name || ""
-              )}
-
+            <div
+              class="mano-product-name"
+            >
+              ${escapeHTML(product.name || "")}
             </div>
 
 
             ${
-              p.content
+              product.content
                 ? `
-                  <div class="mano-product-content">
-                    ${escapeHTML(
-                      p.content
-                    )}
+                  <div
+                    class="mano-product-content"
+                  >
+                    ${escapeHTML(product.content)}
                   </div>
                 `
                 : ""
@@ -1019,15 +1276,9 @@
 
 
             <div class="product-unit">
-
-              ${escapeHTML(
-                p.unit || "PACK"
-              )}
-
+              ${escapeHTML(product.unit || "PACK")}
             </div>
 
-
-            <!-- PRICE -->
 
             <div class="mano-price">
 
@@ -1041,45 +1292,49 @@
                   : ""
               }
 
-
-              <span class="mano-final-price">
+              <span
+                class="mano-final-price"
+              >
                 ₹${price}
               </span>
 
             </div>
 
 
-            <!-- CART -->
-
             <div class="mano-cart-area">
 
               ${
                 quantity > 0
-
                   ? `
 
-                    <div class="mano-quantity">
+                    <div
+                      class="mano-quantity"
+                    >
 
                       <button
-                        onclick="updateProductQuantity(
-                          '${id}',
-                          ${quantity - 1}
-                        )"
+                        type="button"
+                        onclick="
+                          updateProductQuantity(
+                            '${escapeJS(id)}',
+                            ${quantity - 1}
+                          )
+                        "
                       >
                         −
                       </button>
-
 
                       <span>
                         ${quantity}
                       </span>
 
-
                       <button
-                        onclick="updateProductQuantity(
-                          '${id}',
-                          ${quantity + 1}
-                        )"
+                        type="button"
+                        onclick="
+                          updateProductQuantity(
+                            '${escapeJS(id)}',
+                            ${quantity + 1}
+                          )
+                        "
                       >
                         +
                       </button>
@@ -1087,22 +1342,24 @@
                     </div>
 
                   `
-
                   : `
 
                     <button
+                      type="button"
                       class="mano-add-btn"
-                      onclick="addProductToCart(
-                        decodeSafeData('${productData}')
-                      )"
+                      onclick="
+                        addProductToCart(
+                          decodeSafeData(
+                            '${productData}'
+                          )
+                        )
+                      "
                     >
                       Add To Cart
                     </button>
 
                   `
-
               }
-
 
             </div>
 
@@ -1115,9 +1372,9 @@
     }
 
 
-    /* =====================================================
+    /* =========================
        TABLE VIEW
-    ===================================================== */
+    ========================= */
 
     function renderTableView(products) {
 
@@ -1126,20 +1383,18 @@
           "catalogContent"
         );
 
-
       const groups = {};
 
 
       products.forEach(product => {
 
         const category =
-          product.category || "Other Products";
-
+          product.category ||
+          "Other Products";
 
         if (!groups[category]) {
           groups[category] = [];
         }
-
 
         groups[category].push(product);
 
@@ -1148,112 +1403,101 @@
 
       content.innerHTML =
         Object.entries(groups)
-          .map(([category, items]) => `
+          .map(
+            ([category, items]) => `
 
-            <section class="table-category-section">
+              <section
+                class="table-category-section"
+              >
 
+                <div
+                  class="table-category-title"
+                >
+                  ${escapeHTML(category)}
+                </div>
 
-              <div class="table-category-title">
-                ${escapeHTML(category)}
-              </div>
+                <div
+                  class="product-table-wrapper"
+                >
 
+                  <table
+                    class="mano-product-table"
+                  >
 
-              <div class="product-table-wrapper">
+                    <thead>
+                      <tr>
+                        <th>IMAGE</th>
+                        <th>NAME</th>
+                        <th>MRP</th>
+                        <th>OFFER RATE</th>
+                        <th>CART</th>
+                        <th>TOTAL</th>
+                      </tr>
+                    </thead>
 
-                <table class="mano-product-table">
+                    <tbody>
 
-                  <thead>
+                      ${items
+                        .map(product =>
+                          renderTableRow(product)
+                        )
+                        .join("")}
 
-                    <tr>
+                    </tbody>
 
-                      <th>IMAGE</th>
+                  </table>
 
-                      <th>NAME</th>
+                </div>
 
-                      <th>MRP</th>
+              </section>
 
-                      <th>OFFER RATE</th>
-
-                      <th>CART</th>
-
-                      <th>TOTAL</th>
-
-                    </tr>
-
-                  </thead>
-
-
-                  <tbody>
-
-                    ${items
-                      .map(product =>
-                        renderTableRow(product)
-                      )
-                      .join("")}
-
-                  </tbody>
-
-                </table>
-
-              </div>
-
-            </section>
-
-          `)
+            `
+          )
           .join("");
 
     }
 
 
-    /* =====================================================
+    /* =========================
        TABLE ROW
-    ===================================================== */
+    ========================= */
 
-    function renderTableRow(p) {
+    function renderTableRow(product) {
 
       const id =
-        p._id || p.id;
-
+        product._id || product.id;
 
       const mrp =
-        Number(p.mrp || 0);
-
+        Number(product.mrp || 0);
 
       const price =
-        Number(p.finalPrice || 0);
-
+        Number(product.finalPrice || 0);
 
       const quantity =
         getProductQuantity(id);
 
-
       const total =
         price * quantity;
 
-
       const productData =
-        encodeSafeData(p);
+        encodeSafeData(product);
 
 
       return `
 
         <tr>
 
-
-          <!-- IMAGE -->
-
-          <td class="table-image-cell">
+          <td
+            class="table-image-cell"
+          >
 
             ${
-              p.image
+              product.image
                 ? `
                   <img
-                    src="${escapeAttribute(
-                      p.image
-                    )}"
-                    alt="${escapeAttribute(
-                      p.name || ""
-                    )}"
+                    src="${escapeAttribute(product.image)}"
+                    alt="${escapeAttribute(product.name || "")}"
+                    loading="lazy"
                   />
                 `
                 : "🎆"
@@ -1262,40 +1506,32 @@
           </td>
 
 
-          <!-- NAME -->
-
-          <td class="table-name-cell">
+          <td
+            class="table-name-cell"
+          >
 
             <strong>
-              ${escapeHTML(
-                p.name || ""
-              )}
+              ${escapeHTML(product.name || "")}
             </strong>
 
-
             ${
-              p.content
+              product.content
                 ? `
                   <small>
-                    ${escapeHTML(
-                      p.content
-                    )}
+                    ${escapeHTML(product.content)}
                   </small>
                 `
                 : ""
             }
 
-
-            <span class="table-unit">
-              ${escapeHTML(
-                p.unit || "PACK"
-              )}
+            <span
+              class="table-unit"
+            >
+              ${escapeHTML(product.unit || "PACK")}
             </span>
 
           </td>
 
-
-          <!-- MRP -->
 
           <td>
 
@@ -1312,36 +1548,39 @@
           </td>
 
 
-          <!-- OFFER -->
-
           <td>
 
-            <span class="table-offer-price">
+            <span
+              class="table-offer-price"
+            >
               ₹${price}
             </span>
 
           </td>
 
 
-          <!-- CART -->
-
           <td>
 
             ${
               quantity > 0
-
                 ? `
 
-                  <div class="table-cart-controls">
+                  <div
+                    class="table-cart-controls"
+                  >
 
-                    <div class="table-quantity">
+                    <div
+                      class="table-quantity"
+                    >
 
                       <button
                         type="button"
-                        onclick="updateProductQuantity(
-                          '${id}',
-                          ${quantity - 1}
-                        )"
+                        onclick="
+                          updateProductQuantity(
+                            '${escapeJS(id)}',
+                            ${quantity - 1}
+                          )
+                        "
                       >
                         −
                       </button>
@@ -1352,17 +1591,21 @@
 
                       <button
                         type="button"
-                        onclick="updateProductQuantity(
-                          '${id}',
-                          ${quantity + 1}
-                        )"
+                        onclick="
+                          updateProductQuantity(
+                            '${escapeJS(id)}',
+                            ${quantity + 1}
+                          )
+                        "
                       >
                         +
                       </button>
 
                     </div>
 
-                    <strong class="mobile-product-total">
+                    <strong
+                      class="mobile-product-total"
+                    >
                       ₹${total.toFixed(2)}
                     </strong>
 
@@ -1376,35 +1619,37 @@
                   </div>
 
                 `
-
                 : `
 
                   <button
+                    type="button"
                     class="table-add-btn"
-                    onclick="addProductToCart(
-                      decodeSafeData('${productData}')
-                    )"
+                    onclick="
+                      addProductToCart(
+                        decodeSafeData(
+                          '${productData}'
+                        )
+                      )
+                    "
                   >
                     Add
                   </button>
 
                 `
-
             }
 
           </td>
 
 
-          <!-- TOTAL -->
-
           <td>
 
-            <strong class="table-total">
+            <strong
+              class="table-total"
+            >
               ₹${total.toFixed(2)}
             </strong>
 
           </td>
-
 
         </tr>
 
@@ -1413,9 +1658,9 @@
     }
 
 
-    /* =====================================================
+    /* =========================
        CART
-    ===================================================== */
+    ========================= */
 
     function getProductQuantity(productId) {
 
@@ -1424,14 +1669,12 @@
         const cart =
           getCart();
 
-
         const item =
           cart.find(
             item =>
               String(item.productId) ===
               String(productId)
           );
-
 
         return item
           ? Number(item.qty || 0)
@@ -1445,10 +1688,6 @@
 
     }
 
-
-    /* =====================================================
-       ADD TO CART
-    ===================================================== */
 
     function addProductToCart(product) {
 
@@ -1464,18 +1703,27 @@
 
         updateCartCount();
 
-        /* Scroll cart button into view after adding */
         setTimeout(() => {
 
           const cartLink =
-            document.querySelector(".cart-link");
+            document.querySelector(
+              ".cart-link"
+            );
 
           if (cartLink) {
-            cartLink.classList.add("cart-added");
+
+            cartLink.classList.add(
+              "cart-added"
+            );
 
             setTimeout(() => {
-              cartLink.classList.remove("cart-added");
+
+              cartLink.classList.remove(
+                "cart-added"
+              );
+
             }, 700);
+
           }
 
         }, 50);
@@ -1492,10 +1740,6 @@
     }
 
 
-    /* =====================================================
-       UPDATE QUANTITY
-    ===================================================== */
-
     function updateProductQuantity(
       productId,
       quantity
@@ -1508,9 +1752,7 @@
           quantity
         );
 
-
         renderCatalog();
-
 
         updateCartCount();
 
@@ -1526,10 +1768,6 @@
     }
 
 
-    /* =====================================================
-       CART COUNT
-    ===================================================== */
-
     function updateCartCount() {
 
       const element =
@@ -1537,26 +1775,21 @@
           "cart-count"
         );
 
-
       if (!element) {
         return;
       }
-
 
       try {
 
         const cart =
           getCart();
 
-
         const count =
           cart.reduce(
             (total, item) =>
-              total +
-              Number(item.qty || 0),
+              total + Number(item.qty || 0),
             0
           );
-
 
         element.textContent =
           count;
@@ -1571,9 +1804,9 @@
     }
 
 
-    /* =====================================================
-       SEARCH
-    ===================================================== */
+    /* =========================
+       PRODUCT SEARCH
+    ========================= */
 
     document
       .getElementById("search-input")
@@ -1585,13 +1818,11 @@
             searchTimeout
           );
 
-
           searchTimeout =
             setTimeout(() => {
 
               searchTerm =
                 event.target.value.trim();
-
 
               loadProducts();
 
@@ -1601,9 +1832,9 @@
       );
 
 
-    /* =====================================================
+    /* =========================
        CATEGORY SEARCH
-    ===================================================== */
+    ========================= */
 
     document
       .getElementById("category-search")
@@ -1616,19 +1847,20 @@
               .toLowerCase()
               .trim();
 
-
           document
             .querySelectorAll(
               ".sidebar-category"
             )
             .forEach(button => {
 
+              const category =
+                button.dataset.category
+                  .toLowerCase();
+
               button.style.display =
-                button.innerText
-                  .toLowerCase()
-                  .includes(value)
-                    ? "flex"
-                    : "none";
+                category.includes(value)
+                  ? "flex"
+                  : "none";
 
             });
 
@@ -1636,108 +1868,80 @@
       );
 
 
-    /* =====================================================
-       WISHLIST
-    ===================================================== */
-
-    function toggleWishlist(id) {
-
-      const button =
-        event.currentTarget;
-
-
-      button.classList.toggle(
-        "active"
-      );
-
-
-      button.textContent =
-        button.classList.contains("active")
-          ? "♥"
-          : "♡";
-
-    }
-
-
-    /* =====================================================
-       SCROLL CATEGORY
-    ===================================================== */
+    /* =========================
+       FILTER TOGGLE
+    ========================= */
 
     function toggleCategoryFilter() {
 
       const shopMain =
-        document.querySelector(".shop-main");
+        document.querySelector(
+          ".shop-main"
+        );
 
-      if (!shopMain) return;
+      if (!shopMain) {
+        return;
+      }
 
-      shopMain.classList.toggle("category-filter-open");
+      shopMain.classList.toggle(
+        "category-filter-open"
+      );
 
       const button =
-        document.querySelector(".filter-main-btn");
+        document.querySelector(
+          ".filter-main-btn"
+        );
 
-      if (shopMain.classList.contains("category-filter-open")) {
-        button.innerHTML = "✕ Close Filter";
-      } else {
-        button.innerHTML = "☰ Filter";
-      }
-    }
-
-
-    function scrollToCategories() {
-
-      document
-        .getElementById(
-          "category-sidebar"
+      if (
+        shopMain.classList.contains(
+          "category-filter-open"
         )
-        .scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
+      ) {
+        button.innerHTML =
+          "✕ Close Filter";
+      } else {
+        button.innerHTML =
+          "☰ Filter";
+      }
 
     }
 
 
-    /* =====================================================
+    /* =========================
        SECURITY HELPERS
-    ===================================================== */
+    ========================= */
 
     function escapeHTML(value) {
 
       return String(value ?? "")
-        .replace(
-          /&/g,
-          "&amp;"
-        )
-        .replace(
-          /</g,
-          "&lt;"
-        )
-        .replace(
-          />/g,
-          "&gt;"
-        )
-        .replace(
-          /"/g,
-          "&quot;"
-        )
-        .replace(
-          /'/g,
-          "&#039;"
-        );
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 
     }
 
 
     function escapeAttribute(value) {
-
       return escapeHTML(value);
+    }
+
+
+    function escapeJS(value) {
+
+      return String(value ?? "")
+        .replace(/\\/g, "\\\\")
+        .replace(/'/g, "\\'")
+        .replace(/\r/g, "\\r")
+        .replace(/\n/g, "\\n");
 
     }
 
 
-    /* =====================================================
+    /* =========================
        INITIAL LOAD
-    ===================================================== */
+    ========================= */
 
     loadCategories();
 
@@ -1748,6 +1952,7 @@
   </script>
 
   <script src="js/mobile-menu.js"></script>
+
 </body>
 
 </html>
