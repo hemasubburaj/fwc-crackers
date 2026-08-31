@@ -13,24 +13,27 @@
   <link rel="stylesheet" href="css/style.css" />
 
   <style>
+    /*
+      Category image only
+    */
+
     .chip-category-image {
       width: 42px;
       height: 42px;
-      object-fit: cover;
-      border-radius: 50%;
+      object-fit: contain;
       display: block;
-      margin-bottom: 5px;
-      border: 2px solid rgba(255, 255, 255, 0.5);
+      margin: 0 auto 6px;
+      border-radius: 8px;
+      background: #ffffff;
     }
 
-    .chip-category-icon {
+    .chip-category-empty {
       width: 42px;
       height: 42px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 25px;
-      margin-bottom: 5px;
+      display: block;
+      margin: 0 auto 6px;
+      border-radius: 8px;
+      background: #f3f3f3;
     }
 
     .category-icon {
@@ -41,15 +44,22 @@
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      background: #ffffff;
     }
 
     .category-icon img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      border-radius: 50%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .category-icon-empty {
+      width: 100%;
+      height: 100%;
+      background: #f3f3f3;
+      border-radius: 8px;
     }
 
     .sidebar-category {
@@ -251,11 +261,11 @@
   </section>
 
 
-  <!-- SHOP MAIN -->
+  <!-- SHOP CONTENT -->
 
   <section class="container shop-main">
 
-    <!-- CATEGORY FILTER SIDEBAR -->
+    <!-- FILTER SIDEBAR -->
 
     <aside
       class="shop-sidebar"
@@ -281,7 +291,7 @@
     </aside>
 
 
-    <!-- PRODUCTS -->
+    <!-- PRODUCT CONTENT -->
 
     <main class="shop-products">
 
@@ -416,8 +426,9 @@
   <script>
 
     let activeCategory =
-      new URLSearchParams(location.search)
-        .get("category") || "All";
+      new URLSearchParams(
+        window.location.search
+      ).get("category") || "All";
 
     let searchTerm = "";
 
@@ -435,7 +446,7 @@
 
 
     /* =========================
-       CATEGORY STYLE
+       CATEGORY STYLE HELPER
     ========================= */
 
     function getSafeCategoryStyle(category) {
@@ -447,7 +458,7 @@
       }
 
       return {
-        icon: "🎆",
+        icon: "",
         from: "#D9A431",
         to: "#C43B26"
       };
@@ -522,6 +533,8 @@
 
         categoryImageMap = {};
 
+        let firstImage = "";
+
         products.forEach(product => {
 
           const category =
@@ -537,12 +550,22 @@
             )
               .trim();
 
-          if (
-            category &&
+          const validImage =
             image &&
             !image
               .toLowerCase()
-              .includes("placeholder") &&
+              .includes("placeholder");
+
+          if (
+            validImage &&
+            !firstImage
+          ) {
+            firstImage = image;
+          }
+
+          if (
+            category &&
+            validImage &&
             !categoryImageMap[category]
           ) {
             categoryImageMap[category] =
@@ -550,6 +573,15 @@
           }
 
         });
+
+
+        /*
+          All category-க்கு
+          முதல் product image பயன்படுத்தப்படும்
+        */
+        categoryImageMap.all =
+          firstImage;
+
 
         renderCategories(
           allCategories
@@ -573,19 +605,17 @@
 
     function getCategoryImage(category) {
 
-      if (category === "All") {
-        return "";
-      }
-
       const style =
         getSafeCategoryStyle(
           category
         );
 
+
       /*
-        Fixed image இருந்தால்
-        முதலில் அதைப் பயன்படுத்தும்
+        category-styles.js-ல் image இருந்தால்
+        அதைப் பயன்படுத்தும்
       */
+
       if (
         style.image &&
         String(style.image).trim() !== ""
@@ -593,14 +623,29 @@
         return style.image;
       }
 
+
       const normalizedCategory =
         String(category || "")
           .trim()
           .toLowerCase();
 
+
       /*
-        இல்லையெனில் product image பயன்படுத்தும்
+        All category-க்கு முதல் product image
       */
+
+      if (
+        normalizedCategory === "all"
+      ) {
+        return categoryImageMap.all || "";
+      }
+
+
+      /*
+        மற்ற category-க்கு அந்த category-யின்
+        முதல் product image
+      */
+
       return categoryImageMap[
         normalizedCategory
       ] || "";
@@ -609,7 +654,7 @@
 
 
     /* =========================
-       RENDER CATEGORY CHIPS
+       RENDER CATEGORIES
     ========================= */
 
     function renderCategories(categories) {
@@ -627,6 +672,7 @@
 
       /*
         TOP CATEGORY CHIPS
+        ICON இல்லாமல் IMAGE மட்டும்
       */
 
       chipContainer.innerHTML =
@@ -635,11 +681,6 @@
 
             const image =
               getCategoryImage(
-                category
-              );
-
-            const style =
-              getSafeCategoryStyle(
                 category
               );
 
@@ -661,8 +702,7 @@
               >
 
                 ${
-                  image &&
-                  category !== "All"
+                  image
                     ? `
                       <img
                         src="${escapeAttribute(image)}"
@@ -671,23 +711,19 @@
                         loading="lazy"
                         onerror="
                           this.style.display='none';
-                          this.nextElementSibling.style.display='flex';
+                          this.nextElementSibling.style.display='block';
                         "
                       />
 
                       <span
-                        class="chip-category-icon"
+                        class="chip-category-empty"
                         style="display:none"
-                      >
-                        ${escapeHTML(style.icon)}
-                      </span>
+                      ></span>
                     `
                     : `
                       <span
-                        class="chip-category-icon"
-                      >
-                        ${escapeHTML(style.icon)}
-                      </span>
+                        class="chip-category-empty"
+                      ></span>
                     `
                 }
 
@@ -704,7 +740,8 @@
 
 
       /*
-        LEFT FILTER SIDEBAR
+        FILTER SIDEBAR
+        ICON இல்லாமல் IMAGE மட்டும்
       */
 
       sidebar.innerHTML =
@@ -713,11 +750,6 @@
 
             const image =
               getCategoryImage(
-                category
-              );
-
-            const style =
-              getSafeCategoryStyle(
                 category
               );
 
@@ -741,8 +773,7 @@
                 <span class="category-icon">
 
                   ${
-                    image &&
-                    category !== "All"
+                    image
                       ? `
                         <img
                           src="${escapeAttribute(image)}"
@@ -750,25 +781,19 @@
                           loading="lazy"
                           onerror="
                             this.style.display='none';
-                            this.nextElementSibling.style.display='flex';
+                            this.nextElementSibling.style.display='block';
                           "
                         />
 
                         <span
-                          style="
-                            display:none;
-                            font-size:22px;
-                          "
-                        >
-                          ${escapeHTML(style.icon)}
-                        </span>
+                          class="category-icon-empty"
+                          style="display:none"
+                        ></span>
                       `
                       : `
                         <span
-                          style="font-size:22px"
-                        >
-                          ${escapeHTML(style.icon)}
-                        </span>
+                          class="category-icon-empty"
+                        ></span>
                       `
                   }
 
@@ -804,7 +829,9 @@
           window.location.href
         );
 
-      if (activeCategory === "All") {
+      if (
+        activeCategory === "All"
+      ) {
         url.searchParams.delete(
           "category"
         );
@@ -1083,7 +1110,9 @@
       }
 
 
-      if (viewMode === "table") {
+      if (
+        viewMode === "table"
+      ) {
         renderTableView(products);
       } else {
         renderCardView(products);
@@ -1703,31 +1732,6 @@
 
         updateCartCount();
 
-        setTimeout(() => {
-
-          const cartLink =
-            document.querySelector(
-              ".cart-link"
-            );
-
-          if (cartLink) {
-
-            cartLink.classList.add(
-              "cart-added"
-            );
-
-            setTimeout(() => {
-
-              cartLink.classList.remove(
-                "cart-added"
-              );
-
-            }, 700);
-
-          }
-
-        }, 50);
-
       } catch (error) {
 
         console.error(
@@ -1805,7 +1809,7 @@
 
 
     /* =========================
-       PRODUCT SEARCH
+       SEARCH
     ========================= */
 
     document
