@@ -1,10 +1,3 @@
-/*
-  Product card colours and icons.
-
-  Category chip and filter sidebar-ல்
-  icon பயன்படுத்தப்படாது.
-  அங்கு image மட்டும் காட்டப்படும்.
-*/
 
 
 const CATEGORY_STYLES = {
