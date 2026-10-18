@@ -1153,6 +1153,26 @@
       </div>
 
 
+      <!-- PRODUCT SEARCH -->
+      <div class="chart-card" style="margin-bottom:14px; padding:14px;">
+        <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
+          <input
+            type="search"
+            id="products-search-input"
+            placeholder="Search by product name, code, or category..."
+            aria-label="Search products"
+            oninput="renderProductsTable()"
+            style="flex:1; min-width:220px; padding:12px; border:1px solid var(--line); border-radius:8px; background:var(--surface); color:var(--ink);"
+          />
+          <button
+            type="button"
+            class="btn btn-outline"
+            onclick="clearProductsSearch()"
+          >Clear Search</button>
+          <span id="products-search-count" aria-live="polite" style="font-size:0.85rem; color:var(--ink-soft);"></span>
+        </div>
+      </div>
+
       <!-- PRODUCT TABLE -->
 
       <div
@@ -2301,116 +2321,56 @@
 
     }
 
-<!-- PRODUCT SEARCH -->
-<div class="chart-card" style="margin-bottom:14px; padding:14px;">
-  <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
-
-    <input
-      type="search"
-      id="products-search-input"
-      placeholder="Search by product name, code, or category..."
-      aria-label="Search products"
-      oninput="renderProductsTable()"
-      style="flex:1; min-width:220px; padding:12px; border:1px solid #ddd; border-radius:8px;"
-    />
-
-    <button
-      type="button"
-      class="btn btn-outline"
-      onclick="clearProductsSearch()"
-    >
-      Clear Search
-    </button>
-
-    <span
-      id="products-search-count"
-      aria-live="polite"
-    ></span>
-
-  </div>
-</div>
-
-<!-- PRODUCT TABLE -->
-<div class="table-card" id="products-table">
-  <div class="loader">Loading...</div>
-</div>
     /* =====================================================
-       PRODUCT TABLE
+       PRODUCT TABLE WITH SEARCH
     ===================================================== */
 
- /* PRODUCT SEARCH */
+    function clearProductsSearch() {
+      const searchInput = document.getElementById("products-search-input");
+      if (searchInput) {
+        searchInput.value = "";
+        renderProductsTable();
+        searchInput.focus();
+      }
+    }
 
-function clearProductsSearch() {
-  const searchInput = document.getElementById(
-    "products-search-input"
-  );
+    function renderProductsTable() {
+      const el = document.getElementById("products-table");
+      const searchInput = document.getElementById("products-search-input");
+      const countEl = document.getElementById("products-search-count");
+      if (!el) return;
 
-  if (searchInput) {
-    searchInput.value = "";
-    renderProductsTable();
-    searchInput.focus();
-  }
-}
+      const query = searchInput ? searchInput.value.trim().toLowerCase() : "";
+      const filteredProducts = allProducts.filter(product => {
+        const searchableText = [
+          product.name,
+          product.productCode,
+          product.category
+        ];
+        return searchableText.some(value =>
+          String(value || "").toLowerCase().includes(query)
+        );
+      });
 
+      if (countEl) {
+        countEl.textContent = query
+          ? `${filteredProducts.length} of ${allProducts.length} products`
+          : `${allProducts.length} products`;
+      }
 
-/* RENDER PRODUCTS TABLE */
+      if (allProducts.length === 0) {
+        el.innerHTML = `
+          <div class="empty-state">No products found.</div>
+        `;
+        return;
+      }
 
-function renderProductsTable() {
-  const el = document.getElementById("products-table");
-  const searchInput = document.getElementById(
-    "products-search-input"
-  );
-  const countEl = document.getElementById(
-    "products-search-count"
-  );
-
-  if (!el) return;
-
-  const query = searchInput
-    ? searchInput.value.trim().toLowerCase()
-    : "";
-
-  const filteredProducts = allProducts.filter(product => {
-    const searchableText = [
-      product.name,
-      product.productCode,
-      product.category
-    ];
-
-    return searchableText.some(value =>
-      String(value || "").toLowerCase().includes(query)
-    );
-  });
-
-  if (countEl) {
-    countEl.textContent = query
-      ? `${filteredProducts.length} of ${allProducts.length} products`
-      : `${allProducts.length} products`;
-  }
-
-  if (allProducts.length === 0) {
-    el.innerHTML = `
-      <div class="empty-state">
-        No products found.
-      </div>
-    `;
-    return;
-  }
-
-  if (filteredProducts.length === 0) {
-    el.innerHTML = `
-      <div class="empty-state">
-        No matching products found.
-      </div>
-    `;
-    return;
-  }
-
-  // Keep your existing product table rendering here.
-  // Use filteredProducts instead of allProducts
-  // when displaying the product rows.
-}
-    
+      if (filteredProducts.length === 0) {
+        el.innerHTML = `
+          <div class="empty-state">No matching products found.</div>
+        `;
+        return;
+      }
 
       el.innerHTML = `
 
@@ -2439,7 +2399,7 @@ function renderProductsTable() {
 
           <tbody>
 
-            ${allProducts.map(product => `
+            ${filteredProducts.map(product => `
 
               <tr>
 
