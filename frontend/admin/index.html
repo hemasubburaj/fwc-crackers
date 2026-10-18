@@ -2301,7 +2301,39 @@
 
     }
 
+<!-- PRODUCT SEARCH -->
+<div class="chart-card" style="margin-bottom:14px; padding:14px;">
+  <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
 
+    <input
+      type="search"
+      id="products-search-input"
+      placeholder="Search by product name, code, or category..."
+      aria-label="Search products"
+      oninput="renderProductsTable()"
+      style="flex:1; min-width:220px; padding:12px; border:1px solid #ddd; border-radius:8px;"
+    />
+
+    <button
+      type="button"
+      class="btn btn-outline"
+      onclick="clearProductsSearch()"
+    >
+      Clear Search
+    </button>
+
+    <span
+      id="products-search-count"
+      aria-live="polite"
+    ></span>
+
+  </div>
+</div>
+
+<!-- PRODUCT TABLE -->
+<div class="table-card" id="products-table">
+  <div class="loader">Loading...</div>
+</div>
     /* =====================================================
        PRODUCT TABLE
     ===================================================== */
