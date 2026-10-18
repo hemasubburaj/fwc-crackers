@@ -2338,26 +2338,79 @@
        PRODUCT TABLE
     ===================================================== */
 
-    function renderProductsTable() {
+ /* PRODUCT SEARCH */
 
-      const el =
-        document.getElementById(
-          "products-table"
-        );
+function clearProductsSearch() {
+  const searchInput = document.getElementById(
+    "products-search-input"
+  );
+
+  if (searchInput) {
+    searchInput.value = "";
+    renderProductsTable();
+    searchInput.focus();
+  }
+}
 
 
-      if (!allProducts.length) {
+/* RENDER PRODUCTS TABLE */
 
-        el.innerHTML = `
-          <div class="empty-state">
-            No products found.
-          </div>
-        `;
+function renderProductsTable() {
+  const el = document.getElementById("products-table");
+  const searchInput = document.getElementById(
+    "products-search-input"
+  );
+  const countEl = document.getElementById(
+    "products-search-count"
+  );
 
-        return;
+  if (!el) return;
 
-      }
+  const query = searchInput
+    ? searchInput.value.trim().toLowerCase()
+    : "";
 
+  const filteredProducts = allProducts.filter(product => {
+    const searchableText = [
+      product.name,
+      product.productCode,
+      product.category
+    ];
+
+    return searchableText.some(value =>
+      String(value || "").toLowerCase().includes(query)
+    );
+  });
+
+  if (countEl) {
+    countEl.textContent = query
+      ? `${filteredProducts.length} of ${allProducts.length} products`
+      : `${allProducts.length} products`;
+  }
+
+  if (allProducts.length === 0) {
+    el.innerHTML = `
+      <div class="empty-state">
+        No products found.
+      </div>
+    `;
+    return;
+  }
+
+  if (filteredProducts.length === 0) {
+    el.innerHTML = `
+      <div class="empty-state">
+        No matching products found.
+      </div>
+    `;
+    return;
+  }
+
+  // Keep your existing product table rendering here.
+  // Use filteredProducts instead of allProducts
+  // when displaying the product rows.
+}
+    
 
       el.innerHTML = `
 
