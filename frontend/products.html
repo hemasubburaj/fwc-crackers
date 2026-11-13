@@ -652,76 +652,84 @@
 
     }
 
+function renderCategories(categories) {
 
+  const sidebar =
+    document.getElementById(
+      "sidebar-categories"
+    );
 
-      /*
-        TOP CATEGORY CHIPS
-        ICON இல்லாமல் IMAGE மட்டும்
-      */
+  sidebar.innerHTML =
+    categories
+      .map(category => {
 
-      chipContainer.innerHTML =
-        categories
-          .map(category => {
+        const image =
+          getCategoryImage(
+            category
+          );
 
-            const image =
-              getCategoryImage(
-                category
-              );
+        return `
 
-            return `
+          <button
+            type="button"
+            class="sidebar-category ${
+              category === activeCategory
+                ? "active"
+                : ""
+            }"
+            data-category="${escapeAttribute(category)}"
+            onclick="
+              selectCategory(
+                this.dataset.category
+              )
+            "
+          >
 
-              <button
-                type="button"
-                class="chip ${
-                  category === activeCategory
-                    ? "active"
-                    : ""
-                }"
-                data-category="${escapeAttribute(category)}"
-                onclick="
-                  selectCategory(
-                    this.dataset.category
-                  )
-                "
-              >
+            <span class="category-icon">
 
-                ${
-                  image
-                    ? `
-                      <img
-                        src="${escapeAttribute(image)}"
-                        class="chip-category-image"
-                        alt="${escapeAttribute(category)}"
-                        loading="lazy"
-                        onerror="
-                          this.style.display='none';
-                          this.nextElementSibling.style.display='block';
-                        "
-                      />
+              ${
+                image
+                  ? `
+                    <img
+                      src="${escapeAttribute(image)}"
+                      alt="${escapeAttribute(category)}"
+                      loading="lazy"
+                      onerror="
+                        this.style.display='none';
+                        this.nextElementSibling.style.display='block';
+                      "
+                    />
 
-                      <span
-                        class="chip-category-empty"
-                        style="display:none"
-                      ></span>
-                    `
-                    : `
-                      <span
-                        class="chip-category-empty"
-                      ></span>
-                    `
-                }
+                    <span
+                      class="category-icon-empty"
+                      style="display:none"
+                    ></span>
+                  `
+                  : `
+                    <span
+                      class="category-icon-empty"
+                    ></span>
+                  `
+              }
 
-                <span>
-                  ${escapeHTML(category)}
-                </span>
+            </span>
 
-              </button>
+            <span
+              class="sidebar-category-name"
+            >
+              ${escapeHTML(category)}
+            </span>
 
-            `;
+          </button>
 
-          })
-          .join("");
+        `;
 
+      })
+      .join("");
+
+}
+
+   
 
       /*
         FILTER SIDEBAR
