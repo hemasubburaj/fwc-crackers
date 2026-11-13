@@ -659,16 +659,17 @@
 
     function renderCategories(categories) {
 
-      const chipContainer =
-        document.getElementById(
-          "category-chips"
-        );
+  const sidebar =
+    document.getElementById(
+      "sidebar-categories"
+    );
 
-      const sidebar =
-        document.getElementById(
-          "sidebar-categories"
-        );
+  // chipContainer variable, chipContainer.innerHTML = ... full block delete
 
+  sidebar.innerHTML =
+    categories
+      .map(category => {
+        // ... sidebar code appadiye
 
       /*
         TOP CATEGORY CHIPS
