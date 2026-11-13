@@ -3,39 +3,13 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Shop All Crackers | familycrackersworld</title>
 
   <link rel="stylesheet" href="css/style.css" />
 
   <style>
-    /*
-      Category image only
-    */
-
-    .chip-category-image {
-      width: 42px;
-      height: 42px;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto 6px;
-      border-radius: 8px;
-      background: #ffffff;
-    }
-
-    .chip-category-empty {
-      width: 42px;
-      height: 42px;
-      display: block;
-      margin: 0 auto 6px;
-      border-radius: 8px;
-      background: #f3f3f3;
-    }
-
     .category-icon {
       width: 42px;
       height: 42px;
@@ -70,14 +44,6 @@
 
     .sidebar-category-name {
       flex: 1;
-    }
-
-    .chip {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
     }
 
     .no-product-image {
@@ -165,14 +131,6 @@
 
     </div>
 
-
-    <!-- CATEGORY CHIPS -->
-
-    <div
-      class="chip-row"
-      id="category-chips"
-    ></div>
-
   </section>
 
 
@@ -192,10 +150,7 @@
           ☰ Filter
         </button>
 
-        <span
-          class="found-text"
-          id="foundText"
-        >
+        <span class="found-text" id="foundText">
           We found 0 items!
         </span>
 
@@ -267,10 +222,7 @@
 
     <!-- FILTER SIDEBAR -->
 
-    <aside
-      class="shop-sidebar"
-      id="category-sidebar"
-    >
+    <aside class="shop-sidebar" id="category-sidebar">
 
       <div class="sidebar-title">
         All Categories
@@ -283,10 +235,7 @@
         placeholder="Search categories..."
       />
 
-      <div
-        id="sidebar-categories"
-        class="sidebar-categories"
-      ></div>
+      <div id="sidebar-categories" class="sidebar-categories"></div>
 
     </aside>
 
@@ -295,10 +244,7 @@
 
     <main class="shop-products">
 
-      <div
-        id="catalogContent"
-        class="catalog-content"
-      >
+      <div id="catalogContent" class="catalog-content">
 
         <div class="loader">
           Loading products...
@@ -426,22 +372,14 @@
   <script>
 
     let activeCategory =
-      new URLSearchParams(
-        window.location.search
-      ).get("category") || "All";
+      new URLSearchParams(window.location.search).get("category") || "All";
 
     let searchTerm = "";
-
     let allProducts = [];
-
     let allCategories = [];
-
     let categoryImageMap = {};
-
     let sortMode = "default";
-
     let viewMode = "card";
-
     let searchTimeout;
 
 
@@ -451,9 +389,7 @@
 
     function getSafeCategoryStyle(category) {
 
-      if (
-        typeof getCategoryStyle === "function"
-      ) {
+      if (typeof getCategoryStyle === "function") {
         return getCategoryStyle(category);
       }
 
@@ -475,36 +411,23 @@
       try {
 
         const response =
-          await fetch(
-            `${API_BASE_URL}/products/categories`
-          );
+          await fetch(`${API_BASE_URL}/products/categories`);
 
         if (!response.ok) {
-          throw new Error(
-            "Category loading failed"
-          );
+          throw new Error("Category loading failed");
         }
 
-        const data =
-          await response.json();
+        const data = await response.json();
 
-        allCategories = [
-          "All",
-          ...data
-        ];
+        allCategories = ["All", ...data];
 
-        renderCategories(
-          allCategories
-        );
+        renderCategories(allCategories);
 
         await loadCategoryImages();
 
       } catch (error) {
 
-        console.error(
-          "Categories error:",
-          error
-        );
+        console.error("Categories error:", error);
 
       }
 
@@ -519,17 +442,13 @@
 
       try {
 
-        const response =
-          await fetch(
-            `${API_BASE_URL}/products`
-          );
+        const response = await fetch(`${API_BASE_URL}/products`);
 
         if (!response.ok) {
           return;
         }
 
-        const products =
-          await response.json();
+        const products = await response.json();
 
         categoryImageMap = {};
 
@@ -538,61 +457,32 @@
         products.forEach(product => {
 
           const category =
-            String(
-              product.category || ""
-            )
-              .trim()
-              .toLowerCase();
+            String(product.category || "").trim().toLowerCase();
 
           const image =
-            String(
-              product.image || ""
-            )
-              .trim();
+            String(product.image || "").trim();
 
           const validImage =
-            image &&
-            !image
-              .toLowerCase()
-              .includes("placeholder");
+            image && !image.toLowerCase().includes("placeholder");
 
-          if (
-            validImage &&
-            !firstImage
-          ) {
+          if (validImage && !firstImage) {
             firstImage = image;
           }
 
-          if (
-            category &&
-            validImage &&
-            !categoryImageMap[category]
-          ) {
-            categoryImageMap[category] =
-              image;
+          if (category && validImage && !categoryImageMap[category]) {
+            categoryImageMap[category] = image;
           }
 
         });
 
+        // "All" uses the first product image
+        categoryImageMap.all = firstImage;
 
-        /*
-          All category-க்கு
-          முதல் product image பயன்படுத்தப்படும்
-        */
-        categoryImageMap.all =
-          firstImage;
-
-
-        renderCategories(
-          allCategories
-        );
+        renderCategories(allCategories);
 
       } catch (error) {
 
-        console.error(
-          "Category image error:",
-          error
-        );
+        console.error("Category image error:", error);
 
       }
 
@@ -605,161 +495,52 @@
 
     function getCategoryImage(category) {
 
-      const style =
-        getSafeCategoryStyle(
-          category
-        );
+      const style = getSafeCategoryStyle(category);
 
-
-      /*
-        category-styles.js-ல் image இருந்தால்
-        அதைப் பயன்படுத்தும்
-      */
-
-      if (
-        style.image &&
-        String(style.image).trim() !== ""
-      ) {
+      // Use image from category-styles.js if available
+      if (style.image && String(style.image).trim() !== "") {
         return style.image;
       }
 
-
       const normalizedCategory =
-        String(category || "")
-          .trim()
-          .toLowerCase();
+        String(category || "").trim().toLowerCase();
 
-
-      /*
-        All category-க்கு முதல் product image
-      */
-
-      if (
-        normalizedCategory === "all"
-      ) {
+      if (normalizedCategory === "all") {
         return categoryImageMap.all || "";
       }
 
-
-      /*
-        மற்ற category-க்கு அந்த category-யின்
-        முதல் product image
-      */
-
-      return categoryImageMap[
-        normalizedCategory
-      ] || "";
+      return categoryImageMap[normalizedCategory] || "";
 
     }
 
-function renderCategories(categories) {
 
-  const sidebar =
-    document.getElementById(
-      "sidebar-categories"
-    );
+    /* =========================
+       RENDER CATEGORIES (SIDEBAR ONLY)
+    ========================= */
 
-  sidebar.innerHTML =
-    categories
-      .map(category => {
+    function renderCategories(categories) {
 
-        const image =
-          getCategoryImage(
-            category
-          );
+      const sidebar = document.getElementById("sidebar-categories");
 
-        return `
-
-          <button
-            type="button"
-            class="sidebar-category ${
-              category === activeCategory
-                ? "active"
-                : ""
-            }"
-            data-category="${escapeAttribute(category)}"
-            onclick="
-              selectCategory(
-                this.dataset.category
-              )
-            "
-          >
-
-            <span class="category-icon">
-
-              ${
-                image
-                  ? `
-                    <img
-                      src="${escapeAttribute(image)}"
-                      alt="${escapeAttribute(category)}"
-                      loading="lazy"
-                      onerror="
-                        this.style.display='none';
-                        this.nextElementSibling.style.display='block';
-                      "
-                    />
-
-                    <span
-                      class="category-icon-empty"
-                      style="display:none"
-                    ></span>
-                  `
-                  : `
-                    <span
-                      class="category-icon-empty"
-                    ></span>
-                  `
-              }
-
-            </span>
-
-            <span
-              class="sidebar-category-name"
-            >
-              ${escapeHTML(category)}
-            </span>
-
-          </button>
-
-        `;
-
-      })
-      .join("");
-
-}
-
-   
-
-      /*
-        FILTER SIDEBAR
-        ICON இல்லாமல் IMAGE மட்டும்
-      */
+      if (!sidebar) {
+        return;
+      }
 
       sidebar.innerHTML =
         categories
           .map(category => {
 
-            const image =
-              getCategoryImage(
-                category
-              );
+            const image = getCategoryImage(category);
 
             return `
 
               <button
                 type="button"
                 class="sidebar-category ${
-                  category === activeCategory
-                    ? "active"
-                    : ""
+                  category === activeCategory ? "active" : ""
                 }"
                 data-category="${escapeAttribute(category)}"
-                onclick="
-                  selectCategory(
-                    this.dataset.category
-                  )
-                "
+                onclick="selectCategory(this.dataset.category)"
               >
 
                 <span class="category-icon">
@@ -783,17 +564,13 @@ function renderCategories(categories) {
                         ></span>
                       `
                       : `
-                        <span
-                          class="category-icon-empty"
-                        ></span>
+                        <span class="category-icon-empty"></span>
                       `
                   }
 
                 </span>
 
-                <span
-                  class="sidebar-category-name"
-                >
+                <span class="sidebar-category-name">
                   ${escapeHTML(category)}
                 </span>
 
@@ -813,46 +590,17 @@ function renderCategories(categories) {
 
     function selectCategory(category) {
 
-      activeCategory =
-        category || "All";
+      activeCategory = category || "All";
 
-      const url =
-        new URL(
-          window.location.href
-        );
+      const url = new URL(window.location.href);
 
-      if (
-        activeCategory === "All"
-      ) {
-        url.searchParams.delete(
-          "category"
-        );
+      if (activeCategory === "All") {
+        url.searchParams.delete("category");
       } else {
-        url.searchParams.set(
-          "category",
-          activeCategory
-        );
+        url.searchParams.set("category", activeCategory);
       }
 
-      window.history.replaceState(
-        {},
-        "",
-        url
-      );
-
-
-      document
-        .querySelectorAll(".chip")
-        .forEach(button => {
-
-          button.classList.toggle(
-            "active",
-            button.dataset.category ===
-              activeCategory
-          );
-
-        });
-
+      window.history.replaceState({}, "", url);
 
       document
         .querySelectorAll(".sidebar-category")
@@ -860,12 +608,10 @@ function renderCategories(categories) {
 
           button.classList.toggle(
             "active",
-            button.dataset.category ===
-              activeCategory
+            button.dataset.category === activeCategory
           );
 
         });
-
 
       loadProducts();
 
@@ -878,81 +624,46 @@ function renderCategories(categories) {
 
     async function loadProducts() {
 
-      const content =
-        document.getElementById(
-          "catalogContent"
-        );
+      const content = document.getElementById("catalogContent");
 
       content.innerHTML = `
-
         <div class="loader">
           Loading products...
         </div>
-
       `;
-
 
       try {
 
-        const params =
-          new URLSearchParams();
+        const params = new URLSearchParams();
 
-
-        if (
-          activeCategory !== "All"
-        ) {
-          params.set(
-            "category",
-            activeCategory
-          );
+        if (activeCategory !== "All") {
+          params.set("category", activeCategory);
         }
-
 
         if (searchTerm) {
-          params.set(
-            "search",
-            searchTerm
-          );
+          params.set("search", searchTerm);
         }
-
 
         const response =
-          await fetch(
-            `${API_BASE_URL}/products?${params.toString()}`
-          );
+          await fetch(`${API_BASE_URL}/products?${params.toString()}`);
 
         if (!response.ok) {
-          throw new Error(
-            `Products request failed: ${response.status}`
-          );
+          throw new Error(`Products request failed: ${response.status}`);
         }
 
-        allProducts =
-          await response.json();
+        allProducts = await response.json();
 
         renderCatalog();
 
       } catch (error) {
 
-        console.error(
-          "Products error:",
-          error
-        );
+        console.error("Products error:", error);
 
         content.innerHTML = `
-
           <div class="empty-state">
-
-            <h3>
-              Could not load products
-            </h3>
-
-            <p>
-              Please make sure your backend is running.
-            </p>
-
+            <h3>Could not load products</h3>
+            <p>Please make sure your backend is running.</p>
           </div>
-
         `;
 
       }
@@ -970,24 +681,15 @@ function renderCategories(categories) {
 
       document
         .getElementById("sortDefault")
-        .classList.toggle(
-          "active",
-          mode === "default"
-        );
+        .classList.toggle("active", mode === "default");
 
       document
         .getElementById("sortLow")
-        .classList.toggle(
-          "active",
-          mode === "low"
-        );
+        .classList.toggle("active", mode === "low");
 
       document
         .getElementById("sortHigh")
-        .classList.toggle(
-          "active",
-          mode === "high"
-        );
+        .classList.toggle("active", mode === "high");
 
       renderCatalog();
 
@@ -996,31 +698,21 @@ function renderCategories(categories) {
 
     function getSortedProducts() {
 
-      const items =
-        [...allProducts];
-
+      const items = [...allProducts];
 
       if (sortMode === "low") {
-
         items.sort(
           (a, b) =>
-            Number(a.finalPrice || 0) -
-            Number(b.finalPrice || 0)
+            Number(a.finalPrice || 0) - Number(b.finalPrice || 0)
         );
-
       }
-
 
       if (sortMode === "high") {
-
         items.sort(
           (a, b) =>
-            Number(b.finalPrice || 0) -
-            Number(a.finalPrice || 0)
+            Number(b.finalPrice || 0) - Number(a.finalPrice || 0)
         );
-
       }
-
 
       return items;
 
@@ -1037,17 +729,11 @@ function renderCategories(categories) {
 
       document
         .getElementById("viewCard")
-        .classList.toggle(
-          "active",
-          mode === "card"
-        );
+        .classList.toggle("active", mode === "card");
 
       document
         .getElementById("viewTable")
-        .classList.toggle(
-          "active",
-          mode === "table"
-        );
+        .classList.toggle("active", mode === "table");
 
       renderCatalog();
 
@@ -1060,51 +746,28 @@ function renderCategories(categories) {
 
     function renderCatalog() {
 
-      const content =
-        document.getElementById(
-          "catalogContent"
-        );
+      const content = document.getElementById("catalogContent");
 
-      const products =
-        getSortedProducts();
+      const products = getSortedProducts();
 
-
-      document.getElementById(
-        "foundText"
-      ).textContent =
+      document.getElementById("foundText").textContent =
         `We found ${products.length} items!`;
-
 
       if (!products.length) {
 
         content.innerHTML = `
-
           <div class="empty-state">
-
-            <div class="empty-icon">
-              🎆
-            </div>
-
-            <h3>
-              No products found
-            </h3>
-
-            <p>
-              Try another search or category.
-            </p>
-
+            <div class="empty-icon">🎆</div>
+            <h3>No products found</h3>
+            <p>Try another search or category.</p>
           </div>
-
         `;
 
         return;
 
       }
 
-
-      if (
-        viewMode === "table"
-      ) {
+      if (viewMode === "table") {
         renderTableView(products);
       } else {
         renderCardView(products);
@@ -1119,19 +782,13 @@ function renderCategories(categories) {
 
     function renderCardView(products) {
 
-      const content =
-        document.getElementById(
-          "catalogContent"
-        );
+      const content = document.getElementById("catalogContent");
 
       const groups = {};
 
-
       products.forEach(product => {
 
-        const category =
-          product.category ||
-          "Other Products";
+        const category = product.category || "Other Products";
 
         if (!groups[category]) {
           groups[category] = [];
@@ -1141,30 +798,21 @@ function renderCategories(categories) {
 
       });
 
-
       content.innerHTML =
         Object.entries(groups)
           .map(
             ([category, items]) => `
 
-              <section
-                class="product-category-section"
-              >
+              <section class="product-category-section">
 
-                <div
-                  class="product-category-title"
-                >
+                <div class="product-category-title">
                   ${escapeHTML(category)}
                 </div>
 
-                <div
-                  class="product-card-grid"
-                >
+                <div class="product-card-grid">
 
                   ${items
-                    .map(product =>
-                      renderCard(product)
-                    )
+                    .map(product => renderCard(product))
                     .join("")}
 
                 </div>
@@ -1184,85 +832,58 @@ function renderCategories(categories) {
 
     function renderCard(product) {
 
-      const id =
-        product._id || product.id;
+      const id = product._id || product.id;
 
-      const mrp =
-        Number(product.mrp || 0);
+      const mrp = Number(product.mrp || 0);
 
-      const price =
-        Number(product.finalPrice || 0);
+      const price = Number(product.finalPrice || 0);
 
       const discount =
         mrp > 0
-          ? Math.round(
-              ((mrp - price) / mrp) * 100
-            )
+          ? Math.round(((mrp - price) / mrp) * 100)
           : 0;
 
-      const quantity =
-        getProductQuantity(id);
+      const quantity = getProductQuantity(id);
 
-      const productData =
-        encodeSafeData(product);
+      const productData = encodeSafeData(product);
 
       let imageHTML = "";
 
-
-      if (
-        typeof productImageHTML ===
-        "function"
-      ) {
+      if (typeof productImageHTML === "function") {
 
         imageHTML =
-          productImageHTML(
-            product.category,
-            product.image
-          );
+          productImageHTML(product.category, product.image);
 
       } else if (product.image) {
 
         imageHTML = `
-
           <img
             src="${escapeAttribute(product.image)}"
             alt="${escapeAttribute(product.name || "Product")}"
             loading="lazy"
           />
-
         `;
 
       } else {
 
         imageHTML = `
-
-          <div class="no-product-image">
-            🎆
-          </div>
-
+          <div class="no-product-image">🎆</div>
         `;
 
       }
 
-
       return `
 
-        <article
-          class="mano-product-card"
-        >
+        <article class="mano-product-card">
 
-          <div
-            class="mano-product-image"
-          >
+          <div class="mano-product-image">
 
             ${imageHTML}
 
             ${
               discount > 0
                 ? `
-                  <span
-                    class="best-selling-badge"
-                  >
+                  <span class="best-selling-badge">
                     🔥 ${discount}% OFF
                   </span>
                 `
@@ -1272,55 +893,39 @@ function renderCategories(categories) {
           </div>
 
 
-          <div
-            class="mano-product-details"
-          >
+          <div class="mano-product-details">
 
-            <div
-              class="mano-product-name"
-            >
+            <div class="mano-product-name">
               ${escapeHTML(product.name || "")}
             </div>
-
 
             ${
               product.content
                 ? `
-                  <div
-                    class="mano-product-content"
-                  >
+                  <div class="mano-product-content">
                     ${escapeHTML(product.content)}
                   </div>
                 `
                 : ""
             }
 
-
             <div class="product-unit">
               ${escapeHTML(product.unit || "PACK")}
             </div>
-
 
             <div class="mano-price">
 
               ${
                 mrp > price
-                  ? `
-                    <span class="mano-mrp">
-                      ₹${mrp}
-                    </span>
-                  `
+                  ? `<span class="mano-mrp">₹${mrp}</span>`
                   : ""
               }
 
-              <span
-                class="mano-final-price"
-              >
+              <span class="mano-final-price">
                 ₹${price}
               </span>
 
             </div>
-
 
             <div class="mano-cart-area">
 
@@ -1328,34 +933,20 @@ function renderCategories(categories) {
                 quantity > 0
                   ? `
 
-                    <div
-                      class="mano-quantity"
-                    >
+                    <div class="mano-quantity">
 
                       <button
                         type="button"
-                        onclick="
-                          updateProductQuantity(
-                            '${escapeJS(id)}',
-                            ${quantity - 1}
-                          )
-                        "
+                        onclick="updateProductQuantity('${escapeJS(id)}', ${quantity - 1})"
                       >
                         −
                       </button>
 
-                      <span>
-                        ${quantity}
-                      </span>
+                      <span>${quantity}</span>
 
                       <button
                         type="button"
-                        onclick="
-                          updateProductQuantity(
-                            '${escapeJS(id)}',
-                            ${quantity + 1}
-                          )
-                        "
+                        onclick="updateProductQuantity('${escapeJS(id)}', ${quantity + 1})"
                       >
                         +
                       </button>
@@ -1368,13 +959,7 @@ function renderCategories(categories) {
                     <button
                       type="button"
                       class="mano-add-btn"
-                      onclick="
-                        addProductToCart(
-                          decodeSafeData(
-                            '${productData}'
-                          )
-                        )
-                      "
+                      onclick="addProductToCart(decodeSafeData('${productData}'))"
                     >
                       Add To Cart
                     </button>
@@ -1399,19 +984,13 @@ function renderCategories(categories) {
 
     function renderTableView(products) {
 
-      const content =
-        document.getElementById(
-          "catalogContent"
-        );
+      const content = document.getElementById("catalogContent");
 
       const groups = {};
 
-
       products.forEach(product => {
 
-        const category =
-          product.category ||
-          "Other Products";
+        const category = product.category || "Other Products";
 
         if (!groups[category]) {
           groups[category] = [];
@@ -1421,29 +1000,20 @@ function renderCategories(categories) {
 
       });
 
-
       content.innerHTML =
         Object.entries(groups)
           .map(
             ([category, items]) => `
 
-              <section
-                class="table-category-section"
-              >
+              <section class="table-category-section">
 
-                <div
-                  class="table-category-title"
-                >
+                <div class="table-category-title">
                   ${escapeHTML(category)}
                 </div>
 
-                <div
-                  class="product-table-wrapper"
-                >
+                <div class="product-table-wrapper">
 
-                  <table
-                    class="mano-product-table"
-                  >
+                  <table class="mano-product-table">
 
                     <thead>
                       <tr>
@@ -1459,9 +1029,7 @@ function renderCategories(categories) {
                     <tbody>
 
                       ${items
-                        .map(product =>
-                          renderTableRow(product)
-                        )
+                        .map(product => renderTableRow(product))
                         .join("")}
 
                     </tbody>
@@ -1485,32 +1053,23 @@ function renderCategories(categories) {
 
     function renderTableRow(product) {
 
-      const id =
-        product._id || product.id;
+      const id = product._id || product.id;
 
-      const mrp =
-        Number(product.mrp || 0);
+      const mrp = Number(product.mrp || 0);
 
-      const price =
-        Number(product.finalPrice || 0);
+      const price = Number(product.finalPrice || 0);
 
-      const quantity =
-        getProductQuantity(id);
+      const quantity = getProductQuantity(id);
 
-      const total =
-        price * quantity;
+      const total = price * quantity;
 
-      const productData =
-        encodeSafeData(product);
-
+      const productData = encodeSafeData(product);
 
       return `
 
         <tr>
 
-          <td
-            class="table-image-cell"
-          >
+          <td class="table-image-cell">
 
             ${
               product.image
@@ -1527,9 +1086,7 @@ function renderCategories(categories) {
           </td>
 
 
-          <td
-            class="table-name-cell"
-          >
+          <td class="table-name-cell">
 
             <strong>
               ${escapeHTML(product.name || "")}
@@ -1537,17 +1094,11 @@ function renderCategories(categories) {
 
             ${
               product.content
-                ? `
-                  <small>
-                    ${escapeHTML(product.content)}
-                  </small>
-                `
+                ? `<small>${escapeHTML(product.content)}</small>`
                 : ""
             }
 
-            <span
-              class="table-unit"
-            >
+            <span class="table-unit">
               ${escapeHTML(product.unit || "PACK")}
             </span>
 
@@ -1558,11 +1109,7 @@ function renderCategories(categories) {
 
             ${
               mrp > price
-                ? `
-                  <span class="table-mrp">
-                    ₹${mrp}
-                  </span>
-                `
+                ? `<span class="table-mrp">₹${mrp}</span>`
                 : `₹${mrp}`
             }
 
@@ -1571,9 +1118,7 @@ function renderCategories(categories) {
 
           <td>
 
-            <span
-              class="table-offer-price"
-            >
+            <span class="table-offer-price">
               ₹${price}
             </span>
 
@@ -1586,54 +1131,33 @@ function renderCategories(categories) {
               quantity > 0
                 ? `
 
-                  <div
-                    class="table-cart-controls"
-                  >
+                  <div class="table-cart-controls">
 
-                    <div
-                      class="table-quantity"
-                    >
+                    <div class="table-quantity">
 
                       <button
                         type="button"
-                        onclick="
-                          updateProductQuantity(
-                            '${escapeJS(id)}',
-                            ${quantity - 1}
-                          )
-                        "
+                        onclick="updateProductQuantity('${escapeJS(id)}', ${quantity - 1})"
                       >
                         −
                       </button>
 
-                      <span>
-                        ${quantity}
-                      </span>
+                      <span>${quantity}</span>
 
                       <button
                         type="button"
-                        onclick="
-                          updateProductQuantity(
-                            '${escapeJS(id)}',
-                            ${quantity + 1}
-                          )
-                        "
+                        onclick="updateProductQuantity('${escapeJS(id)}', ${quantity + 1})"
                       >
                         +
                       </button>
 
                     </div>
 
-                    <strong
-                      class="mobile-product-total"
-                    >
+                    <strong class="mobile-product-total">
                       ₹${total.toFixed(2)}
                     </strong>
 
-                    <a
-                      href="cart.html"
-                      class="table-checkout-btn"
-                    >
+                    <a href="cart.html" class="table-checkout-btn">
                       Checkout
                     </a>
 
@@ -1645,13 +1169,7 @@ function renderCategories(categories) {
                   <button
                     type="button"
                     class="table-add-btn"
-                    onclick="
-                      addProductToCart(
-                        decodeSafeData(
-                          '${productData}'
-                        )
-                      )
-                    "
+                    onclick="addProductToCart(decodeSafeData('${productData}'))"
                   >
                     Add
                   </button>
@@ -1664,9 +1182,7 @@ function renderCategories(categories) {
 
           <td>
 
-            <strong
-              class="table-total"
-            >
+            <strong class="table-total">
               ₹${total.toFixed(2)}
             </strong>
 
@@ -1687,19 +1203,14 @@ function renderCategories(categories) {
 
       try {
 
-        const cart =
-          getCart();
+        const cart = getCart();
 
         const item =
           cart.find(
-            item =>
-              String(item.productId) ===
-              String(productId)
+            item => String(item.productId) === String(productId)
           );
 
-        return item
-          ? Number(item.qty || 0)
-          : 0;
+        return item ? Number(item.qty || 0) : 0;
 
       } catch (error) {
 
@@ -1726,27 +1237,18 @@ function renderCategories(categories) {
 
       } catch (error) {
 
-        console.error(
-          "Add to cart error:",
-          error
-        );
+        console.error("Add to cart error:", error);
 
       }
 
     }
 
 
-    function updateProductQuantity(
-      productId,
-      quantity
-    ) {
+    function updateProductQuantity(productId, quantity) {
 
       try {
 
-        updateQty(
-          productId,
-          quantity
-        );
+        updateQty(productId, quantity);
 
         renderCatalog();
 
@@ -1754,10 +1256,7 @@ function renderCategories(categories) {
 
       } catch (error) {
 
-        console.error(
-          "Quantity error:",
-          error
-        );
+        console.error("Quantity error:", error);
 
       }
 
@@ -1766,10 +1265,7 @@ function renderCategories(categories) {
 
     function updateCartCount() {
 
-      const element =
-        document.getElementById(
-          "cart-count"
-        );
+      const element = document.getElementById("cart-count");
 
       if (!element) {
         return;
@@ -1777,23 +1273,19 @@ function renderCategories(categories) {
 
       try {
 
-        const cart =
-          getCart();
+        const cart = getCart();
 
         const count =
           cart.reduce(
-            (total, item) =>
-              total + Number(item.qty || 0),
+            (total, item) => total + Number(item.qty || 0),
             0
           );
 
-        element.textContent =
-          count;
+        element.textContent = count;
 
       } catch (error) {
 
-        element.textContent =
-          "0";
+        element.textContent = "0";
 
       }
 
@@ -1806,26 +1298,19 @@ function renderCategories(categories) {
 
     document
       .getElementById("search-input")
-      .addEventListener(
-        "input",
-        event => {
+      .addEventListener("input", event => {
 
-          clearTimeout(
-            searchTimeout
-          );
+        clearTimeout(searchTimeout);
 
-          searchTimeout =
-            setTimeout(() => {
+        searchTimeout = setTimeout(() => {
 
-              searchTerm =
-                event.target.value.trim();
+          searchTerm = event.target.value.trim();
 
-              loadProducts();
+          loadProducts();
 
-            }, 300);
+        }, 300);
 
-        }
-      );
+      });
 
 
     /* =========================
@@ -1834,34 +1319,24 @@ function renderCategories(categories) {
 
     document
       .getElementById("category-search")
-      .addEventListener(
-        "input",
-        event => {
+      .addEventListener("input", event => {
 
-          const value =
-            event.target.value
-              .toLowerCase()
-              .trim();
+        const value =
+          event.target.value.toLowerCase().trim();
 
-          document
-            .querySelectorAll(
-              ".sidebar-category"
-            )
-            .forEach(button => {
+        document
+          .querySelectorAll(".sidebar-category")
+          .forEach(button => {
 
-              const category =
-                button.dataset.category
-                  .toLowerCase();
+            const category =
+              button.dataset.category.toLowerCase();
 
-              button.style.display =
-                category.includes(value)
-                  ? "flex"
-                  : "none";
+            button.style.display =
+              category.includes(value) ? "flex" : "none";
 
-            });
+          });
 
-        }
-      );
+      });
 
 
     /* =========================
@@ -1870,34 +1345,20 @@ function renderCategories(categories) {
 
     function toggleCategoryFilter() {
 
-      const shopMain =
-        document.querySelector(
-          ".shop-main"
-        );
+      const shopMain = document.querySelector(".shop-main");
 
       if (!shopMain) {
         return;
       }
 
-      shopMain.classList.toggle(
-        "category-filter-open"
-      );
+      shopMain.classList.toggle("category-filter-open");
 
-      const button =
-        document.querySelector(
-          ".filter-main-btn"
-        );
+      const button = document.querySelector(".filter-main-btn");
 
-      if (
-        shopMain.classList.contains(
-          "category-filter-open"
-        )
-      ) {
-        button.innerHTML =
-          "✕ Close Filter";
+      if (shopMain.classList.contains("category-filter-open")) {
+        button.innerHTML = "✕ Close Filter";
       } else {
-        button.innerHTML =
-          "☰ Filter";
+        button.innerHTML = "☰ Filter";
       }
 
     }
