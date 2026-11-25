@@ -54,6 +54,21 @@
     "stock": 100,
     "description": "5'' Laxmi - One Sound Crackers"
   },
+
+  {
+    "productCode": "FCW-5",
+    "name": "5'' Laxmi",
+    "category": "One Sound Crackers",
+    "content": "1 pkt",
+    "mrp": 220,
+    "discountPercent": 80,
+    "finalPrice": 44,
+    "stock": 100,
+    "description": "5'' Laxmi - One Sound Crackers"
+  },
+
+
+
   {
     "productCode": "FCW-6",
     "name": "6'' Laxmi",
